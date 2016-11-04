@@ -1,0 +1,40 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='chrome=1')
+    title pump.io by e14n
+    link(rel='stylesheet', href='stylesheets/styles.css')
+    link(rel='stylesheet', href='stylesheets/pygment_trac.css')
+    script(src='javascripts/scale.fix.js')
+    meta(name='viewport', content='width=device-width, initial-scale=1, user-scalable=no')
+    | <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  body
+    .wrapper
+      header
+        h1.header pump.io
+        p.header Social server with an ActivityStreams API
+        ul
+          li
+            a.buttons(href='/tryit.html') Try It Now
+          li.download
+            a.buttons(href='https://github.com/e14n/pump.io/zipball/master') Download ZIP
+          li.download
+            a.buttons(href='https://github.com/e14n/pump.io/tarball/master') Download TAR
+          li
+            a.buttons.github(href='https://github.com/e14n/pump.io') View On GitHub
+        p.header This project is maintained by 
+          a.header.name(href='https://github.com/e14n') e14n
+
+      block content
+
+      footer
+        p
+          small
+            | Hosted on 
+            a(href='https://pages.github.com') GitHub Pages
+            |  using the Dinky theme
+
+    | <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
