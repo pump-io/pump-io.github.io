@@ -87,7 +87,7 @@ gulp.task('misc', function() {
 
 /* Helper tasks */
 
-gulp.task('blog', ['posts','post-index', 'rss']);
+gulp.task('blog', ['posts','post-index']);
 
 gulp.task('build', ['html', 'css', 'js', 'images', 'blog', 'misc']);
 
@@ -106,7 +106,7 @@ gulp.task('watch', ['build'], function() {
 gulp.task('serve', ['watch'], function() {
 	http.createServer(
 		ecstatic({ root: __dirname + '/dist' })
-	).listen(8080);
+	).listen(8081);
 });
 
 /* Default task */
