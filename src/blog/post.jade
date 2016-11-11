@@ -1,0 +1,9 @@
+extends /src/includes/layout.jade
+
+include /src/includes/post.jade
+
+block head
+	title #{file.title} - pump.io by e14n
+
+block content
+	+renderPost(file, false)
