@@ -1,0 +1,28 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# LICENSE
+
+Website © Copyright 2012-2017 Alex Jordan and Evan Prodromou
+
+# TEAM
+
+    Alex Jordan
+     -- https://strugee.net (website)
+     -- @strugee (github)
+     -- @strugee2 (twitter)
+     -- alex@pump.strugee.net (pump.io)
+
+    Evan Prodromou
+     -- https://e14n.com
+
+# THANKS
+
+    GitHub, for the hosting
+
+# TECHNOLOGY COLOPHON
+
+    HTML5, CSS3
+    Markdown
+    Jade, Stylus, Gulp
+    Stratic
