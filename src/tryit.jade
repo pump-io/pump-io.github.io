@@ -20,12 +20,6 @@ html
                    "datamost.com"],
            site,
            destination;
-      // We use a cookie so we can send you to the same site again in the future
-      site = $.cookie("site");
-      if (!site) {
-          site = sites[Math.floor(Math.random() * sites.length)];
-          $.cookie("site", site, { expires: 3650, path: '/' });
-      }
       destination = "https://"+site+"/main/register";
       window.location = destination;
 
