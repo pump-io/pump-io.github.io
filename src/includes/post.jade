@@ -15,7 +15,13 @@ mixin renderPost(post, isIndex)
 		- var monthName = date.toLocaleString('en-us', {month: 'long'});
 		- var monthStr = date.getMonth() + 1;
 		- monthStr = monthStr < 10 ? '0' + monthStr.toString() : monthStr.toString();
-		p.post-metadata Published by #{author} on 
+		p.post-metadata
+			if !post.canonical
+				| Published
+			else
+				| Cross-posted from 
+				a(rel='canonical', href=post.canonical) this post
+			|  by #{author} on 
 			a(href='/blog/'+date.getFullYear()+'/'+monthStr+'/')= monthName
 			|  #{date.getDate()}, 
 			a(href='/blog/'+date.getFullYear()+'/')= date.getFullYear()
