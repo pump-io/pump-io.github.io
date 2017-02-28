@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "http://pump.io build system and source files",
   "main": "gulpfile.js",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "browserify": "^13.0.1",
     "ecstatic": "^2.1.0",
@@ -15,6 +14,7 @@
     "gulp-add-src": "^0.2.0",
     "gulp-attach-to-template": "^1.0.0",
     "gulp-front-matter": "^1.2.2",
+    "gulp-gray-matter": "^3.0.1",
     "gulp-ignore": "^1.1.0",
     "gulp-jade": "^0.10.0",
     "gulp-jshint": "^1.6.4",
@@ -29,7 +29,6 @@
     "remark-rewrite-headers": "^1.0.0",
     "remark-slug": "^4.2.2",
     "stratic-date-in-path": "^2.0.0",
-    "stratic-parse-header": "^1.0.2",
     "stratic-posts-to-index": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   },
