@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/stylesheets/pygment_trac.css">
     <script src="/javascripts/scale.fix.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-    <title>Blog - pump.io by e14n</title>
+    <title>"community" category - pump.io by e14n</title>
   </head>
   <body>
     <div class="wrapper">
@@ -25,117 +25,7 @@
       </header>
       <section>
         <div class="h-feed">
-          <h2 class="p-name">Blog</h2>
-          <p id="postsFrom">Show only <a href="/blog/2016/">2016</a> 
-          </p>
-          <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" class="h-entry"><a href="/blog/2016/11/pump.io-2.0.1-is-available">
-              <h2 class="p-name">Pump.io 2.0.4 is available</h2></a>
-            <p class="post-metadata">Cross-posted from <a rel="canonical" href="https://strugee.net/blog/2016/11/pump.io-2.0.1-is-available">this post</a> by Alex Jordan on <a href="/blog/2016/11/">November</a> 12, <a href="/blog/2016/">2016</a> in <a href="/blog/category/releases/" class="p-category">releases</a>
-            </p>
-            <div class="e-content"><p>Greetings!</p>
-<p>After a beta period of just over a week, pump.io 2.0.4 is now available on npm and GitHub. Whoohoo!</p>
-<p>(This was originally going to be 2.0.0, but we had to do a couple patch releases due to some outdated documentation and several critical bugs. 2.0.4 is mostly the same thing as 2.0.0.)</p>
-<h3>Changes</h3>
-<p>Note that this release includes security improvements - namely, a newer Express version and a better TLS configuration - and therefore <strong>admins are encouraged to upgrade ASAP</strong>.</p>
-<p>For the full list of changes, see <a href="https://github.com/pump-io/pump.io/blob/master/CHANGELOG.md#201---2016-11-10">the change log</a>.</p>
-<h4>Breaking changes</h4>
-<p>(As I said in <a href="">the beta announcement</a>:)</p>
-<p>Pump.io 2.0.4 is a drop-in replacement for 1.0.0 <strong>unless</strong> you have any plugins configured or you modify the templates.</p>
-<p>Plugins are likely to be affected by the upgrade to Express 3.x. The easiest way to migrate is probably to just run pump.io, test out the relevant parts of the app, and see where your plugin crashes. You might also want to look at the <a href="https://github.com/expressjs/express/blob/master/History.md#300--2012-10-23">Express 3 change log</a>.</p>
-<p>If you modified the templates, you'll be affected by the templates' rewrite from utml into Jade. Migration should be relatively painless but has to be done manually. Your best bet will be to save a copy of the diff you created, undo your changes, upgrade, then use the diff you saved to reintroduce your changes. You'll have to run <code>npm run build</code> after making changes to Jade files.</p>
-<h4>Non-breaking changes</h4>
-<p>This release is actually relatively minor in terms of non-breaking changes; however, we <em>do</em> have some nice new improvements:</p>
-<ul>
-<li>A pump(1) manpage is now included</li>
-<li>Any internal web UI link with a <code>data-bypass</code> attribute is now ignored by the routing logic (useful for e.g. custom pages added by the admin)</li>
-<li>YouTube links in posts are now shown as  embeds by the web UI (<a href="https://github.com/expressjs/express/blob/master/History.md#300--2012-10-23">#1158</a>)</li>
-<li>TLS connections now use Mozilla's "intermediate" cipher suite and forces server cipher suite preferences (<a href="https://github.com/pump-io/pump.io/issues/1061">#1061</a>)</li>
-<li>Various minor fixes and improvements</li>
-</ul>
-<h3>Upgrading</h3>
-<p>Upgrading is dead-simple. If you used our recommended install method, and installed from npm, you can upgrade with:</p>
-<pre><code>sudo npm install -g pump.io@2
-</code></pre>
-<p>If you installed from source, you can upgrade with:</p>
-<pre><code>git fetch
-# If you modified templates, save the diff at this step
-git checkout .
-git checkout v2.0.4
-npm install
-# Restore your template changes
-npm run lint:jade # Optional but recommended if you changed templates
-npm run build
-</code></pre>
-<p>Both of these methods will work whether you're running 0.3.0, 1.0.0, or 2.0.0 beta. Make sure to restart pump.io after performing the upgrade.</p>
-<h3>Getting help</h3>
-<p>If you have any issues with the upgrade, get in touch with <a href="https://github.com/pump-io/pump.io/wiki/Community">the community</a>. You can also email me at <a href="mailto:alex@strugee.net">alex@strugee.net</a>.</p>
-</div>
-          </article>
-          <hr>
-          <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" class="h-entry"><a href="/blog/2016/11/pump.io-2.0.0-beta-is-here">
-              <h2 class="p-name">Pump.io 2.0.0 beta is here</h2></a>
-            <p class="post-metadata">Cross-posted from <a rel="canonical" href="https://strugee.net/blog/2016/11/pump.io-2.0.0-beta-is-here">this post</a> by Alex Jordan on <a href="/blog/2016/11/">November</a> 2, <a href="/blog/2016/">2016</a> in <a href="/blog/category/releases/" class="p-category">releases</a>
-            </p>
-            <div class="e-content"><p>Greetings!</p>
-<p>As pump.io is gearing up for our 2.0.0 release, I just published a beta to npm. We'd love it if any interested admins could upgrade their nodes and report any bugs you may run in to. (All bug reports are helpful, but just so we're clear, we're likely to only fix regressions from 1.0.0.)</p>
-<h3>Changes</h3>
-<p>Pump.io 2.0.0 beta is a drop-in replacement for 1.0.0 <strong>unless</strong> you have any plugins configured or you modify the templates.</p>
-<p>Plugins are likely to be affected by the upgrade to Express 3.x. The easiest way to migrate is probably to just run pump.io, test out the relevant parts of the app, and see where your plugin crashes. You might also want to look at the <a href="https://github.com/expressjs/express/blob/master/History.md#300--2012-10-23">Express 3 change log</a>.</p>
-<p>If you modified the templates, you'll be affected by the templates' rewrite from utml into Jade. Migration should be relatively painless but has to be done manually. Your best bet will be to save a copy of the diff you created, undo your changes, upgrade, then use the diff you saved to reintroduce your changes. You'll have to run <code>npm run build</code> after making changes to Jade files.</p>
-<p>For the list of non-breaking changes, see <a href="https://github.com/pump-io/pump.io/blob/master/CHANGELOG.md#200-beta-1---2016-11-02">the change log</a>.</p>
-<h3>Upgrading</h3>
-<p>Upgrading is very easy. If you used our recommended install method, and installed from npm, you can upgrade to the beta with:</p>
-<pre><code>sudo npm install -g pump.io@beta
-</code></pre>
-<p>If you installed from source, you can upgrade with:</p>
-<pre><code>git fetch
-# If you modified templates, save the diff at this step
-git checkout .
-git checkout v2.0.0-beta.1
-npm install
-# Restore your template changes
-npm run lint:jade # Optional but recommended if you changed templates
-npm run build
-</code></pre>
-<p>Make sure to restart pump.io after performing the upgrade.</p>
-<h3>Getting help</h3>
-<p>If you have any issues upgrading to or running the beta, please don't hesitate to get in touch with <a href="https://github.com/e14n/pump.io/wiki/Community">the community</a>. You can also email me at <a href="mailto:alex@strugee.net">alex@strugee.net</a>.</p>
-</div>
-          </article>
-          <hr>
-          <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" class="h-entry"><a href="/blog/2016/08/pump.io-1.0.0-is-now-available">
-              <h2 class="p-name">Pump.io 1.0.0 is now available!</h2></a>
-            <p class="post-metadata">Cross-posted from <a rel="canonical" href="https://strugee.net/blog/2016/08/pump.io-1.0.0-is-now-available">this post</a> by Alex Jordan on <a href="/blog/2016/08/">August</a> 27, <a href="/blog/2016/">2016</a> in <a href="/blog/category/releases/" class="p-category">releases</a> and <a href="/blog/category/code/" class="p-category">code</a>
-            </p>
-            <div class="e-content"><p><a href="https://github.com/e14n/pump.io/releases/tag/v1.0.0">Pump.io 1.0.0</a> is officially available! Whoooo!</p>
-<p>I just wanted to write up an announcement real quick to celebrate. Here's a sample what's gone into this release:</p>
-<ul>
-<li>Node 4.x support</li>
-<li>Lots of security improvements including a better cross-site scripting scrubber and security-related headers that help protect the web UI (most notably, the web UI now declares a Content Security Policy)</li>
-<li>Minor improvements to the API to make it (slightly) smarter</li>
-<li><a href="https://www.gnu.org/software/librejs/">LibreJS</a> support</li>
-<li>Numerous dependency upgrades, most notably Connect</li>
-<li>And of course, tons of minor bugfixes and improvements</li>
-</ul>
-<p>For more details, see the brand-new <a href="https://github.com/e14n/pump.io/blob/master/CHANGELOG.md#100---2016-08-26">change log</a>.</p>
-<p>And of course since we're now past 0.x.x releases, we're now officially making a commitment to the community to make only API-compatible changes going forward (or at least, until 2.0.0!).</p>
-<p>As this release <em>does</em> improve security and fixes a lot of bugs, node administrators are encouraged to upgrade as soon as possible. If you have a global, npm-based install, you can upgrade with:</p>
-<pre><code>sudo npm install -g pump.io
-</code></pre>
-<p>And with a source-based install:</p>
-<pre><code>git pull
-git checkout v1.0.0
-npm install --production
-</code></pre>
-<p>If you're upgrading from 0.3.0, everything should Just Work(tm). Don't forget to restart your daemon!</p>
-<p>One final note - the rumors are true. While we're not doing so <em>yet</em>, we are, in fact, planning to deprecate running under Node.js 0.10 and 0.12 very soon. Also, if you upgrade to Node.js 4.x early, the new, better XSS scrubber will be enabled - <em>however</em>, be aware that pump.io is far less tested under Node.js 4.x and you are likely to run into more bugs than you would under 0.10 or 0.12. This is an unfortunate situation, but sadly there's really nothing to be done about it. :(</p>
-<p>Special thanks to Menno Vossen, Laura Arjona, Evan Prodromou, Jan Kusanagi and all the other volunteers who did so many different things to make this release happen. It truly wouldn't have happened without you.</p>
-<p>Enjoy the release!</p>
-<p>With &#x3C;3,</p>
-<p>AJ</p>
-</div>
-          </article>
-          <hr>
+          <h2 class="p-name">Posts categorized as "community"</h2>
           <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" class="h-entry"><a href="/blog/2016/08/pump.io-call-for-testers-call-for-feedback">
               <h2 class="p-name">Pump.io: call for testers, call for feedback</h2></a>
             <p class="post-metadata">Cross-posted from <a rel="canonical" href="https://strugee.net/blog/2016/08/pump.io-call-for-testers-call-for-feedback">this post</a> by Alex Jordan on <a href="/blog/2016/08/">August</a> 10, <a href="/blog/2016/">2016</a> in <a href="/blog/category/community/" class="p-category">community</a> and <a href="/blog/category/code/" class="p-category">code</a>

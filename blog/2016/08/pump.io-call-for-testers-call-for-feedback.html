@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>pump.io by e14n</title>
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+    <link rel="stylesheet" href="/stylesheets/pygment_trac.css">
+    <script src="/javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <title>Pump.io: call for testers, call for feedback - pump.io by e14n</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">pump.io</h1>
+        <p class="header">Social server with an ActivityStreams API</p>
+        <ul>
+          <li><a href="/tryit.html" class="buttons">Try It Now</a></li>
+          <li class="download"><a href="https://github.com/e14n/pump.io/zipball/master" class="buttons">Download ZIP</a></li>
+          <li class="download"><a href="https://github.com/e14n/pump.io/tarball/master" class="buttons">Download TAR</a></li>
+          <li><a href="https://github.com/e14n/pump.io" class="buttons github">View On GitHub</a></li>
+        </ul>
+        <p class="header">This project is maintained by <a href="https://github.com/e14n" class="header name">e14n</a></p>
+      </header>
+      <section>
+        <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" class="h-entry">
+          <h1 class="p-name">Pump.io: call for testers, call for feedback</h1>
+          <p class="post-metadata">Cross-posted from <a rel="canonical" href="https://strugee.net/blog/2016/08/pump.io-call-for-testers-call-for-feedback">this post</a> by Alex Jordan on <a href="/blog/2016/08/">August</a> 10, <a href="/blog/2016/">2016</a> in <a href="/blog/category/community/" class="p-category">community</a> and <a href="/blog/category/code/" class="p-category">code</a>
+          </p>
+          <div class="e-content"><p>So in my <a href="https://strugee.net/blog/2016/08/new-stuff-in-pump.io">last post</a>, I mentioned that I'd left a couple things for a second blog post. This is that post, and instead of being about all the cool stuff going on in the pumpiverse, it's about stuff that you - yes, <em>you</em>! - can do! It's super easy too.</p>
+<h3>Call for testers</h3>
+<p>So as I mentioned, the <code>utml-to-jade</code> branch is basically finished (see <a href="https://github.com/e14n/pump.io/pull/1170">PR #1170</a>). Since switching templating languages is a huge, huge change, by definition touching every single part of the Web UI, we want to make sure it's well-tested. This is especially critical given the fact that the Web UI unfortunately has <a href="https://github.com/e14n/pump.io/issues/147">very little test coverage</a>.</p>
+<p>That's where pump.io system administrators come in. If you're a sysadmin and you're willing to test this change on your node, we'd very much appreciate it. There's very little risk, since I <em>think</em> I've squashed all the regressions that happened, but you should be willing to <a href="https://github.com/e14n/pump.io/issues">report bugs</a> if you <em>do</em> run into them. In particular, you should look out for:</p>
+<ol>
+<li>Links that seem to encompass too much text</li>
+<li>Missing spaces - e.g. <code>Alex Jordanat [date]</code> instead of <code>Alex Jordan at [date]</code></li>
+<li>HTML code showing up on the page - e.g. <code>Test note&#x3C;br /></code> instead of <code>Test note</code> followed by a line break</li>
+</ol>
+<p>Note that the <code>utml-to-jade</code> branch incorporates all changes in the <code>master</code> branch, so you may want to check out the advice in <a href="https://github.com/e14n/pump.io/wiki/Running-from-git-master">Running from Git master</a>.</p>
+<p>Sound interesting? Want to take part in the development of pump.io? Installing is super easy:</p>
+<pre><code>$ [sudo] npm install -g e14n/pump.io#utml-to-jade
+</code></pre>
+<p>This will work even if you already have a (non-source) install of pump.io - just make sure to restart the server afterwards.</p>
+<p>Note that this command has some semi-terrible logic to build Jade templates on install (this is a workaround for a deficiency in npm). If you get a scary warning message from npm, please <a href="https://github.com/e14n/pump.io/issues">file an issue</a>, making sure to include the full log.</p>
+<h3>Call for design feedback</h3>
+<p>The other big thing that's happening is the pump.io 1.0.0 tshirt we're designing! I've spent quite a bit of time working on a variety of candidate designs which can be viewed in <a href="https://cloud.strugee.net/index.php/s/Ymw2RAdxyFZuuwu">this ownCloud share</a>. Obviously we want the coolest tshirt possible, so we're looking for any design feedback that people have. Anyone with some spare time can glance through the designs, and we'd be thrilled to get everyone's opinions.</p>
+<p>If this sounds interesting, I'd welcome you to check out <a href="https://cloud.strugee.net/index.php/s/Ymw2RAdxyFZuuwu">the drafts</a>. As always, get in touch with the community through <a href="https://github.com/e14n/pump.io/wiki/Community#community-accounts-communication">our chatroom</a> or if you'd prefer, you can email me directly at <a href="mailto:alex@strugee.net">alex@strugee.net</a>.</p>
+<p>Thanks so much! :)</p>
+</div>
+        </article>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div><!--[if !IE]><script>fixScale(document);</script><![endif]-->
+  </body>
+</html>
