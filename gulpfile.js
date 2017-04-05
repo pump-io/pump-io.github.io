@@ -56,7 +56,8 @@ gulp.task('js', function() {
 gulp.task('post-index', function() {
 	return gulp.src('src/blog/*.md')
 	           .pipe(parse({property: ''}))
-	           .pipe(remark().use(remarkHtml).use(adjustHeaders))
+	           // Dirty hack until remark-adjust-headers takes options
+	           .pipe(remark().use(remarkHtml).use(adjustHeaders).use(adjustHeaders))
 	           .pipe(dateInPath())
 	           .pipe(addsrc('src/blog/index.jade'))
 	           .pipe(postsToIndex('index.jade'))
