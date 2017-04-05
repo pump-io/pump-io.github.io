@@ -30,21 +30,21 @@
             <p class="post-metadata">Cross-posted from <a rel="canonical" href="https://strugee.net/blog/2016/08/new-stuff-in-pump.io">this post</a> by Alex Jordan on <a href="/blog/2016/08/">August</a> 8, <a href="/blog/2016/">2016</a> in <a href="/blog/category/code/" class="p-category">code</a>, <a href="/blog/category/community/" class="p-category">community</a> and <a href="/blog/category/documentation/" class="p-category">documentation</a>
             </p>
             <div class="e-content"><p>So I promised <a href="https://strugee.net/blog/2016/05/stratic-part-one">a (long) while ago</a> that I'd blog about all the stuff going on in <a href="http://pump.io">pump.io</a>. And there is a <em>lot</em> going on. Where to even begin?</p>
-<h3>LFNW talk</h3>
+<h4>LFNW talk</h4>
 <p>I think the first thing I should mention is <a href="https://linuxfestnorthwest.org/2016/sessions/pumpio-community">the talk</a> I gave at LinuxFest Northwest this year. It went really, really well (even though I finished half the slides the night before), and people seemed to be really engaged, especially during questions. It starts off by covering the history behind pump.io: that includes the relevant protocols, like OStatus and <a href="http://activitystrea.ms">ActivityStreams</a>, but also the motivation behind abandoning StatusNet (aka current GNU Social) in favor of a brand-new network. Next I move on to the way that pump.io itself works, namely, its function as a generic ActivityStreams distribution engine. To put this another way, I explain why this quote from <a href="https://github.com/e14n/pump.io/blob/master/README.md">the README</a>:</p>
 <blockquote>
 <p>I post something and my followers see it. That's the rough idea behind the pump.</p>
 </blockquote>
 <p>is a pretty accurate way of describing what pump.io actually does. (I quote that quite a few times in the slides themselves.) I end with a discussion of the recent developments in the community, which are of course wonderful, and a short call-to-action for people to contribute - either directly to the software, or by joining the network and spreading pump.io.</p>
 <p>Oh, and by the way - the talk was recorded! So you can watch it <a href="https://www.youtube.com/watch?v=uQ6RVTFdYNc">on YouTube</a> or, even better, <a href="https://media.strugee.net/u/alex/m/linuxfest-northwest-2016-pump-io-the-community/">on my personal MediaGoblin</a>. Fitting, since (as I mention in the talk) MediaGoblin federation will soon be released, and it's based on (and fully interoperable with) the pump.io protocol!</p>
-<h3>Conservancy application</h3>
+<h4>Conservancy application</h4>
 <p>Pump.io is applying to the <a href="https://sfconservancy.org/">Software Freedom Conservancy</a>! This is super fantastic for us for a number of reasons. One of the biggest advantages is the fact that inside Conservancy (assuming our application is accepted), we'll be able to take donations much, much easier. This is primarily important because nodes in the pump.io network are volunteer-run, but they still require funds to operate. We're thinking about models wherein people will be able to donate to "pump.io", and then some (most?) of those funds will be used to pay for the network. (In particular, they'll be used to pay for the existing E14N nodes that Evan currently runs, which will become extremely useful once we transition those nodes to community owners). Conservancy also provides useful miscellaneous services, like owning our logo and making sure that if we encounter license violations, the license is properly enforced. But perhaps most importantly, becoming part of Conservancy cements pump.io even more in the community - both the group of people working on the software &#x26; network, but also the larger free software world.</p>
-<h3>ReadTheDocs</h3>
+<h4>ReadTheDocs</h4>
 <p>We've started a <a href="http://pumpio.readthedocs.io/en/latest/">dedicated space</a> for project documentation, hosted on ReadTheDocs. We're plannning to move a bunch of content from the GitHub wiki into this project, and hopefully it'll become a thorough and central place for pump.io documentation - both for users and for deployers.</p>
-<h3>Triage</h3>
+<h4>Triage</h4>
 <p>We've spent quite a bit of time going through open issues and prioritizing them. A lot of issues have a release target now, and it feels really nice to feel like our issue tracker is a bit more organized.</p>
 <p>Special thanks to <a href="https://identi.ca/larjona">Laura Arjona</a> for driving this work.</p>
-<h3>Various minor code improvements</h3>
+<h4>Various minor code improvements</h4>
 <p>There have been a <em>bunch</em> of small bugfixes and improvements that have gone into the <code>master</code> branch - some of them user-facing, and some of them making the development experience better. Notable changes include:</p>
 <ul>
 <li>Migrating from Connect 1.x to Connect 2.x (this is just a start - Connect 2.x is still deprecated, but it gets us closer than we were to relying on a fully non-deprecated stack)</li>
@@ -54,14 +54,14 @@
 <li>Tests now pass! Whooooooooo! (Thanks to Menno Vossen for sending <a href="https://github.com/e14n/pump.io/pull/1136">the enormous Pull Request</a> that made this happen.)</li>
 </ul>
 <p>Those are just the bigger ones, of course - there are a bunch of even smaller problems that got squashed as well. I'd also like to point out that quite a few of these were long-standing PRs which <em>finally</em> made it into core, which is awesome for everyone.</p>
-<h3>Express 3.x migration</h3>
+<h4>Express 3.x migration</h4>
 <p>I've been putting in a lot of work to migrate pump.io to Express 3.x. It's a huge amount of work, but when complete, it will bring us very, very close to being able to migrate onto Express 4.x, which is modern and fully-supported by upstream. Basically what I've been doing is just running the app, seeing where it crashes, going to the exception site, and fixing the problem. Rinse, repeat. You can check out this work on the <a href="https://github.com/e14n/pump.io/tree/express-3.x"><code>express-3.x</code></a> branch - currently, this branch can successfully start up the app, but will crash pretty soon after you try to do almost anything else.</p>
 <p>This work, unfortunately, is on hold while another important project is completed: converting all the templates from utml to Jade.</p>
-<h3>utml to Jade transition</h3>
+<h4>utml to Jade transition</h4>
 <p>This is basically what it sounds like. Previously, the templates in pump.io were based on <a href="https://github.com/mikefrey/utml">utml</a>, which is essentially a thin wrapper around <a href="http://underscorejs.org/#template">Underscore.js's <code>_.template()</code></a> function. However, utml doesn't work with Express 3.x (and it's not really worth <em>making</em> it work), plus it's not the prettiest to work with. <a href="http://jade-lang.com/">Jade</a> is an extremely popular templating language in Node-land nowadays, so a couple months ago I spent somewhere between 14 and 18 hours going through and rewriting all the utml in Jade, which was absolutely brutal - but necessary. Then, of course, I had to fix the client-side templating logic to handle Jade instead of Underscore templates, which took quite a while, along with the fact that I made a very large number of minor (largely cosmetic) errors in my conversions.</p>
 <p>As I said above, this was kind of awful work (<em>especially</em> the beginning), but it's necessary and great, as it paves the way for Express 3.x <em>and</em> massively improves the contributor experience.</p>
 <p>You can check out the gory details of this work in <a href="https://github.com/e14n/pump.io/pull/1170">PR #1170</a>, and the original reasoning behind why we're doing this in <a href="https://github.com/e14n/pump.io/issues/1167">issue #1167</a>. This work is actually done, but I'm going to write a separate blog post about it, calling for testers.</p>
-<h3>Upcoming 1.0.0 release</h3>
+<h4>Upcoming 1.0.0 release</h4>
 <p>Last but <strong>certainly</strong> not least, we're gearing up for our 1.0.0 release! From a codebase standpoint, this is really just a small bugfix release (although it will make a lot of things less broken and - if I recall correctly - fix the actual installation process), but more importantly, it means that we're now committing to <a href="http://semver.org/">semantic versioning</a>, which is a win for everyone (but especially administrators). The main thing that needs to be fixed before this goes out the door is the behavior of the XSS scrubber, which was accidentally made a little too aggressive. This is being tracked in <a href="https://github.com/e14n/pump.io/issues/1169">issue #1169</a>.</p>
 <p>As a bonus, I'm also designing a t-shirt that (if there's sufficient interest) we may print as a celebration of this release - but more on this in my next post.</p>
 </div>
