@@ -17,7 +17,7 @@ A new version of [Dianara](https://jancoding.wordpress.com/dianara/), my desktop
 
 It’s another small release. The biggest change is the updated image viewer, which now supports zooming with the mouse/touchpad, and dragging the image around, as full-blown image viewers usually support ;)
 
-If you want to build it with Qt 5.x, note that **your system will need a Qt 5 build of the QOAuth library**, which not all GNU/linux distributions provide yet.  [Mageia 6 does](http://madb.mageia.org/package/show/application/0/release/cauldron/name/libqoauth-qt5-devel), and so do Archlinux, openSUSE (in a separate repository) and Debian (in Experimental). If you have that, but experience problems building it this way, your [QOAuth might be missing a feature file (.prf)](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=825976), like used to be the case in Debian.
+If you want to build it with Qt 5.x, note that **your system will need a Qt 5 build of the QOAuth library**, which not all GNU/Linux distributions provide yet.  [Mageia 6 does](http://madb.mageia.org/package/show/application/0/release/cauldron/name/libqoauth-qt5-devel), and so do Archlinux, openSUSE (in a separate repository) and Debian (in Experimental). If you have that, but experience problems building it this way, your [QOAuth might be missing a feature file (.prf)](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=825976), like used to be the case in Debian.
 
 
 # Changelog
