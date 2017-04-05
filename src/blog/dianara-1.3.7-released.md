@@ -24,7 +24,7 @@ If you want to build it with Qt 5.x, note that **your system will need a Qt 5 bu
 
 The changes [since v1.3.6](https://jancoding.wordpress.com/2016/12/17/dianara-v1-3-6-is-out/) are:
 
-*The image viewer now supports dragging the image around with the mouse, zooming with the wheel, and rotating animated images correctly.
-*Fixed case-insensitive sorting of contacts in auto-completion lists, when typing @ while creating a post. This means that “Person A” will appear next to “person b”, not after “Z-contact”.
-*Your server’s version will be shown in the log.
+* The image viewer now supports dragging the image around with the mouse, zooming with the wheel, and rotating animated images correctly.
+* Fixed case-insensitive sorting of contacts in auto-completion lists, when typing @ while creating a post. This means that “Person A” will appear next to “person b”, not after “Z-contact”.
+* Your server’s version will be shown in the log.
 
