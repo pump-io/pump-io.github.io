@@ -25,8 +25,35 @@
       <section>
         <div class="h-feed">
           <h2 class="p-name">Posts from 2017</h2>
-          <p id="postsFrom">Show only <a href="/blog/2017/03/">March</a> <a href="/blog/2017/04/">April</a> 
+          <p id="postsFrom">Show only <a href="/blog/2017/03/">March</a> <a href="/blog/2017/04/">April</a> <a href="/blog/2017/05/">May</a> 
           </p>
+          <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" class="h-entry"><a href="/blog/2017/05/pump.io-xss-security-releases-available">
+              <h2 class="p-name">pump.io XSS security releases available</h2></a>
+            <p class="post-metadata">Published by Alex Jordan on <a href="/blog/2017/05/">May</a> 23, <a href="/blog/2017/">2017</a> in <a href="/blog/category/releases/" class="p-category">releases</a>
+            </p>
+            <div class="e-content"><p>Well, apparently I forgot to make a blog post announcing that pump.io 4.0.0 stable is out. Surprise! Besides the version number it's the same as <a href="http://pump.io/blog/2017/04/pump.io-4.0-in-beta">4.0 beta 5</a> anyway.</p>
+<p>What is not the same as 4.0 beta 5, however, is the security releases I've just published. A semver-major release went out within the past 6 months, so per our <a href="https://github.com/pump-io/pump.io/wiki/Security">security support policy</a>, we've released security patches for the past three stable releases:</p>
+<ol>
+<li>pump.io 4.0.0 has been updated to pump.io 4.0.1</li>
+<li>pump.io 3.0.2 has been updated to pump.io 3.0.3</li>
+<li>pump.io 2.1.1 has been updated to pump.io 2.1.2</li>
+</ol>
+<p>So what exactly required these releases? Well, the library we use to prevent cross-site scripting, <a href="https://github.com/cure53/DOMPurify">DOMPurify</a>, released some security patches recently. While we could conceivably just tell pump.io users to rerun <code>npm install -g</code> to get the updated library, it seemed safer to issue patch releases that bumped the minimum version for DOMPurify and have people upgrade to those. This gives a 100% guarantee that pump.io users will be protected with the absolute latest DOMPurify version.</p>
+<p>As with any security release, we encourage admins to upgrade ASAP. If you've already installed the 4.0 release via npm, that's great! That's our recommended configuration, and you'll be able to upgrade by issuing:</p>
+<pre><code>$ npm install -g pump.io@4
+</code></pre>
+<p>If you're still on the 3.x release series, you really should <a href="https://pumpio.readthedocs.io/en/latest/upgrades/3.x-to-4.x.html">upgrade to 4.x</a>, which contains significant work impacting security which was too big to go into a patch release (specifically, the upgrade to Express 4.x). But in the meantime, you can fix your XSS problems by running:</p>
+<pre><code>$ npm install -g pump.io@3
+</code></pre>
+<p>And something similar if you're on 2.1.x:</p>
+<pre><code>$ npm install -g pump.io@2
+</code></pre>
+<p>Though in this case it's even more urgent that you <a href="https://pumpio.readthedocs.io/en/latest/upgrades/3.x-to-4.x.html">upgrade to 4.x</a>.</p>
+<p>Note that the above comands also assume you have an npm-based install, which we strongly recommend. If you have a source-based install, you will need to upgrade however you usually do - this will depend on how exactly you have pump.io set up.</p>
+<p>As always, if you need help, get in touch with <a href="https://github.com/pump-io/pump.io/wiki/Community">the community</a>.</p>
+</div>
+          </article>
+          <hr>
           <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" class="h-entry"><a href="/blog/2017/04/pump.io-4.0-in-beta">
               <h2 class="p-name">pump.io 4.0 in beta</h2></a>
             <p class="post-metadata">Published by Alex Jordan on <a href="/blog/2017/04/">April</a> 3, <a href="/blog/2017/">2017</a> in <a href="/blog/category/releases/" class="p-category">releases</a>
