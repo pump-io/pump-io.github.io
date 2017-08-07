@@ -24,7 +24,7 @@ Many of these changes - particularly the systemd changes and the fact that ([as 
 
 All of these features add up to make pump.io 5.0 beta the most stable and secure release yet. As always, it will go through our beta period for about a month before being released as a fully stable version. If you try it out, the [community][] would love to hear about it - and be sure to [report any bugs][bugs] you encounter!
 
- [the changelog]: https://github.com/pump-io/pump.io/blob/master/CHANGELOG.md#500-beta-0---future
+ [the changelog]: https://github.com/pump-io/pump.io/blob/master/CHANGELOG.md#500-beta-0---2017-08-07
  [systemd service]: https://pumpio.readthedocs.io/en/latest/administration/upstream-systemd-unit.html
  [deprecation]: http://pump.io/blog/2017/07/pump.io-4.1-is-out
  [upgrade guide]: https://pumpio.readthedocs.io/en/latest/upgrades/4.x-to-5.x.html
