@@ -3,7 +3,7 @@ title: "Pump.io 1.0.0 is now available!"
 time:
   epoch: 1472279874
   utcoffset: "UTC-7"
-author: "Alex Jordan"
+author: "AJ Jordan"
 categories:
   - releases
   - code

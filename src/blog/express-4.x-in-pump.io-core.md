@@ -3,7 +3,7 @@ title: "Express 4.x in pump.io core"
 time:
   epoch: 1490041347
   utcoffset: "UTC-4"
-author: "Alex Jordan"
+author: "AJ Jordan"
 categories:
   - code
 ---

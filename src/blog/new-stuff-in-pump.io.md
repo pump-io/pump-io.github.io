@@ -3,7 +3,7 @@ title: "New stuff in pump.io"
 time:
   epoch: 1470633992
   utcoffset: "UTC-4"
-author: "Alex Jordan"
+author: "AJ Jordan"
 categories:
   - code
   - community

@@ -3,7 +3,7 @@ title: "Pump.io 2.0.4 is available"
 time:
   epoch: 1478936954
   utcoffset: "UTC-8"
-author: "Alex Jordan"
+author: "AJ Jordan"
 categories:
   - releases
 canonical: "https://strugee.net/blog/2016/11/pump.io-2.0.1-is-available"

@@ -3,7 +3,7 @@ title: "pump.io 4.1 is out"
 time:
   epoch: 1498964241
   utcoffset: "UTC-8"
-author: "Alex Jordan"
+author: "AJ Jordan"
 categories:
   - releases
 ---

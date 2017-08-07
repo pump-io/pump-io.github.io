@@ -3,7 +3,7 @@ title: "pump.io 4.0 in beta"
 time:
   epoch: 1491253390
   utcoffset: "UTC-4"
-author: "Alex Jordan"
+author: "AJ Jordan"
 categories:
   - releases
 ---

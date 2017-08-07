@@ -3,7 +3,7 @@ title: "pump.io XSS security releases available"
 time:
   epoch: 1495529992
   utcoffset: "UTC-7"
-author: "Alex Jordan"
+author: "AJ Jordan"
 categories:
   - releases
 ---

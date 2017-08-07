@@ -3,7 +3,7 @@ title: "Pump.io 2.0.0 beta is here"
 time:
   epoch: 1478142359
   utcoffset: "UTC-7"
-author: "Alex Jordan"
+author: "AJ Jordan"
 categories:
   - releases
 canonical: "https://strugee.net/blog/2016/11/pump.io-2.0.0-beta-is-here"
