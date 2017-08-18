@@ -16,6 +16,7 @@ var attachToTemplate = require('gulp-attach-to-template');
 var filterDrafts = require('stratic-filter-drafts');
 var dateInPath = require('stratic-date-in-path');
 var postsToIndex = require('stratic-posts-to-index');
+var paginateIndexes = require('stratic-paginate-indexes');
 var ghpages = require('gh-pages');
 var merge = require('merge-stream');
 var gutil = require('gulp-util');
@@ -62,6 +63,7 @@ gulp.task('post-index', function() {
 	           .pipe(dateInPath())
 	           .pipe(addsrc('src/blog/index.jade'))
 	           .pipe(postsToIndex('index.jade'))
+	           .pipe(paginateIndexes())
 	           .pipe(jade({pretty: true, basedir: __dirname}))
 	           .pipe(rename({ extname: '.html' }))
 	           .pipe(gulp.dest('dist/blog'));
