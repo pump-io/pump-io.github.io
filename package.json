@@ -13,7 +13,6 @@
     "gulp": "^3.8.5",
     "gulp-add-src": "^0.2.0",
     "gulp-attach-to-template": "^1.0.0",
-    "gulp-front-matter": "^1.2.2",
     "gulp-gray-matter": "^3.0.1",
     "gulp-ignore": "^1.1.0",
     "gulp-jade": "^0.10.0",

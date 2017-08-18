@@ -7,7 +7,6 @@ var path = require('path');
 var jade = require('gulp-jade');
 var jshint = require('gulp-jshint');
 var rename = require('gulp-rename');
-var frontMatter = require('gulp-front-matter');
 var remark = require('gulp-remark');
 var remarkHtml = require('remark-html');
 var adjustHeaders = require('remark-rewrite-headers');
