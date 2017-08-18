@@ -6,7 +6,6 @@ time:
 author: "AJ Jordan"
 categories:
   - releases
-draft: true
 ---
 
 I'm excited to announce that pump.io 5.0.0 is now officially in beta!
