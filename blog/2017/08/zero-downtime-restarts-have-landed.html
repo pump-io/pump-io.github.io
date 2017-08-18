@@ -9,7 +9,7 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <script src="/javascripts/scale.fix.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-    <title>August 2017 - pump.io by e14n</title>
+    <title>Zero-downtime restarts have landed - pump.io by e14n</title>
   </head>
   <body>
     <div class="wrapper">
@@ -24,13 +24,11 @@
         <p class="header">This project is maintained by <a href="https://github.com/pump-io" class="header name">pump.io contributors</a></p>
       </header>
       <section>
-        <div class="h-feed">
-          <h2 class="p-name">Posts from August 2017</h2>
-          <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" class="h-entry"><a href="/blog/2017/08/zero-downtime-restarts-have-landed">
-              <h2 class="p-name">Zero-downtime restarts have landed</h2></a>
-            <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/08/">August</a> 18, <a href="/blog/2017/">2017</a> in <a href="/blog/category/code/" class="p-category">code</a>
-            </p>
-            <div class="e-content"><p>I'm thrilled to announce that zero-downtime restarts, which I've been hacking on for the past week or two, <a href="https://github.com/pump-io/pump.io/pull/1406">have just landed</a> in pump.io master!</p>
+        <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" class="h-entry">
+          <h1 class="p-name">Zero-downtime restarts have landed</h1>
+          <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/08/">August</a> 18, <a href="/blog/2017/">2017</a> in <a href="/blog/category/code/" class="p-category">code</a>
+          </p>
+          <div class="e-content"><p>I'm thrilled to announce that zero-downtime restarts, which I've been hacking on for the past week or two, <a href="https://github.com/pump-io/pump.io/pull/1406">have just landed</a> in pump.io master!</p>
 <p>Zero-downtime restarts require at least two cluster workers and MongoDB as a Databank driver (we'll eventually relax the latter requirement as we continue to test the feature). Here's how it works:</p>
 <ol>
 <li>An administrator sends SIGUSR2 to the master pump.io process (note that SIGUSR1 is <a href="https://nodejs.org/api/process.html#process_signal_events">reserved by Node.js</a>)</li>
@@ -67,27 +65,7 @@
 <p>Admins running from git master can start experimenting with this feature today, and it will be released during the <em>next</em> release cycle - i.e. with the 5.1 beta and stable, <em>not</em> the current 5.0 beta. Since this is highly experimental, we want this to have as much time for testing as possible. You can also check out the <a href="https://pumpio.readthedocs.io/en/latest/administration/zero-downtime-restarts.html">official documentation</a> on this feature.</p>
 <p>I hope people enjoy this! And as always, feel free to <a href="https://github.com/pump-io/pump.io/issues/new">report any bugs</a>.</p>
 </div>
-          </article>
-          <hr>
-          <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" class="h-entry"><a href="/blog/2017/08/pump.io-5.0-beta-released">
-              <h2 class="p-name">pump.io 5.0 beta released</h2></a>
-            <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/08/">August</a> 7, <a href="/blog/2017/">2017</a> in <a href="/blog/category/releases/" class="p-category">releases</a>
-            </p>
-            <div class="e-content"><p>I'm excited to announce that pump.io 5.0.0 is now officially in beta!</p>
-<p>This is another big release and makes a wide variety of improvements. Here are some highlights from <a href="https://github.com/pump-io/pump.io/blob/master/CHANGELOG.md#500-beta-0---2017-08-07">the changelog</a>:</p>
-<ul>
-<li>More complete documentation</li>
-<li>Small improvements to the administrator experience</li>
-<li>A better web UI, including some user experience polishing as well as an upgrade to more performant and better-licensed libraries</li>
-<li>A fix for crashes related to "login with remote account" (although this one was backported in 4.1.1)</li>
-<li>Significant security improvements in the <a href="https://pumpio.readthedocs.io/en/latest/administration/upstream-systemd-unit.html">systemd service</a> shipped with the package</li>
-<li>Lots of internal refactoring and simplification made possible by dropping Node 0.10/0.12 support</li>
-</ul>
-<p>Many of these changes - particularly the systemd changes and the fact that (<a href="http://pump.io/blog/2017/07/pump.io-4.1-is-out">as previously announced</a>) Node 0.10 and 0.12 are no longer supported - will require administrator intervention. Be sure to read our <a href="https://pumpio.readthedocs.io/en/latest/upgrades/4.x-to-5.x.html">upgrade guide</a> for details on how to deal with these changes.</p>
-<p>All of these features add up to make pump.io 5.0 beta the most stable and secure release yet. As always, it will go through our beta period for about a month before being released as a fully stable version. If you try it out, the <a href="https://github.com/pump-io/pump.io/wiki/Community">community</a> would love to hear about it - and be sure to <a href="https://github.com/pump-io/pump.io/issues">report any bugs</a> you encounter!</p>
-</div>
-          </article>
-        </div>
+        </article>
       </section>
       <footer>
         <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>

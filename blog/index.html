@@ -28,6 +28,49 @@
           <h2 class="p-name">Blog</h2>
           <p id="postsFrom">Show only <a href="/blog/2016/">2016</a> <a href="/blog/2017/">2017</a> 
           </p>
+          <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" class="h-entry"><a href="/blog/2017/08/zero-downtime-restarts-have-landed">
+              <h2 class="p-name">Zero-downtime restarts have landed</h2></a>
+            <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/08/">August</a> 18, <a href="/blog/2017/">2017</a> in <a href="/blog/category/code/" class="p-category">code</a>
+            </p>
+            <div class="e-content"><p>I'm thrilled to announce that zero-downtime restarts, which I've been hacking on for the past week or two, <a href="https://github.com/pump-io/pump.io/pull/1406">have just landed</a> in pump.io master!</p>
+<p>Zero-downtime restarts require at least two cluster workers and MongoDB as a Databank driver (we'll eventually relax the latter requirement as we continue to test the feature). Here's how it works:</p>
+<ol>
+<li>An administrator sends SIGUSR2 to the master pump.io process (note that SIGUSR1 is <a href="https://nodejs.org/api/process.html#process_signal_events">reserved by Node.js</a>)</li>
+<li>The master process builds a queue of worker processes that need to be restarted</li>
+<li>The master process picks a random worker from the queue and sends it a signal asking it to gracefully shut down</li>
+<li>The worker process shuts down its HTTP server, which causes it to stop accepting new connections - it will do the same for the bounce server, if applicable</li>
+<li>The worker shuts down its database connection once the HTTP server is completely shut down, meaning that it's done servicing in-flight requests</li>
+<li>The worker closes its connection with the master process and Node.js automatically terminates due to there being no listeners on the event loop</li>
+<li>The master recognizes the death of the worker process, replaces it, waits for the new worker to signal that it's listening for connections, and repeats from step 3 until the queue is empty</li>
+</ol>
+<p>This works because only one worker is shut down at a time, allowing the other workers to continue servicing requests while the one worker is restarted. We wait until the new worker actually signals it's ready to process requests before beginning the process for another worker.</p>
+<p>Such a feature requires careful error handling, so there are a lot of built-in checks to prevent administrators from shooting themselves in the foot:</p>
+<ul>
+<li>If there's a restart already in progress, SIGUSR2 is ignored</li>
+<li>If there's only 1 cluster worker, the restart request is refused (because there would be downtime and you should just restart the master)</li>
+<li>
+<p>The master process will load a magic number from the <em>new</em> code and compare it with the <em>old</em> magic number loaded when the master process started - if they don't match, SIGUSR2 will be refused. This number will be incremented for things that would make zero-downtime restarts cause problems, for example:</p>
+<ul>
+<li>The logic in the master process itself changing</li>
+<li>Cross-process logic changing, such that a new worker communicating with old workers would cause problems</li>
+<li>Database changes</li>
+</ul>
+</li>
+<li>If a worker process doesn't shut itself down within 30 seconds, it will be killed</li>
+<li>
+<p>If a zero-downtime restart fails for any reason, the master process will refuse SIGUSR2 and will not respawn any more cluster workers, even if they crash - this is because something must have gone <em>seriously</em> wrong, either with the master, the workers, or the new code, and it's better to just restart everything. Currently this condition occurs when:</p>
+<ul>
+<li>A new worker died directly after being spawned (e.g. from invalid JSON in <code>pump.io.json</code>)</li>
+<li>A new worker signaled that it couldn't bind to the appropriate ports</li>
+</ul>
+</li>
+</ul>
+<p>While these checks do a lot to catch problems, they're not a silver bullet, and we strongly recommend that administrators watch their logs as they trigger restarts. However, this is still a <em>huge</em> win for the admin experience - the most exciting part of this for me is that it's the first step we need to take towards having fully automatic updates, which has been a dream of mine for a long while now.</p>
+<p>Admins running from git master can start experimenting with this feature today, and it will be released during the <em>next</em> release cycle - i.e. with the 5.1 beta and stable, <em>not</em> the current 5.0 beta. Since this is highly experimental, we want this to have as much time for testing as possible. You can also check out the <a href="https://pumpio.readthedocs.io/en/latest/administration/zero-downtime-restarts.html">official documentation</a> on this feature.</p>
+<p>I hope people enjoy this! And as always, feel free to <a href="https://github.com/pump-io/pump.io/issues/new">report any bugs</a>.</p>
+</div>
+          </article>
+          <hr>
           <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" class="h-entry"><a href="/blog/2017/08/pump.io-5.0-beta-released">
               <h2 class="p-name">pump.io 5.0 beta released</h2></a>
             <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/08/">August</a> 7, <a href="/blog/2017/">2017</a> in <a href="/blog/category/releases/" class="p-category">releases</a>
@@ -179,7 +222,7 @@
           <hr>
           <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" class="h-entry"><a href="/blog/2016/11/pump.io-2.0.1-is-available">
               <h2 class="p-name">Pump.io 2.0.4 is available</h2></a>
-            <p class="post-metadata">Cross-posted from <a rel="canonical" href="https://strugee.net/blog/2016/11/pump.io-2.0.1-is-available">this post</a> by AJ Jordan on <a href="/blog/2016/11/">November</a> 12, <a href="/blog/2016/">2016</a> in <a href="/blog/category/releases/" class="p-category">releases</a>
+            <p class="post-metadata">Cross-posted from <a rel="canonical" href="https://strugee.net/blog/2016/11/pump.io-2.0.1-is-available">this post</a> by AJ Jordan on <a href="/blog/2016/11/">November</a> 11, <a href="/blog/2016/">2016</a> in <a href="/blog/category/releases/" class="p-category">releases</a>
             </p>
             <div class="e-content"><p>Greetings!</p>
 <p>After a beta period of just over a week, pump.io 2.0.4 is now available on npm and GitHub. Whoohoo!</p>
@@ -254,7 +297,7 @@ npm run build
           <hr>
           <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" class="h-entry"><a href="/blog/2016/08/pump.io-1.0.0-is-now-available">
               <h2 class="p-name">Pump.io 1.0.0 is now available!</h2></a>
-            <p class="post-metadata">Cross-posted from <a rel="canonical" href="https://strugee.net/blog/2016/08/pump.io-1.0.0-is-now-available">this post</a> by AJ Jordan on <a href="/blog/2016/08/">August</a> 27, <a href="/blog/2016/">2016</a> in <a href="/blog/category/releases/" class="p-category">releases</a> and <a href="/blog/category/code/" class="p-category">code</a>
+            <p class="post-metadata">Cross-posted from <a rel="canonical" href="https://strugee.net/blog/2016/08/pump.io-1.0.0-is-now-available">this post</a> by AJ Jordan on <a href="/blog/2016/08/">August</a> 26, <a href="/blog/2016/">2016</a> in <a href="/blog/category/releases/" class="p-category">releases</a> and <a href="/blog/category/code/" class="p-category">code</a>
             </p>
             <div class="e-content"><p><a href="https://github.com/e14n/pump.io/releases/tag/v1.0.0">Pump.io 1.0.0</a> is officially available! Whoooo!</p>
 <p>I just wanted to write up an announcement real quick to celebrate. Here's a sample what's gone into this release:</p>
@@ -313,7 +356,7 @@ npm install --production
           <hr>
           <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" class="h-entry"><a href="/blog/2016/08/new-stuff-in-pump.io">
               <h2 class="p-name">New stuff in pump.io</h2></a>
-            <p class="post-metadata">Cross-posted from <a rel="canonical" href="https://strugee.net/blog/2016/08/new-stuff-in-pump.io">this post</a> by AJ Jordan on <a href="/blog/2016/08/">August</a> 8, <a href="/blog/2016/">2016</a> in <a href="/blog/category/code/" class="p-category">code</a>, <a href="/blog/category/community/" class="p-category">community</a> and <a href="/blog/category/documentation/" class="p-category">documentation</a>
+            <p class="post-metadata">Cross-posted from <a rel="canonical" href="https://strugee.net/blog/2016/08/new-stuff-in-pump.io">this post</a> by AJ Jordan on <a href="/blog/2016/08/">August</a> 7, <a href="/blog/2016/">2016</a> in <a href="/blog/category/code/" class="p-category">code</a>, <a href="/blog/category/community/" class="p-category">community</a> and <a href="/blog/category/documentation/" class="p-category">documentation</a>
             </p>
             <div class="e-content"><p>So I promised <a href="https://strugee.net/blog/2016/05/stratic-part-one">a (long) while ago</a> that I'd blog about all the stuff going on in <a href="http://pump.io">pump.io</a>. And there is a <em>lot</em> going on. Where to even begin?</p>
 <h4>LFNW talk</h4>
