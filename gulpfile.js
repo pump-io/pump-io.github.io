@@ -102,7 +102,7 @@ gulp.task('watch', ['build'], function() {
 	gulp.watch(['src/blog/*.md', 'src/blog/*.jade'], ['blog']);
 	gulp.watch('src/includes/*.jade', ['html', 'blog']);
 	gulp.watch(['src/styles/*'], ['css']);
-	gulp.watch('src/javascripts/*.js', ['js']);
+	gulp.watch('src/js/*.js', ['js']);
 });
 
 gulp.task('serve', ['watch'], function() {
