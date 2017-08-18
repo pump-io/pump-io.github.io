@@ -11,7 +11,7 @@ var remark = require('gulp-remark');
 var remarkHtml = require('remark-html');
 var adjustHeaders = require('remark-rewrite-headers');
 var slug = require('remark-slug');
-var parse = require('gulp-gray-matter');
+var frontMatter = require('gulp-gray-matter');
 var attachToTemplate = require('gulp-attach-to-template');
 var filterDrafts = require('stratic-filter-drafts');
 var dateInPath = require('stratic-date-in-path');
@@ -56,7 +56,7 @@ gulp.task('js', function() {
 
 gulp.task('post-index', function() {
 	return gulp.src('src/blog/*.md')
-	           .pipe(parse({property: ''}))
+	           .pipe(frontMatter({property: ''}))
 	           .pipe(filterDrafts())
 	           // Dirty hack until remark-adjust-headers takes options
 	           .pipe(remark({quiet: true}).use(remarkHtml).use(adjustHeaders).use(adjustHeaders))
@@ -71,7 +71,7 @@ gulp.task('post-index', function() {
 
 gulp.task('posts', function() {
 	return gulp.src('src/blog/*.md')
-	           .pipe(parse({property: ''}))
+	           .pipe(frontMatter({property: ''}))
 	           .pipe(filterDrafts())
 	           .pipe(remark({quiet: true}).use(remarkHtml).use(adjustHeaders))
 	           .pipe(dateInPath())
