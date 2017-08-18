@@ -12,6 +12,8 @@ block head
 		title #{monthName + ' ' + year} - pump.io by e14n
 	else if indexType === 'category'
 		title "#{category}" category - pump.io by e14n
+	// TODO: apparently this technically isn't allowed to be relative but it seems to work fine, soooo...
+	link(rel='alternate', type='application/rss+xml', href='index.rss')
 
 block content
 	.h-feed

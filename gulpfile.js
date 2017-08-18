@@ -17,6 +17,7 @@ var filterDrafts = require('stratic-filter-drafts');
 var dateInPath = require('stratic-date-in-path');
 var postsToIndex = require('stratic-posts-to-index');
 var paginateIndexes = require('stratic-paginate-indexes');
+var indexesToRss = require('stratic-indexes-to-rss');
 var ghpages = require('gh-pages');
 var merge = require('merge-stream');
 var gutil = require('gulp-util');
@@ -87,9 +88,26 @@ gulp.task('misc', function() {
 	           .pipe(gulp.dest('dist'));
 });
 
+gulp.task('rss', function() {
+	return gulp.src('src/blog/*.md')
+	           .pipe(frontMatter())
+	           .pipe(filterDrafts())
+	           .pipe(remark({quiet: true}).use(remarkHtml))
+	           .pipe(dateInPath())
+	           .pipe(addsrc('src/blog/index.jade'))
+	           .pipe(postsToIndex('index.jade'))
+	           .pipe(indexesToRss({
+		           title: 'pump.io blog',
+		           copyright: '© Copyright 2016-2017 pump.io contributors.',
+		           webMaster: 'AJ Jordan <alex@strugee.net>'
+	           }, 'http://pump.io/blog/'))
+	           .pipe(rename({ extname: '.rss' }))
+	           .pipe(gulp.dest('dist/blog'));
+});
+
 /* Helper tasks */
 
-gulp.task('blog', ['posts','post-index']);
+gulp.task('blog', ['posts','post-index', 'rss']);
 
 gulp.task('build', ['html', 'css', 'js', 'images', 'blog', 'misc']);
 
