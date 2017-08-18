@@ -4,14 +4,14 @@ include /src/includes/post.jade
 
 block head
 	if indexType === 'main'
-		title Blog - pump.io by e14n
+		title Blog - pump.io
 	else if indexType === 'year'
-		title #{year} - pump.io by e14n
+		title #{year} - pump.io blog
 	else if indexType === 'month'
 		- var monthName = new Date(1970, month).toLocaleString('en-us', {month: 'long'});
-		title #{monthName + ' ' + year} - pump.io by e14n
+		title #{monthName + ' ' + year} - pump.io blog
 	else if indexType === 'category'
-		title "#{category}" category - pump.io by e14n
+		title "#{category}" category - pump.io blog
 	// TODO: apparently this technically isn't allowed to be relative but it seems to work fine, soooo...
 	link(rel='alternate', type='application/rss+xml', href='index.rss')
 
