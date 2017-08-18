@@ -56,7 +56,7 @@ gulp.task('js', function() {
 
 gulp.task('post-index', function() {
 	return gulp.src('src/blog/*.md')
-	           .pipe(frontMatter({property: ''}))
+	           .pipe(frontMatter())
 	           .pipe(filterDrafts())
 	           // Dirty hack until remark-adjust-headers takes options
 	           .pipe(remark({quiet: true}).use(remarkHtml).use(adjustHeaders).use(adjustHeaders))
@@ -71,7 +71,7 @@ gulp.task('post-index', function() {
 
 gulp.task('posts', function() {
 	return gulp.src('src/blog/*.md')
-	           .pipe(frontMatter({property: ''}))
+	           .pipe(frontMatter())
 	           .pipe(filterDrafts())
 	           .pipe(remark({quiet: true}).use(remarkHtml).use(adjustHeaders))
 	           .pipe(dateInPath())

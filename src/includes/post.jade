@@ -3,24 +3,24 @@ mixin renderPost(post, isIndex)
 		//- Title
 		if isIndex
 			a(href='/blog/' + post.relative.replace('.md', ''))
-				h2.p-name= post.title
+				h2.p-name= post.data.title
 		else
-			h1.p-name= post.title
+			h1.p-name= post.data.title
 
 		//- Metadata
-		- var author = post.author;
-		- var time = post.time;
-		- var categories = post.categories;
+		- var author = post.data.author;
+		- var time = post.data.time;
+		- var categories = post.data.categories;
 		- var date = new Date(time.epoch * 1000);
 		- var monthName = date.toLocaleString('en-us', {month: 'long'});
 		- var monthStr = date.getMonth() + 1;
 		- monthStr = monthStr < 10 ? '0' + monthStr.toString() : monthStr.toString();
 		p.post-metadata
-			if !post.canonical
+			if !post.data.canonical
 				| Published
 			else
 				| Cross-posted from 
-				a(rel='canonical', href=post.canonical) this post
+				a(rel='canonical', href=post.data.canonical) this post
 			|  by #{author} on 
 			a(href='/blog/'+date.getFullYear()+'/'+monthStr+'/')= monthName
 			|  #{date.getDate()}, 

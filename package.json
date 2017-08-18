@@ -27,10 +27,10 @@
     "remark-html": "^5.0.1",
     "remark-rewrite-headers": "^1.0.0",
     "remark-slug": "^4.2.2",
-    "stratic-date-in-path": "^2.0.0",
+    "stratic-date-in-path": "^3.0.0",
     "stratic-filter-drafts": "^1.0.0",
     "stratic-paginate-indexes": "^1.0.1",
-    "stratic-posts-to-index": "^1.0.0",
+    "stratic-posts-to-index": "^2.0.1",
     "vinyl-source-stream": "^1.1.0"
   },
   "scripts": {
