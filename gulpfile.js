@@ -56,7 +56,7 @@ gulp.task('post-index', function() {
 	return gulp.src('src/blog/*.md')
 	           .pipe(parse({property: ''}))
 	           // Dirty hack until remark-adjust-headers takes options
-	           .pipe(remark().use(remarkHtml).use(adjustHeaders).use(adjustHeaders))
+	           .pipe(remark({quiet: true}).use(remarkHtml).use(adjustHeaders).use(adjustHeaders))
 	           .pipe(dateInPath())
 	           .pipe(addsrc('src/blog/index.jade'))
 	           .pipe(postsToIndex('index.jade'))
@@ -68,7 +68,7 @@ gulp.task('post-index', function() {
 gulp.task('posts', function() {
 	return gulp.src('src/blog/*.md')
 	           .pipe(parse({property: ''}))
-	           .pipe(remark().use(remarkHtml).use(adjustHeaders))
+	           .pipe(remark({quiet: true}).use(remarkHtml).use(adjustHeaders))
 	           .pipe(dateInPath())
 	           .pipe(addsrc('src/blog/post.jade'))
 	           .pipe(attachToTemplate('post.jade'))
