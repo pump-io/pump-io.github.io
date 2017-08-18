@@ -9,7 +9,7 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <script src="/javascripts/scale.fix.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-    <title>November 2016 - pump.io by e14n</title>
+    <title>"releases" category - pump.io by e14n</title>
     <!-- TODO: apparently this technically isn't allowed to be relative but it seems to work fine, soooo...-->
     <link rel="alternate" type="application/rss+xml" href="index.rss">
   </head>
@@ -27,7 +27,7 @@
       </header>
       <section>
         <div class="h-feed">
-          <h2 class="p-name">Posts from November 2016</h2>
+          <h2 class="p-name">Posts categorized as "releases"</h2>
           <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" class="h-entry"><a href="/blog/2016/11/pump.io-2.0.1-is-available">
               <h2 class="p-name">Pump.io 2.0.4 is available</h2></a>
             <p class="post-metadata">Cross-posted from <a rel="canonical" href="https://strugee.net/blog/2016/11/pump.io-2.0.1-is-available">this post</a> by AJ Jordan on <a href="/blog/2016/11/">November</a> 11, <a href="/blog/2016/">2016</a> in <a href="/blog/category/releases/" class="p-category">releases</a>
@@ -100,6 +100,39 @@ npm run build
 <p>Make sure to restart pump.io after performing the upgrade.</p>
 <h4>Getting help</h4>
 <p>If you have any issues upgrading to or running the beta, please don't hesitate to get in touch with <a href="https://github.com/e14n/pump.io/wiki/Community">the community</a>. You can also email me at <a href="mailto:alex@strugee.net">alex@strugee.net</a>.</p>
+</div>
+          </article>
+          <hr>
+          <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" class="h-entry"><a href="/blog/2016/08/pump.io-1.0.0-is-now-available">
+              <h2 class="p-name">Pump.io 1.0.0 is now available!</h2></a>
+            <p class="post-metadata">Cross-posted from <a rel="canonical" href="https://strugee.net/blog/2016/08/pump.io-1.0.0-is-now-available">this post</a> by AJ Jordan on <a href="/blog/2016/08/">August</a> 26, <a href="/blog/2016/">2016</a> in <a href="/blog/category/releases/" class="p-category">releases</a> and <a href="/blog/category/code/" class="p-category">code</a>
+            </p>
+            <div class="e-content"><p><a href="https://github.com/e14n/pump.io/releases/tag/v1.0.0">Pump.io 1.0.0</a> is officially available! Whoooo!</p>
+<p>I just wanted to write up an announcement real quick to celebrate. Here's a sample what's gone into this release:</p>
+<ul>
+<li>Node 4.x support</li>
+<li>Lots of security improvements including a better cross-site scripting scrubber and security-related headers that help protect the web UI (most notably, the web UI now declares a Content Security Policy)</li>
+<li>Minor improvements to the API to make it (slightly) smarter</li>
+<li><a href="https://www.gnu.org/software/librejs/">LibreJS</a> support</li>
+<li>Numerous dependency upgrades, most notably Connect</li>
+<li>And of course, tons of minor bugfixes and improvements</li>
+</ul>
+<p>For more details, see the brand-new <a href="https://github.com/e14n/pump.io/blob/master/CHANGELOG.md#100---2016-08-26">change log</a>.</p>
+<p>And of course since we're now past 0.x.x releases, we're now officially making a commitment to the community to make only API-compatible changes going forward (or at least, until 2.0.0!).</p>
+<p>As this release <em>does</em> improve security and fixes a lot of bugs, node administrators are encouraged to upgrade as soon as possible. If you have a global, npm-based install, you can upgrade with:</p>
+<pre><code>sudo npm install -g pump.io
+</code></pre>
+<p>And with a source-based install:</p>
+<pre><code>git pull
+git checkout v1.0.0
+npm install --production
+</code></pre>
+<p>If you're upgrading from 0.3.0, everything should Just Work(tm). Don't forget to restart your daemon!</p>
+<p>One final note - the rumors are true. While we're not doing so <em>yet</em>, we are, in fact, planning to deprecate running under Node.js 0.10 and 0.12 very soon. Also, if you upgrade to Node.js 4.x early, the new, better XSS scrubber will be enabled - <em>however</em>, be aware that pump.io is far less tested under Node.js 4.x and you are likely to run into more bugs than you would under 0.10 or 0.12. This is an unfortunate situation, but sadly there's really nothing to be done about it. :(</p>
+<p>Special thanks to Menno Vossen, Laura Arjona, Evan Prodromou, Jan Kusanagi and all the other volunteers who did so many different things to make this release happen. It truly wouldn't have happened without you.</p>
+<p>Enjoy the release!</p>
+<p>With &#x3C;3,</p>
+<p>AJ</p>
 </div>
           </article>
         </div>

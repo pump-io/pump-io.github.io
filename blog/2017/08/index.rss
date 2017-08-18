@@ -1,38 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>pump.io</title>
-    <link rel="stylesheet" href="/stylesheets/styles.css">
-    <link rel="stylesheet" href="/stylesheets/pygment_trac.css">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-    <script src="/javascripts/scale.fix.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-    <title>August 2017 - pump.io by e14n</title>
-    <!-- TODO: apparently this technically isn't allowed to be relative but it seems to work fine, soooo...-->
-    <link rel="alternate" type="application/rss+xml" href="index.rss">
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1 class="header"><a href="/">pump.io</a></h1>
-        <p class="header">Social server with an ActivityStreams API</p>
-        <ul>
-          <li><a href="/tryit.html" class="buttons">Try It Now</a></li>
-          <li class="download"><a href="https://pumpio.readthedocs.io/en/latest/sysadmins.html#installation-instructions" class="buttons">Install</a></li>
-          <li><a href="https://github.com/pump-io/pump.io" class="buttons github">View On GitHub</a></li>
-        </ul>
-        <p class="header">This project is maintained by <a href="https://github.com/pump-io" class="header name">pump.io contributors</a></p>
-      </header>
-      <section>
-        <div class="h-feed">
-          <h2 class="p-name">Posts from August 2017</h2>
-          <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" class="h-entry"><a href="/blog/2017/08/zero-downtime-restarts-have-landed">
-              <h2 class="p-name">Zero-downtime restarts have landed</h2></a>
-            <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/08/">August</a> 18, <a href="/blog/2017/">2017</a> in <a href="/blog/category/code/" class="p-category">code</a>
-            </p>
-            <div class="e-content"><p>I'm thrilled to announce that zero-downtime restarts, which I've been hacking on for the past week or two, <a href="https://github.com/pump-io/pump.io/pull/1406">have just landed</a> in pump.io master!</p>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[pump.io blog - August - 2017]]></title><description><![CDATA[pump.io blog - August - 2017]]></description><link>http://pump.io/blog/2017/08</link><generator>stratic-indexes-to-rss</generator><lastBuildDate>Fri, 18 Aug 2017 20:57:53 GMT</lastBuildDate><atom:link href="http://pump.io/blog/2017/08/index.rss" rel="self" type="application/rss+xml"/><copyright><![CDATA[© Copyright 2016-2017 pump.io contributors.]]></copyright><webMaster><![CDATA[AJ Jordan <alex@strugee.net>]]></webMaster><item><title><![CDATA[Zero-downtime restarts have landed]]></title><description><![CDATA[<p>I'm thrilled to announce that zero-downtime restarts, which I've been hacking on for the past week or two, <a href="https://github.com/pump-io/pump.io/pull/1406">have just landed</a> in pump.io master!</p>
 <p>Zero-downtime restarts require at least two cluster workers and MongoDB as a Databank driver (we'll eventually relax the latter requirement as we continue to test the feature). Here's how it works:</p>
 <ol>
 <li>An administrator sends SIGUSR2 to the master pump.io process (note that SIGUSR1 is <a href="https://nodejs.org/api/process.html#process_signal_events">reserved by Node.js</a>)</li>
@@ -68,14 +34,7 @@
 <p>While these checks do a lot to catch problems, they're not a silver bullet, and we strongly recommend that administrators watch their logs as they trigger restarts. However, this is still a <em>huge</em> win for the admin experience - the most exciting part of this for me is that it's the first step we need to take towards having fully automatic updates, which has been a dream of mine for a long while now.</p>
 <p>Admins running from git master can start experimenting with this feature today, and it will be released during the <em>next</em> release cycle - i.e. with the 5.1 beta and stable, <em>not</em> the current 5.0 beta. Since this is highly experimental, we want this to have as much time for testing as possible. You can also check out the <a href="https://pumpio.readthedocs.io/en/latest/administration/zero-downtime-restarts.html">official documentation</a> on this feature.</p>
 <p>I hope people enjoy this! And as always, feel free to <a href="https://github.com/pump-io/pump.io/issues/new">report any bugs</a>.</p>
-</div>
-          </article>
-          <hr>
-          <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" class="h-entry"><a href="/blog/2017/08/pump.io-5.0-beta-released">
-              <h2 class="p-name">pump.io 5.0 beta released</h2></a>
-            <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/08/">August</a> 7, <a href="/blog/2017/">2017</a> in <a href="/blog/category/releases/" class="p-category">releases</a>
-            </p>
-            <div class="e-content"><p>I'm excited to announce that pump.io 5.0.0 is now officially in beta!</p>
+]]></description><link>http://pump.io/blog/2017/08/zero-downtime-restarts-have-landed</link><guid isPermaLink="true">http://pump.io/blog/2017/08/zero-downtime-restarts-have-landed</guid><category><![CDATA[code]]></category><pubDate>Fri, 18 Aug 2017 09:01:16 GMT</pubDate></item><item><title><![CDATA[pump.io 5.0 beta released]]></title><description><![CDATA[<p>I'm excited to announce that pump.io 5.0.0 is now officially in beta!</p>
 <p>This is another big release and makes a wide variety of improvements. Here are some highlights from <a href="https://github.com/pump-io/pump.io/blob/master/CHANGELOG.md#500-beta-0---2017-08-07">the changelog</a>:</p>
 <ul>
 <li>More complete documentation</li>
@@ -87,13 +46,4 @@
 </ul>
 <p>Many of these changes - particularly the systemd changes and the fact that (<a href="http://pump.io/blog/2017/07/pump.io-4.1-is-out">as previously announced</a>) Node 0.10 and 0.12 are no longer supported - will require administrator intervention. Be sure to read our <a href="https://pumpio.readthedocs.io/en/latest/upgrades/4.x-to-5.x.html">upgrade guide</a> for details on how to deal with these changes.</p>
 <p>All of these features add up to make pump.io 5.0 beta the most stable and secure release yet. As always, it will go through our beta period for about a month before being released as a fully stable version. If you try it out, the <a href="https://github.com/pump-io/pump.io/wiki/Community">community</a> would love to hear about it - and be sure to <a href="https://github.com/pump-io/pump.io/issues">report any bugs</a> you encounter!</p>
-</div>
-          </article>
-        </div>
-      </section>
-      <footer>
-        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
-      </footer>
-    </div><!--[if !IE]><script>fixScale(document);</script><![endif]-->
-  </body>
-</html>
+]]></description><link>http://pump.io/blog/2017/08/pump.io-5.0-beta-released</link><guid isPermaLink="true">http://pump.io/blog/2017/08/pump.io-5.0-beta-released</guid><category><![CDATA[releases]]></category><pubDate>Mon, 07 Aug 2017 18:51:12 GMT</pubDate></item></channel></rss>

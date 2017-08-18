@@ -1,60 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>pump.io</title>
-    <link rel="stylesheet" href="/stylesheets/styles.css">
-    <link rel="stylesheet" href="/stylesheets/pygment_trac.css">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-    <script src="/javascripts/scale.fix.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-    <title>March 2017 - pump.io by e14n</title>
-    <!-- TODO: apparently this technically isn't allowed to be relative but it seems to work fine, soooo...-->
-    <link rel="alternate" type="application/rss+xml" href="index.rss">
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1 class="header"><a href="/">pump.io</a></h1>
-        <p class="header">Social server with an ActivityStreams API</p>
-        <ul>
-          <li><a href="/tryit.html" class="buttons">Try It Now</a></li>
-          <li class="download"><a href="https://pumpio.readthedocs.io/en/latest/sysadmins.html#installation-instructions" class="buttons">Install</a></li>
-          <li><a href="https://github.com/pump-io/pump.io" class="buttons github">View On GitHub</a></li>
-        </ul>
-        <p class="header">This project is maintained by <a href="https://github.com/pump-io" class="header name">pump.io contributors</a></p>
-      </header>
-      <section>
-        <div class="h-feed">
-          <h2 class="p-name">Posts from March 2017</h2>
-          <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" class="h-entry"><a href="/blog/2017/03/dianara-1.3.7-released">
-              <h2 class="p-name">Dianara v1.3.7 released</h2></a>
-            <p class="post-metadata">Cross-posted from <a rel="canonical" href="https://jancoding.wordpress.com/2017/03/26/dianara-v1-3-7-released/">this post</a> by JanKusanagi on <a href="/blog/2017/03/">March</a> 26, <a href="/blog/2017/">2017</a> in <a href="/blog/category/clients/" class="p-category">clients</a>
-            </p>
-            <div class="e-content"><p>A new version of <a href="https://jancoding.wordpress.com/dianara/">Dianara</a>, my desktop client for <a href="https://pumpio.readthedocs.io/en/latest/userguide.html">the Pump social network</a>, has just been released. This will be the last of the 1.3.x series, and <strong>the last one to support Qt 4</strong>.</p>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[pump.io blog - March - 2017]]></title><description><![CDATA[pump.io blog - March - 2017]]></description><link>http://pump.io/blog/2017/03</link><generator>stratic-indexes-to-rss</generator><lastBuildDate>Fri, 18 Aug 2017 20:57:53 GMT</lastBuildDate><atom:link href="http://pump.io/blog/2017/03/index.rss" rel="self" type="application/rss+xml"/><copyright><![CDATA[© Copyright 2016-2017 pump.io contributors.]]></copyright><webMaster><![CDATA[AJ Jordan <alex@strugee.net>]]></webMaster><item><title><![CDATA[Dianara v1.3.7 released]]></title><description><![CDATA[<p>A new version of <a href="https://jancoding.wordpress.com/dianara/">Dianara</a>, my desktop client for <a href="https://pumpio.readthedocs.io/en/latest/userguide.html">the Pump social network</a>, has just been released. This will be the last of the 1.3.x series, and <strong>the last one to support Qt 4</strong>.</p>
 <p><img src="https://jancoding.files.wordpress.com/2017/03/dianara-v1-3-7-release.png" alt="The image viewer"></p>
 <p>It’s another small release. The biggest change is the updated image viewer, which now supports zooming with the mouse/touchpad, and dragging the image around, as full-blown image viewers usually support ;)</p>
 <p>If you want to build it with Qt 5.x, note that <strong>your system will need a Qt 5 build of the QOAuth library</strong>, which not all GNU/Linux distributions provide yet.  <a href="http://madb.mageia.org/package/show/application/0/release/cauldron/name/libqoauth-qt5-devel">Mageia 6 does</a>, and so do Archlinux, openSUSE (in a separate repository) and Debian (in Experimental). If you have that, but experience problems building it this way, your <a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=825976">QOAuth might be missing a feature file (.prf)</a>, like used to be the case in Debian.</p>
-<h3>Changelog</h3>
+<h1>Changelog</h1>
 <p>The changes <a href="https://jancoding.wordpress.com/2016/12/17/dianara-v1-3-6-is-out/">since v1.3.6</a> are:</p>
 <ul>
 <li>The image viewer now supports dragging the image around with the mouse, zooming with the wheel, and rotating animated images correctly.</li>
 <li>Fixed case-insensitive sorting of contacts in auto-completion lists, when typing @ while creating a post. This means that “Person A” will appear next to “person b”, not after “Z-contact”.</li>
 <li>Your server’s version will be shown in the log.</li>
 </ul>
-</div>
-          </article>
-          <hr>
-          <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" class="h-entry"><a href="/blog/2017/03/express-4.x-in-pump.io-core">
-              <h2 class="p-name">Express 4.x in pump.io core</h2></a>
-            <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/03/">March</a> 20, <a href="/blog/2017/">2017</a> in <a href="/blog/category/code/" class="p-category">code</a>
-            </p>
-            <div class="e-content"><p>So I thought I'd take a moment to announce that the upgrade from Express 2.x to Express 4.x is <a href="https://github.com/pump-io/pump.io/pull/1208">finally complete</a>! I fixed up the last couple test failures last Wednesday, and the branch got merged on Thursday.</p>
-<h3>A long time coming</h3>
+]]></description><link>http://pump.io/blog/2017/03/dianara-1.3.7-released</link><guid isPermaLink="true">http://pump.io/blog/2017/03/dianara-1.3.7-released</guid><category><![CDATA[clients]]></category><pubDate>Sun, 26 Mar 2017 22:00:00 GMT</pubDate></item><item><title><![CDATA[Express 4.x in pump.io core]]></title><description><![CDATA[<p>So I thought I'd take a moment to announce that the upgrade from Express 2.x to Express 4.x is <a href="https://github.com/pump-io/pump.io/pull/1208">finally complete</a>! I fixed up the last couple test failures last Wednesday, and the branch got merged on Thursday.</p>
+<h1>A long time coming</h1>
 <p>Believe it or not, the work to do this upgrade started almost an entire <em>year</em> ago. Express 2.x has been outdated and unmaintained for a long time now, so upgrading has been a high priority. However, it wasn't as simple as adjusting a version number - there were a staggering number of changes that needed to be made due to Express deprecating, removing, and changing things around. One of the most significant problems was the fact that the old template system that we used, utml, was not compatible with Express 3.x and above. That meant that we had to rewrite every single template into a modern language - an effort that resulted in <a href="https://github.com/pump-io/pump.io/pull/1170">over a thousand lines changed</a>!</p>
 <p>However, the time for Express 4.x has finally arrived. With that and some other trivial version bumps, I'm proud to announce that pump.io is fully up-to-date in terms of dependencies with only three, non-critical exceptions. Whooooo!</p>
-<h3>Immediate benefits</h3>
+<h1>Immediate benefits</h1>
 <p>There are a lot of reasons this is immediately awesome:</p>
 <ol>
 <li>Express 4.x fixes significant performance problems that existed in Express 3.x</li>
@@ -62,16 +21,7 @@
 <li>The fact that our dependencies are <em>finally</em> up-to-date means that we can (and do!) now make use of <a href="https://greenkeeper.io/">Greenkeeper</a> and the <a href="https://nodesecurity.io/orgs/pumpio/projects/32213bb8-f9a6-4dd0-8fc6-5caa8ea5f8fc">Node Security Platform</a> to automatically track dependencies to make sure they're up-to-date and not introducing security vulnerabilities</li>
 </ol>
 <p>That last one is particularly significant. Greenkeeper and NSP will continuously monitor the project's dependencies and automate away a lot of the pain that's associated with keeping pump.io up-to-date. Everyone will get a more secure and stable codebase because of this setup.</p>
-<h3>Looking forward</h3>
+<h1>Looking forward</h1>
 <p>The Express 4.x upgrade is a big change, and it's definitely possible that stuff has broken. We want to make sure that breakage doesn't make it into production. This change went into pump.io 4.0, which will go through our normal <a href="https://github.com/pump-io/pump.io/wiki/Release-cycle">release cycle</a>. That means it'll be in beta for a month before being released. As a part of that, <a href="https://jxself.org/">Jason Self</a> - who's kind enough to administer <a href="https://datamost.com/">Datamost</a> - has agreed to have a test day where Datamost upgrades to the beta for a day, then downgrade it again. This test day will give us much wider exposure than we would've gotten otherwise, which will be incredibly valuable feedback in the effort to identify and fix regressions. We haven't set a date yet, but if you'd like to join Jason in helping us find bugs, please get in touch with <a href="https://github.com/pump-io/pump.io/wiki/Community">the community</a>. We'd love your help.</p>
 <p>Beyond the immediate release, though, there's still things to look forward to. Express 4.x gives us a better way to structure routing code, and a refactor to use this structure <a href="https://github.com/pump-io/pump.io/issues/1232">is planned</a>. There's a lot of room for improvement. But really, the most important benefit is this: technical debt is a far less pressing issue than before. That means that we can shift focus and spend more time fixing user-facing bugs, adding useful features, and generally improving the experience for our users. I couldn't be more excited.</p>
-</div>
-          </article>
-        </div>
-      </section>
-      <footer>
-        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
-      </footer>
-    </div><!--[if !IE]><script>fixScale(document);</script><![endif]-->
-  </body>
-</html>
+]]></description><link>http://pump.io/blog/2017/03/express-4.x-in-pump.io-core</link><guid isPermaLink="true">http://pump.io/blog/2017/03/express-4.x-in-pump.io-core</guid><category><![CDATA[code]]></category><pubDate>Mon, 20 Mar 2017 20:22:27 GMT</pubDate></item></channel></rss>

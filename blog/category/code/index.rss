@@ -1,38 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>pump.io</title>
-    <link rel="stylesheet" href="/stylesheets/styles.css">
-    <link rel="stylesheet" href="/stylesheets/pygment_trac.css">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-    <script src="/javascripts/scale.fix.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-    <title>"code" category - pump.io by e14n</title>
-    <!-- TODO: apparently this technically isn't allowed to be relative but it seems to work fine, soooo...-->
-    <link rel="alternate" type="application/rss+xml" href="index.rss">
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1 class="header"><a href="/">pump.io</a></h1>
-        <p class="header">Social server with an ActivityStreams API</p>
-        <ul>
-          <li><a href="/tryit.html" class="buttons">Try It Now</a></li>
-          <li class="download"><a href="https://pumpio.readthedocs.io/en/latest/sysadmins.html#installation-instructions" class="buttons">Install</a></li>
-          <li><a href="https://github.com/pump-io/pump.io" class="buttons github">View On GitHub</a></li>
-        </ul>
-        <p class="header">This project is maintained by <a href="https://github.com/pump-io" class="header name">pump.io contributors</a></p>
-      </header>
-      <section>
-        <div class="h-feed">
-          <h2 class="p-name">Posts categorized as "code"</h2>
-          <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" class="h-entry"><a href="/blog/2017/08/zero-downtime-restarts-have-landed">
-              <h2 class="p-name">Zero-downtime restarts have landed</h2></a>
-            <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/08/">August</a> 18, <a href="/blog/2017/">2017</a> in <a href="/blog/category/code/" class="p-category">code</a>
-            </p>
-            <div class="e-content"><p>I'm thrilled to announce that zero-downtime restarts, which I've been hacking on for the past week or two, <a href="https://github.com/pump-io/pump.io/pull/1406">have just landed</a> in pump.io master!</p>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[pump.io blog - 'code' category]]></title><description><![CDATA[pump.io blog - 'code' category]]></description><link>http://pump.io/blog/category/code</link><generator>stratic-indexes-to-rss</generator><lastBuildDate>Fri, 18 Aug 2017 20:57:53 GMT</lastBuildDate><atom:link href="http://pump.io/blog/category/code/index.rss" rel="self" type="application/rss+xml"/><copyright><![CDATA[© Copyright 2016-2017 pump.io contributors.]]></copyright><webMaster><![CDATA[AJ Jordan <alex@strugee.net>]]></webMaster><item><title><![CDATA[Zero-downtime restarts have landed]]></title><description><![CDATA[<p>I'm thrilled to announce that zero-downtime restarts, which I've been hacking on for the past week or two, <a href="https://github.com/pump-io/pump.io/pull/1406">have just landed</a> in pump.io master!</p>
 <p>Zero-downtime restarts require at least two cluster workers and MongoDB as a Databank driver (we'll eventually relax the latter requirement as we continue to test the feature). Here's how it works:</p>
 <ol>
 <li>An administrator sends SIGUSR2 to the master pump.io process (note that SIGUSR1 is <a href="https://nodejs.org/api/process.html#process_signal_events">reserved by Node.js</a>)</li>
@@ -68,18 +34,11 @@
 <p>While these checks do a lot to catch problems, they're not a silver bullet, and we strongly recommend that administrators watch their logs as they trigger restarts. However, this is still a <em>huge</em> win for the admin experience - the most exciting part of this for me is that it's the first step we need to take towards having fully automatic updates, which has been a dream of mine for a long while now.</p>
 <p>Admins running from git master can start experimenting with this feature today, and it will be released during the <em>next</em> release cycle - i.e. with the 5.1 beta and stable, <em>not</em> the current 5.0 beta. Since this is highly experimental, we want this to have as much time for testing as possible. You can also check out the <a href="https://pumpio.readthedocs.io/en/latest/administration/zero-downtime-restarts.html">official documentation</a> on this feature.</p>
 <p>I hope people enjoy this! And as always, feel free to <a href="https://github.com/pump-io/pump.io/issues/new">report any bugs</a>.</p>
-</div>
-          </article>
-          <hr>
-          <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" class="h-entry"><a href="/blog/2017/03/express-4.x-in-pump.io-core">
-              <h2 class="p-name">Express 4.x in pump.io core</h2></a>
-            <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/03/">March</a> 20, <a href="/blog/2017/">2017</a> in <a href="/blog/category/code/" class="p-category">code</a>
-            </p>
-            <div class="e-content"><p>So I thought I'd take a moment to announce that the upgrade from Express 2.x to Express 4.x is <a href="https://github.com/pump-io/pump.io/pull/1208">finally complete</a>! I fixed up the last couple test failures last Wednesday, and the branch got merged on Thursday.</p>
-<h3>A long time coming</h3>
+]]></description><link>http://pump.io/blog/2017/08/zero-downtime-restarts-have-landed</link><guid isPermaLink="true">http://pump.io/blog/2017/08/zero-downtime-restarts-have-landed</guid><category><![CDATA[code]]></category><pubDate>Fri, 18 Aug 2017 09:01:16 GMT</pubDate></item><item><title><![CDATA[Express 4.x in pump.io core]]></title><description><![CDATA[<p>So I thought I'd take a moment to announce that the upgrade from Express 2.x to Express 4.x is <a href="https://github.com/pump-io/pump.io/pull/1208">finally complete</a>! I fixed up the last couple test failures last Wednesday, and the branch got merged on Thursday.</p>
+<h1>A long time coming</h1>
 <p>Believe it or not, the work to do this upgrade started almost an entire <em>year</em> ago. Express 2.x has been outdated and unmaintained for a long time now, so upgrading has been a high priority. However, it wasn't as simple as adjusting a version number - there were a staggering number of changes that needed to be made due to Express deprecating, removing, and changing things around. One of the most significant problems was the fact that the old template system that we used, utml, was not compatible with Express 3.x and above. That meant that we had to rewrite every single template into a modern language - an effort that resulted in <a href="https://github.com/pump-io/pump.io/pull/1170">over a thousand lines changed</a>!</p>
 <p>However, the time for Express 4.x has finally arrived. With that and some other trivial version bumps, I'm proud to announce that pump.io is fully up-to-date in terms of dependencies with only three, non-critical exceptions. Whooooo!</p>
-<h3>Immediate benefits</h3>
+<h1>Immediate benefits</h1>
 <p>There are a lot of reasons this is immediately awesome:</p>
 <ol>
 <li>Express 4.x fixes significant performance problems that existed in Express 3.x</li>
@@ -87,17 +46,10 @@
 <li>The fact that our dependencies are <em>finally</em> up-to-date means that we can (and do!) now make use of <a href="https://greenkeeper.io/">Greenkeeper</a> and the <a href="https://nodesecurity.io/orgs/pumpio/projects/32213bb8-f9a6-4dd0-8fc6-5caa8ea5f8fc">Node Security Platform</a> to automatically track dependencies to make sure they're up-to-date and not introducing security vulnerabilities</li>
 </ol>
 <p>That last one is particularly significant. Greenkeeper and NSP will continuously monitor the project's dependencies and automate away a lot of the pain that's associated with keeping pump.io up-to-date. Everyone will get a more secure and stable codebase because of this setup.</p>
-<h3>Looking forward</h3>
+<h1>Looking forward</h1>
 <p>The Express 4.x upgrade is a big change, and it's definitely possible that stuff has broken. We want to make sure that breakage doesn't make it into production. This change went into pump.io 4.0, which will go through our normal <a href="https://github.com/pump-io/pump.io/wiki/Release-cycle">release cycle</a>. That means it'll be in beta for a month before being released. As a part of that, <a href="https://jxself.org/">Jason Self</a> - who's kind enough to administer <a href="https://datamost.com/">Datamost</a> - has agreed to have a test day where Datamost upgrades to the beta for a day, then downgrade it again. This test day will give us much wider exposure than we would've gotten otherwise, which will be incredibly valuable feedback in the effort to identify and fix regressions. We haven't set a date yet, but if you'd like to join Jason in helping us find bugs, please get in touch with <a href="https://github.com/pump-io/pump.io/wiki/Community">the community</a>. We'd love your help.</p>
 <p>Beyond the immediate release, though, there's still things to look forward to. Express 4.x gives us a better way to structure routing code, and a refactor to use this structure <a href="https://github.com/pump-io/pump.io/issues/1232">is planned</a>. There's a lot of room for improvement. But really, the most important benefit is this: technical debt is a far less pressing issue than before. That means that we can shift focus and spend more time fixing user-facing bugs, adding useful features, and generally improving the experience for our users. I couldn't be more excited.</p>
-</div>
-          </article>
-          <hr>
-          <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" class="h-entry"><a href="/blog/2016/08/pump.io-1.0.0-is-now-available">
-              <h2 class="p-name">Pump.io 1.0.0 is now available!</h2></a>
-            <p class="post-metadata">Cross-posted from <a rel="canonical" href="https://strugee.net/blog/2016/08/pump.io-1.0.0-is-now-available">this post</a> by AJ Jordan on <a href="/blog/2016/08/">August</a> 26, <a href="/blog/2016/">2016</a> in <a href="/blog/category/releases/" class="p-category">releases</a> and <a href="/blog/category/code/" class="p-category">code</a>
-            </p>
-            <div class="e-content"><p><a href="https://github.com/e14n/pump.io/releases/tag/v1.0.0">Pump.io 1.0.0</a> is officially available! Whoooo!</p>
+]]></description><link>http://pump.io/blog/2017/03/express-4.x-in-pump.io-core</link><guid isPermaLink="true">http://pump.io/blog/2017/03/express-4.x-in-pump.io-core</guid><category><![CDATA[code]]></category><pubDate>Mon, 20 Mar 2017 20:22:27 GMT</pubDate></item><item><title><![CDATA[Pump.io 1.0.0 is now available!]]></title><description><![CDATA[<p><a href="https://github.com/e14n/pump.io/releases/tag/v1.0.0">Pump.io 1.0.0</a> is officially available! Whoooo!</p>
 <p>I just wanted to write up an announcement real quick to celebrate. Here's a sample what's gone into this release:</p>
 <ul>
 <li>Node 4.x support</li>
@@ -121,23 +73,16 @@ npm install --production
 <p>One final note - the rumors are true. While we're not doing so <em>yet</em>, we are, in fact, planning to deprecate running under Node.js 0.10 and 0.12 very soon. Also, if you upgrade to Node.js 4.x early, the new, better XSS scrubber will be enabled - <em>however</em>, be aware that pump.io is far less tested under Node.js 4.x and you are likely to run into more bugs than you would under 0.10 or 0.12. This is an unfortunate situation, but sadly there's really nothing to be done about it. :(</p>
 <p>Special thanks to Menno Vossen, Laura Arjona, Evan Prodromou, Jan Kusanagi and all the other volunteers who did so many different things to make this release happen. It truly wouldn't have happened without you.</p>
 <p>Enjoy the release!</p>
-<p>With &#x3C;3,</p>
+<p>With &lt;3,</p>
 <p>AJ</p>
-</div>
-          </article>
-          <hr>
-          <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" class="h-entry"><a href="/blog/2016/08/pump.io-call-for-testers-call-for-feedback">
-              <h2 class="p-name">Pump.io: call for testers, call for feedback</h2></a>
-            <p class="post-metadata">Cross-posted from <a rel="canonical" href="https://strugee.net/blog/2016/08/pump.io-call-for-testers-call-for-feedback">this post</a> by AJ Jordan on <a href="/blog/2016/08/">August</a> 10, <a href="/blog/2016/">2016</a> in <a href="/blog/category/community/" class="p-category">community</a> and <a href="/blog/category/code/" class="p-category">code</a>
-            </p>
-            <div class="e-content"><p>So in my <a href="https://strugee.net/blog/2016/08/new-stuff-in-pump.io">last post</a>, I mentioned that I'd left a couple things for a second blog post. This is that post, and instead of being about all the cool stuff going on in the pumpiverse, it's about stuff that you - yes, <em>you</em>! - can do! It's super easy too.</p>
-<h4>Call for testers</h4>
+]]></description><link>http://pump.io/blog/2016/08/pump.io-1.0.0-is-now-available</link><guid isPermaLink="true">http://pump.io/blog/2016/08/pump.io-1.0.0-is-now-available</guid><category><![CDATA[releases]]></category><category><![CDATA[code]]></category><pubDate>Sat, 27 Aug 2016 06:37:54 GMT</pubDate></item><item><title><![CDATA[Pump.io: call for testers, call for feedback]]></title><description><![CDATA[<p>So in my <a href="https://strugee.net/blog/2016/08/new-stuff-in-pump.io">last post</a>, I mentioned that I'd left a couple things for a second blog post. This is that post, and instead of being about all the cool stuff going on in the pumpiverse, it's about stuff that you - yes, <em>you</em>! - can do! It's super easy too.</p>
+<h2>Call for testers</h2>
 <p>So as I mentioned, the <code>utml-to-jade</code> branch is basically finished (see <a href="https://github.com/e14n/pump.io/pull/1170">PR #1170</a>). Since switching templating languages is a huge, huge change, by definition touching every single part of the Web UI, we want to make sure it's well-tested. This is especially critical given the fact that the Web UI unfortunately has <a href="https://github.com/e14n/pump.io/issues/147">very little test coverage</a>.</p>
 <p>That's where pump.io system administrators come in. If you're a sysadmin and you're willing to test this change on your node, we'd very much appreciate it. There's very little risk, since I <em>think</em> I've squashed all the regressions that happened, but you should be willing to <a href="https://github.com/e14n/pump.io/issues">report bugs</a> if you <em>do</em> run into them. In particular, you should look out for:</p>
 <ol>
 <li>Links that seem to encompass too much text</li>
 <li>Missing spaces - e.g. <code>AJ Jordanat [date]</code> instead of <code>AJ Jordan at [date]</code></li>
-<li>HTML code showing up on the page - e.g. <code>Test note&#x3C;br /></code> instead of <code>Test note</code> followed by a line break</li>
+<li>HTML code showing up on the page - e.g. <code>Test note&lt;br /&gt;</code> instead of <code>Test note</code> followed by a line break</li>
 </ol>
 <p>Note that the <code>utml-to-jade</code> branch incorporates all changes in the <code>master</code> branch, so you may want to check out the advice in <a href="https://github.com/e14n/pump.io/wiki/Running-from-git-master">Running from Git master</a>.</p>
 <p>Sound interesting? Want to take part in the development of pump.io? Installing is super easy:</p>
@@ -145,33 +90,26 @@ npm install --production
 </code></pre>
 <p>This will work even if you already have a (non-source) install of pump.io - just make sure to restart the server afterwards.</p>
 <p>Note that this command has some semi-terrible logic to build Jade templates on install (this is a workaround for a deficiency in npm). If you get a scary warning message from npm, please <a href="https://github.com/e14n/pump.io/issues">file an issue</a>, making sure to include the full log.</p>
-<h4>Call for design feedback</h4>
+<h2>Call for design feedback</h2>
 <p>The other big thing that's happening is the pump.io 1.0.0 tshirt we're designing! I've spent quite a bit of time working on a variety of candidate designs which can be viewed in <a href="https://cloud.strugee.net/index.php/s/Ymw2RAdxyFZuuwu">this ownCloud share</a>. Obviously we want the coolest tshirt possible, so we're looking for any design feedback that people have. Anyone with some spare time can glance through the designs, and we'd be thrilled to get everyone's opinions.</p>
 <p>If this sounds interesting, I'd welcome you to check out <a href="https://cloud.strugee.net/index.php/s/Ymw2RAdxyFZuuwu">the drafts</a>. As always, get in touch with the community through <a href="https://github.com/e14n/pump.io/wiki/Community#community-accounts-communication">our chatroom</a> or if you'd prefer, you can email me directly at <a href="mailto:alex@strugee.net">alex@strugee.net</a>.</p>
 <p>Thanks so much! :)</p>
-</div>
-          </article>
-          <hr>
-          <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" class="h-entry"><a href="/blog/2016/08/new-stuff-in-pump.io">
-              <h2 class="p-name">New stuff in pump.io</h2></a>
-            <p class="post-metadata">Cross-posted from <a rel="canonical" href="https://strugee.net/blog/2016/08/new-stuff-in-pump.io">this post</a> by AJ Jordan on <a href="/blog/2016/08/">August</a> 7, <a href="/blog/2016/">2016</a> in <a href="/blog/category/code/" class="p-category">code</a>, <a href="/blog/category/community/" class="p-category">community</a> and <a href="/blog/category/documentation/" class="p-category">documentation</a>
-            </p>
-            <div class="e-content"><p>So I promised <a href="https://strugee.net/blog/2016/05/stratic-part-one">a (long) while ago</a> that I'd blog about all the stuff going on in <a href="http://pump.io">pump.io</a>. And there is a <em>lot</em> going on. Where to even begin?</p>
-<h4>LFNW talk</h4>
+]]></description><link>http://pump.io/blog/2016/08/pump.io-call-for-testers-call-for-feedback</link><guid isPermaLink="true">http://pump.io/blog/2016/08/pump.io-call-for-testers-call-for-feedback</guid><category><![CDATA[community]]></category><category><![CDATA[code]]></category><pubDate>Wed, 10 Aug 2016 17:35:36 GMT</pubDate></item><item><title><![CDATA[New stuff in pump.io]]></title><description><![CDATA[<p>So I promised <a href="https://strugee.net/blog/2016/05/stratic-part-one">a (long) while ago</a> that I'd blog about all the stuff going on in <a href="http://pump.io">pump.io</a>. And there is a <em>lot</em> going on. Where to even begin?</p>
+<h2>LFNW talk</h2>
 <p>I think the first thing I should mention is <a href="https://linuxfestnorthwest.org/2016/sessions/pumpio-community">the talk</a> I gave at LinuxFest Northwest this year. It went really, really well (even though I finished half the slides the night before), and people seemed to be really engaged, especially during questions. It starts off by covering the history behind pump.io: that includes the relevant protocols, like OStatus and <a href="http://activitystrea.ms">ActivityStreams</a>, but also the motivation behind abandoning StatusNet (aka current GNU Social) in favor of a brand-new network. Next I move on to the way that pump.io itself works, namely, its function as a generic ActivityStreams distribution engine. To put this another way, I explain why this quote from <a href="https://github.com/e14n/pump.io/blob/master/README.md">the README</a>:</p>
 <blockquote>
 <p>I post something and my followers see it. That's the rough idea behind the pump.</p>
 </blockquote>
 <p>is a pretty accurate way of describing what pump.io actually does. (I quote that quite a few times in the slides themselves.) I end with a discussion of the recent developments in the community, which are of course wonderful, and a short call-to-action for people to contribute - either directly to the software, or by joining the network and spreading pump.io.</p>
 <p>Oh, and by the way - the talk was recorded! So you can watch it <a href="https://www.youtube.com/watch?v=uQ6RVTFdYNc">on YouTube</a> or, even better, <a href="https://media.strugee.net/u/alex/m/linuxfest-northwest-2016-pump-io-the-community/">on my personal MediaGoblin</a>. Fitting, since (as I mention in the talk) MediaGoblin federation will soon be released, and it's based on (and fully interoperable with) the pump.io protocol!</p>
-<h4>Conservancy application</h4>
-<p>Pump.io is applying to the <a href="https://sfconservancy.org/">Software Freedom Conservancy</a>! This is super fantastic for us for a number of reasons. One of the biggest advantages is the fact that inside Conservancy (assuming our application is accepted), we'll be able to take donations much, much easier. This is primarily important because nodes in the pump.io network are volunteer-run, but they still require funds to operate. We're thinking about models wherein people will be able to donate to "pump.io", and then some (most?) of those funds will be used to pay for the network. (In particular, they'll be used to pay for the existing E14N nodes that Evan currently runs, which will become extremely useful once we transition those nodes to community owners). Conservancy also provides useful miscellaneous services, like owning our logo and making sure that if we encounter license violations, the license is properly enforced. But perhaps most importantly, becoming part of Conservancy cements pump.io even more in the community - both the group of people working on the software &#x26; network, but also the larger free software world.</p>
-<h4>ReadTheDocs</h4>
+<h2>Conservancy application</h2>
+<p>Pump.io is applying to the <a href="https://sfconservancy.org/">Software Freedom Conservancy</a>! This is super fantastic for us for a number of reasons. One of the biggest advantages is the fact that inside Conservancy (assuming our application is accepted), we'll be able to take donations much, much easier. This is primarily important because nodes in the pump.io network are volunteer-run, but they still require funds to operate. We're thinking about models wherein people will be able to donate to "pump.io", and then some (most?) of those funds will be used to pay for the network. (In particular, they'll be used to pay for the existing E14N nodes that Evan currently runs, which will become extremely useful once we transition those nodes to community owners). Conservancy also provides useful miscellaneous services, like owning our logo and making sure that if we encounter license violations, the license is properly enforced. But perhaps most importantly, becoming part of Conservancy cements pump.io even more in the community - both the group of people working on the software &amp; network, but also the larger free software world.</p>
+<h2>ReadTheDocs</h2>
 <p>We've started a <a href="http://pumpio.readthedocs.io/en/latest/">dedicated space</a> for project documentation, hosted on ReadTheDocs. We're plannning to move a bunch of content from the GitHub wiki into this project, and hopefully it'll become a thorough and central place for pump.io documentation - both for users and for deployers.</p>
-<h4>Triage</h4>
+<h2>Triage</h2>
 <p>We've spent quite a bit of time going through open issues and prioritizing them. A lot of issues have a release target now, and it feels really nice to feel like our issue tracker is a bit more organized.</p>
 <p>Special thanks to <a href="https://identi.ca/larjona">Laura Arjona</a> for driving this work.</p>
-<h4>Various minor code improvements</h4>
+<h2>Various minor code improvements</h2>
 <p>There have been a <em>bunch</em> of small bugfixes and improvements that have gone into the <code>master</code> branch - some of them user-facing, and some of them making the development experience better. Notable changes include:</p>
 <ul>
 <li>Migrating from Connect 1.x to Connect 2.x (this is just a start - Connect 2.x is still deprecated, but it gets us closer than we were to relying on a fully non-deprecated stack)</li>
@@ -181,23 +119,14 @@ npm install --production
 <li>Tests now pass! Whooooooooo! (Thanks to Menno Vossen for sending <a href="https://github.com/e14n/pump.io/pull/1136">the enormous Pull Request</a> that made this happen.)</li>
 </ul>
 <p>Those are just the bigger ones, of course - there are a bunch of even smaller problems that got squashed as well. I'd also like to point out that quite a few of these were long-standing PRs which <em>finally</em> made it into core, which is awesome for everyone.</p>
-<h4>Express 3.x migration</h4>
+<h2>Express 3.x migration</h2>
 <p>I've been putting in a lot of work to migrate pump.io to Express 3.x. It's a huge amount of work, but when complete, it will bring us very, very close to being able to migrate onto Express 4.x, which is modern and fully-supported by upstream. Basically what I've been doing is just running the app, seeing where it crashes, going to the exception site, and fixing the problem. Rinse, repeat. You can check out this work on the <a href="https://github.com/e14n/pump.io/tree/express-3.x"><code>express-3.x</code></a> branch - currently, this branch can successfully start up the app, but will crash pretty soon after you try to do almost anything else.</p>
 <p>This work, unfortunately, is on hold while another important project is completed: converting all the templates from utml to Jade.</p>
-<h4>utml to Jade transition</h4>
+<h2>utml to Jade transition</h2>
 <p>This is basically what it sounds like. Previously, the templates in pump.io were based on <a href="https://github.com/mikefrey/utml">utml</a>, which is essentially a thin wrapper around <a href="http://underscorejs.org/#template">Underscore.js's <code>_.template()</code></a> function. However, utml doesn't work with Express 3.x (and it's not really worth <em>making</em> it work), plus it's not the prettiest to work with. <a href="http://jade-lang.com/">Jade</a> is an extremely popular templating language in Node-land nowadays, so a couple months ago I spent somewhere between 14 and 18 hours going through and rewriting all the utml in Jade, which was absolutely brutal - but necessary. Then, of course, I had to fix the client-side templating logic to handle Jade instead of Underscore templates, which took quite a while, along with the fact that I made a very large number of minor (largely cosmetic) errors in my conversions.</p>
 <p>As I said above, this was kind of awful work (<em>especially</em> the beginning), but it's necessary and great, as it paves the way for Express 3.x <em>and</em> massively improves the contributor experience.</p>
 <p>You can check out the gory details of this work in <a href="https://github.com/e14n/pump.io/pull/1170">PR #1170</a>, and the original reasoning behind why we're doing this in <a href="https://github.com/e14n/pump.io/issues/1167">issue #1167</a>. This work is actually done, but I'm going to write a separate blog post about it, calling for testers.</p>
-<h4>Upcoming 1.0.0 release</h4>
+<h2>Upcoming 1.0.0 release</h2>
 <p>Last but <strong>certainly</strong> not least, we're gearing up for our 1.0.0 release! From a codebase standpoint, this is really just a small bugfix release (although it will make a lot of things less broken and - if I recall correctly - fix the actual installation process), but more importantly, it means that we're now committing to <a href="http://semver.org/">semantic versioning</a>, which is a win for everyone (but especially administrators). The main thing that needs to be fixed before this goes out the door is the behavior of the XSS scrubber, which was accidentally made a little too aggressive. This is being tracked in <a href="https://github.com/e14n/pump.io/issues/1169">issue #1169</a>.</p>
 <p>As a bonus, I'm also designing a t-shirt that (if there's sufficient interest) we may print as a celebration of this release - but more on this in my next post.</p>
-</div>
-          </article>
-        </div>
-      </section>
-      <footer>
-        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
-      </footer>
-    </div><!--[if !IE]><script>fixScale(document);</script><![endif]-->
-  </body>
-</html>
+]]></description><link>http://pump.io/blog/2016/08/new-stuff-in-pump.io</link><guid isPermaLink="true">http://pump.io/blog/2016/08/new-stuff-in-pump.io</guid><category><![CDATA[code]]></category><category><![CDATA[community]]></category><category><![CDATA[documentation]]></category><pubDate>Mon, 08 Aug 2016 05:26:32 GMT</pubDate></item></channel></rss>

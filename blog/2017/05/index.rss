@@ -1,34 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>pump.io</title>
-    <link rel="stylesheet" href="/stylesheets/styles.css">
-    <link rel="stylesheet" href="/stylesheets/pygment_trac.css">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-    <script src="/javascripts/scale.fix.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-    <title> - pump.io by e14n</title>
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1 class="header"><a href="/">pump.io</a></h1>
-        <p class="header">Social server with an ActivityStreams API</p>
-        <ul>
-          <li><a href="/tryit.html" class="buttons">Try It Now</a></li>
-          <li class="download"><a href="https://pumpio.readthedocs.io/en/latest/sysadmins.html#installation-instructions" class="buttons">Install</a></li>
-          <li><a href="https://github.com/pump-io/pump.io" class="buttons github">View On GitHub</a></li>
-        </ul>
-        <p class="header">This project is maintained by <a href="https://github.com/pump-io" class="header name">pump.io contributors</a></p>
-      </header>
-      <section>
-        <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" class="h-entry">
-          <h1 class="p-name">pump.io XSS security releases available</h1>
-          <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/05/">May</a> 23, <a href="/blog/2017/">2017</a> in <a href="/blog/category/releases/" class="p-category">releases</a>
-          </p>
-          <div class="e-content"><p>Well, apparently I forgot to make a blog post announcing that pump.io 4.0.0 stable is out. Surprise! Besides the version number it's the same as <a href="http://pump.io/blog/2017/04/pump.io-4.0-in-beta">4.0 beta 5</a> anyway.</p>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[pump.io blog - May - 2017]]></title><description><![CDATA[pump.io blog - May - 2017]]></description><link>http://pump.io/blog/2017/05</link><generator>stratic-indexes-to-rss</generator><lastBuildDate>Fri, 18 Aug 2017 20:57:53 GMT</lastBuildDate><atom:link href="http://pump.io/blog/2017/05/index.rss" rel="self" type="application/rss+xml"/><copyright><![CDATA[© Copyright 2016-2017 pump.io contributors.]]></copyright><webMaster><![CDATA[AJ Jordan <alex@strugee.net>]]></webMaster><item><title><![CDATA[pump.io XSS security releases available]]></title><description><![CDATA[<p>Well, apparently I forgot to make a blog post announcing that pump.io 4.0.0 stable is out. Surprise! Besides the version number it's the same as <a href="http://pump.io/blog/2017/04/pump.io-4.0-in-beta">4.0 beta 5</a> anyway.</p>
 <p>What is not the same as 4.0 beta 5, however, is the security releases I've just published. A semver-major release went out within the past 6 months, so per our <a href="https://github.com/pump-io/pump.io/wiki/Security">security support policy</a>, we've released security patches for the past three stable releases:</p>
 <ol>
 <li>pump.io 4.0.0 has been updated to pump.io 4.0.1</li>
@@ -48,12 +18,4 @@
 <p>Though in this case it's even more urgent that you <a href="https://pumpio.readthedocs.io/en/latest/upgrades/3.x-to-4.x.html">upgrade to 4.x</a>.</p>
 <p>Note that the above comands also assume you have an npm-based install, which we strongly recommend. If you have a source-based install, you will need to upgrade however you usually do - this will depend on how exactly you have pump.io set up.</p>
 <p>As always, if you need help, get in touch with <a href="https://github.com/pump-io/pump.io/wiki/Community">the community</a>.</p>
-</div>
-        </article>
-      </section>
-      <footer>
-        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
-      </footer>
-    </div><!--[if !IE]><script>fixScale(document);</script><![endif]-->
-  </body>
-</html>
+]]></description><link>http://pump.io/blog/2017/05/pump.io-xss-security-releases-available</link><guid isPermaLink="true">http://pump.io/blog/2017/05/pump.io-xss-security-releases-available</guid><category><![CDATA[releases]]></category><pubDate>Tue, 23 May 2017 08:59:52 GMT</pubDate></item></channel></rss>

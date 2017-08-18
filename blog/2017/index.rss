@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[pump.io blog - 2017]]></title><description><![CDATA[pump.io blog - 2017]]></description><link>http://pump.io/blog/2017</link><generator>stratic-indexes-to-rss</generator><lastBuildDate>Fri, 18 Aug 2017 20:57:53 GMT</lastBuildDate><atom:link href="http://pump.io/blog/2017/index.rss" rel="self" type="application/rss+xml"/><copyright><![CDATA[© Copyright 2016-2017 pump.io contributors.]]></copyright><webMaster><![CDATA[AJ Jordan <alex@strugee.net>]]></webMaster><item><title><![CDATA[Zero-downtime restarts have landed]]></title><description><![CDATA[<p>I'm thrilled to announce that zero-downtime restarts, which I've been hacking on for the past week or two, <a href="https://github.com/pump-io/pump.io/pull/1406">have just landed</a> in pump.io master!</p>
+<p>Zero-downtime restarts require at least two cluster workers and MongoDB as a Databank driver (we'll eventually relax the latter requirement as we continue to test the feature). Here's how it works:</p>
+<ol>
+<li>An administrator sends SIGUSR2 to the master pump.io process (note that SIGUSR1 is <a href="https://nodejs.org/api/process.html#process_signal_events">reserved by Node.js</a>)</li>
+<li>The master process builds a queue of worker processes that need to be restarted</li>
+<li>The master process picks a random worker from the queue and sends it a signal asking it to gracefully shut down</li>
+<li>The worker process shuts down its HTTP server, which causes it to stop accepting new connections - it will do the same for the bounce server, if applicable</li>
+<li>The worker shuts down its database connection once the HTTP server is completely shut down, meaning that it's done servicing in-flight requests</li>
+<li>The worker closes its connection with the master process and Node.js automatically terminates due to there being no listeners on the event loop</li>
+<li>The master recognizes the death of the worker process, replaces it, waits for the new worker to signal that it's listening for connections, and repeats from step 3 until the queue is empty</li>
+</ol>
+<p>This works because only one worker is shut down at a time, allowing the other workers to continue servicing requests while the one worker is restarted. We wait until the new worker actually signals it's ready to process requests before beginning the process for another worker.</p>
+<p>Such a feature requires careful error handling, so there are a lot of built-in checks to prevent administrators from shooting themselves in the foot:</p>
+<ul>
+<li>If there's a restart already in progress, SIGUSR2 is ignored</li>
+<li>If there's only 1 cluster worker, the restart request is refused (because there would be downtime and you should just restart the master)</li>
+<li>
+<p>The master process will load a magic number from the <em>new</em> code and compare it with the <em>old</em> magic number loaded when the master process started - if they don't match, SIGUSR2 will be refused. This number will be incremented for things that would make zero-downtime restarts cause problems, for example:</p>
+<ul>
+<li>The logic in the master process itself changing</li>
+<li>Cross-process logic changing, such that a new worker communicating with old workers would cause problems</li>
+<li>Database changes</li>
+</ul>
+</li>
+<li>If a worker process doesn't shut itself down within 30 seconds, it will be killed</li>
+<li>
+<p>If a zero-downtime restart fails for any reason, the master process will refuse SIGUSR2 and will not respawn any more cluster workers, even if they crash - this is because something must have gone <em>seriously</em> wrong, either with the master, the workers, or the new code, and it's better to just restart everything. Currently this condition occurs when:</p>
+<ul>
+<li>A new worker died directly after being spawned (e.g. from invalid JSON in <code>pump.io.json</code>)</li>
+<li>A new worker signaled that it couldn't bind to the appropriate ports</li>
+</ul>
+</li>
+</ul>
+<p>While these checks do a lot to catch problems, they're not a silver bullet, and we strongly recommend that administrators watch their logs as they trigger restarts. However, this is still a <em>huge</em> win for the admin experience - the most exciting part of this for me is that it's the first step we need to take towards having fully automatic updates, which has been a dream of mine for a long while now.</p>
+<p>Admins running from git master can start experimenting with this feature today, and it will be released during the <em>next</em> release cycle - i.e. with the 5.1 beta and stable, <em>not</em> the current 5.0 beta. Since this is highly experimental, we want this to have as much time for testing as possible. You can also check out the <a href="https://pumpio.readthedocs.io/en/latest/administration/zero-downtime-restarts.html">official documentation</a> on this feature.</p>
+<p>I hope people enjoy this! And as always, feel free to <a href="https://github.com/pump-io/pump.io/issues/new">report any bugs</a>.</p>
+]]></description><link>http://pump.io/blog/2017/08/zero-downtime-restarts-have-landed</link><guid isPermaLink="true">http://pump.io/blog/2017/08/zero-downtime-restarts-have-landed</guid><category><![CDATA[code]]></category><pubDate>Fri, 18 Aug 2017 09:01:16 GMT</pubDate></item><item><title><![CDATA[pump.io 5.0 beta released]]></title><description><![CDATA[<p>I'm excited to announce that pump.io 5.0.0 is now officially in beta!</p>
+<p>This is another big release and makes a wide variety of improvements. Here are some highlights from <a href="https://github.com/pump-io/pump.io/blob/master/CHANGELOG.md#500-beta-0---2017-08-07">the changelog</a>:</p>
+<ul>
+<li>More complete documentation</li>
+<li>Small improvements to the administrator experience</li>
+<li>A better web UI, including some user experience polishing as well as an upgrade to more performant and better-licensed libraries</li>
+<li>A fix for crashes related to "login with remote account" (although this one was backported in 4.1.1)</li>
+<li>Significant security improvements in the <a href="https://pumpio.readthedocs.io/en/latest/administration/upstream-systemd-unit.html">systemd service</a> shipped with the package</li>
+<li>Lots of internal refactoring and simplification made possible by dropping Node 0.10/0.12 support</li>
+</ul>
+<p>Many of these changes - particularly the systemd changes and the fact that (<a href="http://pump.io/blog/2017/07/pump.io-4.1-is-out">as previously announced</a>) Node 0.10 and 0.12 are no longer supported - will require administrator intervention. Be sure to read our <a href="https://pumpio.readthedocs.io/en/latest/upgrades/4.x-to-5.x.html">upgrade guide</a> for details on how to deal with these changes.</p>
+<p>All of these features add up to make pump.io 5.0 beta the most stable and secure release yet. As always, it will go through our beta period for about a month before being released as a fully stable version. If you try it out, the <a href="https://github.com/pump-io/pump.io/wiki/Community">community</a> would love to hear about it - and be sure to <a href="https://github.com/pump-io/pump.io/issues">report any bugs</a> you encounter!</p>
+]]></description><link>http://pump.io/blog/2017/08/pump.io-5.0-beta-released</link><guid isPermaLink="true">http://pump.io/blog/2017/08/pump.io-5.0-beta-released</guid><category><![CDATA[releases]]></category><pubDate>Mon, 07 Aug 2017 18:51:12 GMT</pubDate></item><item><title><![CDATA[pump.io 4.1 is out]]></title><description><![CDATA[<p>pump.io 4.1 is out!</p>
+<p>As usual, nothing much has changed since <a href="http://pump.io/blog/2017/06/out-now-pump.io-4.1-beta">the beta release</a>. This release includes:</p>
+<ul>
+<li>Minor web UI improvements</li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity">Subresource Integrity</a> in the web UI</li>
+<li>A switch to a pure-JavaScript bcrypt, which should improve installs on non x86 platforms and Docker</li>
+<li>Some other <a href="https://github.com/pump-io/pump.io/blob/master/CHANGELOG.md#410-beta-0---2017-06-15">minor improvements and fixes</a></li>
+</ul>
+<p>Remember that <a href="http://pump.io/blog/2017/06/out-now-pump.io-4.1-beta">with this release</a>, Node 0.10 and Node 0.12 support is officially obsolete. This change paves the way for a lot of really important improvements, and in fact, we've already introduced a lot of changes that reduce technical debt. Note that since the beta announcement, Debian Stretch has been released, which ships Node 4 in <code>main</code>. You can read more about our Node.js support policy <a href="https://github.com/pump-io/pump.io/wiki/Node.js-version-support">on our wiki</a>.</p>
+<p>Enjoy the new release, and remember to <a href="https://github.com/pump-io/pump.io/issues">report any bugs</a>!</p>
+]]></description><link>http://pump.io/blog/2017/07/pump.io-4.1-is-out</link><guid isPermaLink="true">http://pump.io/blog/2017/07/pump.io-4.1-is-out</guid><category><![CDATA[releases]]></category><pubDate>Sun, 02 Jul 2017 02:57:21 GMT</pubDate></item><item><title><![CDATA[Out now: pump.io 4.1 beta]]></title><description><![CDATA[<p>Perhaps some of you were wondering where pump.io's 4.1 release was, since our <a href="https://github.com/pump-io/pump.io/wiki/Release-cycle">release schedule</a> says it should've been released at the beginning of this month?</p>
+<p>Well, wonder no longer. This release was unfortunately delayed because of some big stuff in my personal life that got in the way of free software stuff (sorry!), but as of yesteray, pump.io 4.1 is officially in beta! Huzzah!</p>
+<p>This was a relatively minor release, primarily improving some aspects of the web UI. Notably, the pump.io 4.1 beta includes support for <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity">Subresource Integrity</a>, a web standard which will improve security for users on nodes with <code>"noCDN": false</code> in their pump.io configurations. A more complete list of changes is available in the <a href="https://github.com/pump-io/pump.io/blob/master/CHANGELOG.md#410-beta-0---2017-06-15">change log</a>.</p>
+<p>As always, we advise caution when upgrading to beta releases. Please <a href="http://pump.io/blog/">report</a> any problems or bugs you encounter.</p>
+<p>pump.io 4.1 beta is a drop-in replacement for pump.io 4.0.</p>
+<h1>First time contributors</h1>
+<p>I would like to specially thank the following people, who contributed to the pump.io project for the first time during this release cycle:</p>
+<ul>
+<li><a href="https://github.com/vxcamiloxv">Camilo QS</a>, who contributed a number of improvements to the web UI</li>
+<li><a href="https://github.com/bio-boris">@bio-boris</a>, who implemented <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity">Subresource Integrity</a> for the web UI</li>
+<li><a href="https://github.com/RyanRiddle">Ryan Riddle</a>, who made the web UI proactively warn if the user was trying to sign up with a blacklisted/reserved username (like <code>api</code> or <code>robots.txt</code>)</li>
+</ul>
+<h1>Node.js 0.10 and 0.12 support ending</h1>
+<p>Finally, the stable release pump.io 4.1 will mark the end of pump.io's support for Node.js 0.10 and 0.12. These versions of Node are extremely old and are preventing us from making serious improvements to the codebase - you can see a list of these in <a href="https://github.com/pump-io/pump.io/issues/1234">issue #1234</a>. Note that in particular we cannot simultaneously support Node 7 and Node 0.10 due to our browser unit testing library, Zombie.</p>
+<p>With the exception of Red Hat Enterprise Linux and CentOS, there are <a href="https://nodecompat.com/">no major Linux distributions</a> not shipping Node 4+ in some form. Most of them ship it out-of-the-box; the only one that does not is Debian. For our admins on Debian, Node 4 is available in <code>jessie-backports</code> and will become the officially supported version with the release of Debian Stretch (which is imminent). Plus, for all of these platforms, NodeSource offers <a href="https://github.com/nodesource/distributions">binary packages</a> for all major Node versions that can be installed and managed through the system package manager. We'll also soon be making a Docker image available, which will allow people to run pump.io on any Docker-capable host, regardless of what Node version is shipped with their distribution.</p>
+<p>You can read more about our Node.js version support policy <a href="https://github.com/pump-io/pump.io/wiki/Node.js-version-support-policy">on our wiki</a>.</p>
+<p>Here's to another pump.io beta!</p>
+]]></description><link>http://pump.io/blog/2017/06/out-now-pump.io-4.1-beta</link><guid isPermaLink="true">http://pump.io/blog/2017/06/out-now-pump.io-4.1-beta</guid><category><![CDATA[releases]]></category><pubDate>Fri, 16 Jun 2017 10:46:38 GMT</pubDate></item><item><title><![CDATA[pump.io XSS security releases available]]></title><description><![CDATA[<p>Well, apparently I forgot to make a blog post announcing that pump.io 4.0.0 stable is out. Surprise! Besides the version number it's the same as <a href="http://pump.io/blog/2017/04/pump.io-4.0-in-beta">4.0 beta 5</a> anyway.</p>
+<p>What is not the same as 4.0 beta 5, however, is the security releases I've just published. A semver-major release went out within the past 6 months, so per our <a href="https://github.com/pump-io/pump.io/wiki/Security">security support policy</a>, we've released security patches for the past three stable releases:</p>
+<ol>
+<li>pump.io 4.0.0 has been updated to pump.io 4.0.1</li>
+<li>pump.io 3.0.2 has been updated to pump.io 3.0.3</li>
+<li>pump.io 2.1.1 has been updated to pump.io 2.1.2</li>
+</ol>
+<p>So what exactly required these releases? Well, the library we use to prevent cross-site scripting, <a href="https://github.com/cure53/DOMPurify">DOMPurify</a>, released some security patches recently. While we could conceivably just tell pump.io users to rerun <code>npm install -g</code> to get the updated library, it seemed safer to issue patch releases that bumped the minimum version for DOMPurify and have people upgrade to those. This gives a 100% guarantee that pump.io users will be protected with the absolute latest DOMPurify version.</p>
+<p>As with any security release, we encourage admins to upgrade ASAP. If you've already installed the 4.0 release via npm, that's great! That's our recommended configuration, and you'll be able to upgrade by issuing:</p>
+<pre><code>$ npm install -g pump.io@4
+</code></pre>
+<p>If you're still on the 3.x release series, you really should <a href="https://pumpio.readthedocs.io/en/latest/upgrades/3.x-to-4.x.html">upgrade to 4.x</a>, which contains significant work impacting security which was too big to go into a patch release (specifically, the upgrade to Express 4.x). But in the meantime, you can fix your XSS problems by running:</p>
+<pre><code>$ npm install -g pump.io@3
+</code></pre>
+<p>And something similar if you're on 2.1.x:</p>
+<pre><code>$ npm install -g pump.io@2
+</code></pre>
+<p>Though in this case it's even more urgent that you <a href="https://pumpio.readthedocs.io/en/latest/upgrades/3.x-to-4.x.html">upgrade to 4.x</a>.</p>
+<p>Note that the above comands also assume you have an npm-based install, which we strongly recommend. If you have a source-based install, you will need to upgrade however you usually do - this will depend on how exactly you have pump.io set up.</p>
+<p>As always, if you need help, get in touch with <a href="https://github.com/pump-io/pump.io/wiki/Community">the community</a>.</p>
+]]></description><link>http://pump.io/blog/2017/05/pump.io-xss-security-releases-available</link><guid isPermaLink="true">http://pump.io/blog/2017/05/pump.io-xss-security-releases-available</guid><category><![CDATA[releases]]></category><pubDate>Tue, 23 May 2017 08:59:52 GMT</pubDate></item><item><title><![CDATA[pump.io 4.0 in beta]]></title><description><![CDATA[<p>pump.io 4.0.0 is officially in beta! Whooo!</p>
+<h1>Highlights</h1>
+<p>This is a positively <em>huge</em> release, and I'm so excited to share it with the community. Some highlights:</p>
+<ul>
+<li>Express 4.x - I wrote about the significance of this change <a href="http://pump.io/blog/2017/03/express-4.x-in-pump.io-core">here</a>, but suffice to say that this significantly improves security, performance, and future maintainability</li>
+<li>Performance and correctness improvements to the web UI's JavaScript</li>
+<li>Better administrative experience, including the ability to specify configuration via environment variables</li>
+<li>Better interoperability with the <a href="https://indieweb.org">IndieWeb</a></li>
+</ul>
+<h1>Upgrading</h1>
+<p>The upgrade to Express 4.x and the improvements to configuration loading have the potential to break <em>some</em> existing pump.io installations, although 95% of installs should be completely unaffected. If you want to help test this beta, please set aside extra time as necessary to perform this upgrade - full documentation can be found on <a href="https://pumpio.readthedocs.io/en/latest/upgrades/3.x-to-4.x.html">ReadTheDocs</a>.</p>
+<p>As always, this release will follow our normal <a href="https://github.com/pump-io/pump.io/wiki/Release-cycle">release cycle</a>, which means that the stable 4.0.0 release will go out in about a month.</p>
+<h1>Test days</h1>
+<p>Due to the complexity of this upgrade, we've decided to have some test days during the beta where we upgrade prominent nodes for a day, then downgrade them again. This will help expose problems earlier and make the upgrade smoother for everyone. So far Jason Self, who runs <a href="https://datamost.com/">Datamost</a>, has volunteered for this - if you're interested in joining him, please <a href="https://github.com/pump-io/pump.io/wiki/Community">get in touch</a>!</p>
+<p>Happy hacking!</p>
+]]></description><link>http://pump.io/blog/2017/04/pump.io-4.0-in-beta</link><guid isPermaLink="true">http://pump.io/blog/2017/04/pump.io-4.0-in-beta</guid><category><![CDATA[releases]]></category><pubDate>Mon, 03 Apr 2017 21:03:10 GMT</pubDate></item><item><title><![CDATA[Dianara v1.3.7 released]]></title><description><![CDATA[<p>A new version of <a href="https://jancoding.wordpress.com/dianara/">Dianara</a>, my desktop client for <a href="https://pumpio.readthedocs.io/en/latest/userguide.html">the Pump social network</a>, has just been released. This will be the last of the 1.3.x series, and <strong>the last one to support Qt 4</strong>.</p>
+<p><img src="https://jancoding.files.wordpress.com/2017/03/dianara-v1-3-7-release.png" alt="The image viewer"></p>
+<p>It’s another small release. The biggest change is the updated image viewer, which now supports zooming with the mouse/touchpad, and dragging the image around, as full-blown image viewers usually support ;)</p>
+<p>If you want to build it with Qt 5.x, note that <strong>your system will need a Qt 5 build of the QOAuth library</strong>, which not all GNU/Linux distributions provide yet.  <a href="http://madb.mageia.org/package/show/application/0/release/cauldron/name/libqoauth-qt5-devel">Mageia 6 does</a>, and so do Archlinux, openSUSE (in a separate repository) and Debian (in Experimental). If you have that, but experience problems building it this way, your <a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=825976">QOAuth might be missing a feature file (.prf)</a>, like used to be the case in Debian.</p>
+<h1>Changelog</h1>
+<p>The changes <a href="https://jancoding.wordpress.com/2016/12/17/dianara-v1-3-6-is-out/">since v1.3.6</a> are:</p>
+<ul>
+<li>The image viewer now supports dragging the image around with the mouse, zooming with the wheel, and rotating animated images correctly.</li>
+<li>Fixed case-insensitive sorting of contacts in auto-completion lists, when typing @ while creating a post. This means that “Person A” will appear next to “person b”, not after “Z-contact”.</li>
+<li>Your server’s version will be shown in the log.</li>
+</ul>
+]]></description><link>http://pump.io/blog/2017/03/dianara-1.3.7-released</link><guid isPermaLink="true">http://pump.io/blog/2017/03/dianara-1.3.7-released</guid><category><![CDATA[clients]]></category><pubDate>Sun, 26 Mar 2017 22:00:00 GMT</pubDate></item><item><title><![CDATA[Express 4.x in pump.io core]]></title><description><![CDATA[<p>So I thought I'd take a moment to announce that the upgrade from Express 2.x to Express 4.x is <a href="https://github.com/pump-io/pump.io/pull/1208">finally complete</a>! I fixed up the last couple test failures last Wednesday, and the branch got merged on Thursday.</p>
+<h1>A long time coming</h1>
+<p>Believe it or not, the work to do this upgrade started almost an entire <em>year</em> ago. Express 2.x has been outdated and unmaintained for a long time now, so upgrading has been a high priority. However, it wasn't as simple as adjusting a version number - there were a staggering number of changes that needed to be made due to Express deprecating, removing, and changing things around. One of the most significant problems was the fact that the old template system that we used, utml, was not compatible with Express 3.x and above. That meant that we had to rewrite every single template into a modern language - an effort that resulted in <a href="https://github.com/pump-io/pump.io/pull/1170">over a thousand lines changed</a>!</p>
+<p>However, the time for Express 4.x has finally arrived. With that and some other trivial version bumps, I'm proud to announce that pump.io is fully up-to-date in terms of dependencies with only three, non-critical exceptions. Whooooo!</p>
+<h1>Immediate benefits</h1>
+<p>There are a lot of reasons this is immediately awesome:</p>
+<ol>
+<li>Express 4.x fixes significant performance problems that existed in Express 3.x</li>
+<li>Relatedly, Express 4.x fixes some security problems present in 3.x</li>
+<li>The fact that our dependencies are <em>finally</em> up-to-date means that we can (and do!) now make use of <a href="https://greenkeeper.io/">Greenkeeper</a> and the <a href="https://nodesecurity.io/orgs/pumpio/projects/32213bb8-f9a6-4dd0-8fc6-5caa8ea5f8fc">Node Security Platform</a> to automatically track dependencies to make sure they're up-to-date and not introducing security vulnerabilities</li>
+</ol>
+<p>That last one is particularly significant. Greenkeeper and NSP will continuously monitor the project's dependencies and automate away a lot of the pain that's associated with keeping pump.io up-to-date. Everyone will get a more secure and stable codebase because of this setup.</p>
+<h1>Looking forward</h1>
+<p>The Express 4.x upgrade is a big change, and it's definitely possible that stuff has broken. We want to make sure that breakage doesn't make it into production. This change went into pump.io 4.0, which will go through our normal <a href="https://github.com/pump-io/pump.io/wiki/Release-cycle">release cycle</a>. That means it'll be in beta for a month before being released. As a part of that, <a href="https://jxself.org/">Jason Self</a> - who's kind enough to administer <a href="https://datamost.com/">Datamost</a> - has agreed to have a test day where Datamost upgrades to the beta for a day, then downgrade it again. This test day will give us much wider exposure than we would've gotten otherwise, which will be incredibly valuable feedback in the effort to identify and fix regressions. We haven't set a date yet, but if you'd like to join Jason in helping us find bugs, please get in touch with <a href="https://github.com/pump-io/pump.io/wiki/Community">the community</a>. We'd love your help.</p>
+<p>Beyond the immediate release, though, there's still things to look forward to. Express 4.x gives us a better way to structure routing code, and a refactor to use this structure <a href="https://github.com/pump-io/pump.io/issues/1232">is planned</a>. There's a lot of room for improvement. But really, the most important benefit is this: technical debt is a far less pressing issue than before. That means that we can shift focus and spend more time fixing user-facing bugs, adding useful features, and generally improving the experience for our users. I couldn't be more excited.</p>
+]]></description><link>http://pump.io/blog/2017/03/express-4.x-in-pump.io-core</link><guid isPermaLink="true">http://pump.io/blog/2017/03/express-4.x-in-pump.io-core</guid><category><![CDATA[code]]></category><pubDate>Mon, 20 Mar 2017 20:22:27 GMT</pubDate></item></channel></rss>
