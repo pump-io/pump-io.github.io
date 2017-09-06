@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>pump.io</title>
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+    <link rel="stylesheet" href="/stylesheets/pygment_trac.css">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <script src="/javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <title>September 2017 - pump.io blog</title>
+    <!-- TODO: apparently this technically isn't allowed to be relative but it seems to work fine, soooo...-->
+    <link rel="alternate" type="application/rss+xml" href="index.rss">
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header"><a href="/">pump.io</a></h1>
+        <p class="header">Social server with an ActivityStreams API</p>
+        <ul>
+          <li><a href="/tryit.html" class="buttons">Try It Now</a></li>
+          <li class="download"><a href="https://pumpio.readthedocs.io/en/latest/sysadmins.html#installation-instructions" class="buttons">Install</a></li>
+          <li><a href="https://github.com/pump-io/pump.io" class="buttons github">View On GitHub</a></li>
+        </ul>
+        <p class="header">This project is maintained by <a href="https://github.com/pump-io" class="header name">pump.io contributors</a></p>
+      </header>
+      <section>
+        <div class="h-feed">
+          <h2 class="p-name">Posts from September 2017</h2>
+          <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" class="h-entry"><a href="/blog/2017/09/pump.io-5.0-declared-stable">
+              <h2 class="p-name">pump.io 5.0 declared stable</h2></a>
+            <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/09/">September</a> 6, <a href="/blog/2017/">2017</a> in <a href="/blog/category/releases/" class="p-category">releases</a>
+            </p>
+            <div class="e-content"><p>I'm super excited to announce that as of a couple days ago, pump.io 5.0 has now been declared stable and released!</p>
+<p>This release cycle had an extra beta since I found a bug with the new display of shares. The fix ended up being trivial, though, and other than that there's been no changes from <a href="">the beta announcement</a>:</p>
+<ul>
+<li>Documentation has been expanded</li>
+<li>Small improvements to the administrator experience have landed</li>
+<li>The web UI has gotten, among other things, some user experience polishing as well as upgrades to more performant and better-licensed libraries</li>
+<li>"Login with remote account" no longer crashes (although this one was backported in 4.1.1)</li>
+<li>The <a href="https://pumpio.readthedocs.io/en/latest/administration/upstream-systemd-unit.html">systemd service</a>  shipped with the package has significant security improvements</li>
+<li>Lots of internal refactoring and simplification made possible by dropping Node 0.10/0.12 support</li>
+</ul>
+<p>As I said in the beta announcement, some of these changes - particularly the systemd changes and the fact that (<a href="http://pump.io/blog/2017/07/pump.io-4.1-is-out">as previously announced</a>) Node 0.10 and 0.12 are no longer supported - will require administrator intervention. Be sure to read our <a href="https://pumpio.readthedocs.io/en/latest/upgrades/4.x-to-5.x.html">upgrade guide</a> for details on how to deal with these.</p>
+<p>pump.io 5.0 is the most stable and secure release yet, so as always, I'd encourage all administrators to upgrade as soon as possible. And if you get stuck, the <a href="https://github.com/pump-io/pump.io/wiki/Community">community</a> is always here to help.</p>
+<p>Cheers!</p>
+</div>
+          </article>
+        </div>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div><!--[if !IE]><script>fixScale(document);</script><![endif]-->
+  </body>
+</html>
