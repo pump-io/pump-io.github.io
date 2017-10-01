@@ -6,6 +6,7 @@ time:
 author: "AJ Jordan"
 categories:
   - releases
+  - security
 ---
 
 Well, apparently I forgot to make a blog post announcing that pump.io 4.0.0 stable is out. Surprise! Besides the version number it's the same as [4.0 beta 5][beta] anyway.
