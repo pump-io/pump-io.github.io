@@ -3,7 +3,7 @@ extends /src/includes/layout
 include /src/includes/post
 
 block head
-	title #{file.title} - pump.io blog
+	title #{file.data.title} - pump.io blog
 
 block content
 	+renderPost(file, false)
