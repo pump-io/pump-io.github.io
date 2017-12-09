@@ -30,6 +30,24 @@
           <h2 class="p-name">Blog</h2>
           <p id="postsFrom">Show only <a href="/blog/2016/">2016</a> <a href="/blog/2017/">2017</a> 
           </p>
+          <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" class="h-entry"><a href="/blog/2017/12/pump.io-5.1-is-in-beta">
+              <h2 class="p-name">pump.io 5.1 is in beta</h2></a>
+            <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/12/">December</a> 8, <a href="/blog/2017/">2017</a> in <a href="/blog/category/releases/" class="p-category">releases</a>
+            </p>
+            <div class="e-content"><p>I'm really excited to announce that pump.io 5.1 is officially in beta!</p>
+<p>This release makes a wide array of improvements. One of the features I'm most excited about is <a href="/blog/2017/08/zero-downtime-restarts-have-landed">zero-downtime restarts</a>, which will allow administrators to gracefully roll over to new configurations and codebases with absolutely no user-visible impact! Aside from that, here's a list of highlights:</p>
+<ul>
+<li>The daemon now generates startup log warnings on bad configurations, including insecure <code>secret</code> values and internal parameters</li>
+<li>An official <code>Dockerfile</code> is now included with the release</li>
+<li>The logged-out mobile homepage's menu icon is no longer incorrectly styled as black</li>
+<li>SockJS connections no longer fail due to authorization problems</li>
+</ul>
+<p>As usual, this release also includes some small updates to dependencies. Plus, we started tracking how much code our test suite covers! We've also significantly cleaned up the documentation and moved almost all of the in-repository documentation to ReadTheDocs, where it's a lot more organized and accessible. If you want more than just these highlights, you can check out <a href="https://github.com/pump-io/pump.io/blob/master/CHANGELOG.md#510-beta-0---2017-12-08">the changelog</a>.</p>
+<p>Note that while the repository includes a <code>Dockerfile</code> now, we have not yet begun publishing on Docker Hub due to some security logistics that need to be figured out - when we do, it'll be announced in all the usual places (including this blog).</p>
+<p>I'm so excited for people to try out this release. 5.1 beta 0 is a drop-in replacement for 5.0, so if you're on 5.0 and want to live (more) on the bleeding edge, you can upgrade with <code>npm install -g pump.io@5.1</code> if you have an npm-based install. If you have a source-based install, you should merge and/or switch to the <code>v5.1.0-beta.0</code> tag. And as always, if you encounter any problems you can reach out to the <a href="https://github.com/pump-io/pump.io/wiki/Community">community</a> or <a href="https://github.com/pump-io/pump.io/issues">file bugs you find</a>.</p>
+</div>
+          </article>
+          <hr>
           <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" class="h-entry"><a href="/blog/2017/10/denial-of-service-security-fixes-now-available">
               <h2 class="p-name">Denial-of-service security fixes now available</h2></a>
             <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/10/">October</a> 1, <a href="/blog/2017/">2017</a> in <a href="/blog/category/releases/" class="p-category">releases</a> and <a href="/blog/category/security/" class="p-category">security</a>
@@ -135,23 +153,6 @@
 </ul>
 <p>Many of these changes - particularly the systemd changes and the fact that (<a href="http://pump.io/blog/2017/07/pump.io-4.1-is-out">as previously announced</a>) Node 0.10 and 0.12 are no longer supported - will require administrator intervention. Be sure to read our <a href="https://pumpio.readthedocs.io/en/latest/upgrades/4.x-to-5.x.html">upgrade guide</a> for details on how to deal with these changes.</p>
 <p>All of these features add up to make pump.io 5.0 beta the most stable and secure release yet. As always, it will go through our beta period for about a month before being released as a fully stable version. If you try it out, the <a href="https://github.com/pump-io/pump.io/wiki/Community">community</a> would love to hear about it - and be sure to <a href="https://github.com/pump-io/pump.io/issues">report any bugs</a> you encounter!</p>
-</div>
-          </article>
-          <hr>
-          <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" class="h-entry"><a href="/blog/2017/07/pump.io-4.1-is-out">
-              <h2 class="p-name">pump.io 4.1 is out</h2></a>
-            <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/07/">July</a> 1, <a href="/blog/2017/">2017</a> in <a href="/blog/category/releases/" class="p-category">releases</a>
-            </p>
-            <div class="e-content"><p>pump.io 4.1 is out!</p>
-<p>As usual, nothing much has changed since <a href="/blog/2017/06/out-now-pump.io-4.1-beta">the beta release</a>. This release includes:</p>
-<ul>
-<li>Minor web UI improvements</li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity">Subresource Integrity</a> in the web UI</li>
-<li>A switch to a pure-JavaScript bcrypt, which should improve installs on non x86 platforms and Docker</li>
-<li>Some other <a href="https://github.com/pump-io/pump.io/blob/master/CHANGELOG.md#410-beta-0---2017-06-15">minor improvements and fixes</a></li>
-</ul>
-<p>Remember that <a href="/blog/2017/06/out-now-pump.io-4.1-beta">with this release</a>, Node 0.10 and Node 0.12 support is officially obsolete. This change paves the way for a lot of really important improvements, and in fact, we've already introduced a lot of changes that reduce technical debt. Note that since the beta announcement, Debian Stretch has been released, which ships Node 4 in <code>main</code>. You can read more about our Node.js support policy <a href="https://github.com/pump-io/pump.io/wiki/Node.js-version-support">on our wiki</a>.</p>
-<p>Enjoy the new release, and remember to <a href="https://github.com/pump-io/pump.io/issues">report any bugs</a>!</p>
 </div>
           </article>
         </div>

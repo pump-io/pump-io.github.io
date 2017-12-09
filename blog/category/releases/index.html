@@ -28,6 +28,24 @@
       <section>
         <div class="h-feed">
           <h2 class="p-name">Posts categorized as "releases"</h2>
+          <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" class="h-entry"><a href="/blog/2017/12/pump.io-5.1-is-in-beta">
+              <h2 class="p-name">pump.io 5.1 is in beta</h2></a>
+            <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/12/">December</a> 8, <a href="/blog/2017/">2017</a> in <a href="/blog/category/releases/" class="p-category">releases</a>
+            </p>
+            <div class="e-content"><p>I'm really excited to announce that pump.io 5.1 is officially in beta!</p>
+<p>This release makes a wide array of improvements. One of the features I'm most excited about is <a href="/blog/2017/08/zero-downtime-restarts-have-landed">zero-downtime restarts</a>, which will allow administrators to gracefully roll over to new configurations and codebases with absolutely no user-visible impact! Aside from that, here's a list of highlights:</p>
+<ul>
+<li>The daemon now generates startup log warnings on bad configurations, including insecure <code>secret</code> values and internal parameters</li>
+<li>An official <code>Dockerfile</code> is now included with the release</li>
+<li>The logged-out mobile homepage's menu icon is no longer incorrectly styled as black</li>
+<li>SockJS connections no longer fail due to authorization problems</li>
+</ul>
+<p>As usual, this release also includes some small updates to dependencies. Plus, we started tracking how much code our test suite covers! We've also significantly cleaned up the documentation and moved almost all of the in-repository documentation to ReadTheDocs, where it's a lot more organized and accessible. If you want more than just these highlights, you can check out <a href="https://github.com/pump-io/pump.io/blob/master/CHANGELOG.md#510-beta-0---2017-12-08">the changelog</a>.</p>
+<p>Note that while the repository includes a <code>Dockerfile</code> now, we have not yet begun publishing on Docker Hub due to some security logistics that need to be figured out - when we do, it'll be announced in all the usual places (including this blog).</p>
+<p>I'm so excited for people to try out this release. 5.1 beta 0 is a drop-in replacement for 5.0, so if you're on 5.0 and want to live (more) on the bleeding edge, you can upgrade with <code>npm install -g pump.io@5.1</code> if you have an npm-based install. If you have a source-based install, you should merge and/or switch to the <code>v5.1.0-beta.0</code> tag. And as always, if you encounter any problems you can reach out to the <a href="https://github.com/pump-io/pump.io/wiki/Community">community</a> or <a href="https://github.com/pump-io/pump.io/issues">file bugs you find</a>.</p>
+</div>
+          </article>
+          <hr>
           <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" class="h-entry"><a href="/blog/2017/10/denial-of-service-security-fixes-now-available">
               <h2 class="p-name">Denial-of-service security fixes now available</h2></a>
             <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/10/">October</a> 1, <a href="/blog/2017/">2017</a> in <a href="/blog/category/releases/" class="p-category">releases</a> and <a href="/blog/category/security/" class="p-category">security</a>
@@ -107,30 +125,6 @@
 </ul>
 <p>Remember that <a href="/blog/2017/06/out-now-pump.io-4.1-beta">with this release</a>, Node 0.10 and Node 0.12 support is officially obsolete. This change paves the way for a lot of really important improvements, and in fact, we've already introduced a lot of changes that reduce technical debt. Note that since the beta announcement, Debian Stretch has been released, which ships Node 4 in <code>main</code>. You can read more about our Node.js support policy <a href="https://github.com/pump-io/pump.io/wiki/Node.js-version-support">on our wiki</a>.</p>
 <p>Enjoy the new release, and remember to <a href="https://github.com/pump-io/pump.io/issues">report any bugs</a>!</p>
-</div>
-          </article>
-          <hr>
-          <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" class="h-entry"><a href="/blog/2017/06/out-now-pump.io-4.1-beta">
-              <h2 class="p-name">Out now: pump.io 4.1 beta</h2></a>
-            <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/06/">June</a> 16, <a href="/blog/2017/">2017</a> in <a href="/blog/category/releases/" class="p-category">releases</a>
-            </p>
-            <div class="e-content"><p>Perhaps some of you were wondering where pump.io's 4.1 release was, since our <a href="https://github.com/pump-io/pump.io/wiki/Release-cycle">release schedule</a> says it should've been released at the beginning of this month?</p>
-<p>Well, wonder no longer. This release was unfortunately delayed because of some big stuff in my personal life that got in the way of free software stuff (sorry!), but as of yesteray, pump.io 4.1 is officially in beta! Huzzah!</p>
-<p>This was a relatively minor release, primarily improving some aspects of the web UI. Notably, the pump.io 4.1 beta includes support for <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity">Subresource Integrity</a>, a web standard which will improve security for users on nodes with <code>"noCDN": false</code> in their pump.io configurations. A more complete list of changes is available in the <a href="https://github.com/pump-io/pump.io/blob/master/CHANGELOG.md#410-beta-0---2017-06-15">change log</a>.</p>
-<p>As always, we advise caution when upgrading to beta releases. Please <a href="">report</a> any problems or bugs you encounter.</p>
-<p>pump.io 4.1 beta is a drop-in replacement for pump.io 4.0.</p>
-<h3>First time contributors</h3>
-<p>I would like to specially thank the following people, who contributed to the pump.io project for the first time during this release cycle:</p>
-<ul>
-<li><a href="https://github.com/vxcamiloxv">Camilo QS</a>, who contributed a number of improvements to the web UI</li>
-<li><a href="https://github.com/bio-boris">@bio-boris</a>, who implemented <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity">Subresource Integrity</a> for the web UI</li>
-<li><a href="https://github.com/RyanRiddle">Ryan Riddle</a>, who made the web UI proactively warn if the user was trying to sign up with a blacklisted/reserved username (like <code>api</code> or <code>robots.txt</code>)</li>
-</ul>
-<h3>Node.js 0.10 and 0.12 support ending</h3>
-<p>Finally, the stable release pump.io 4.1 will mark the end of pump.io's support for Node.js 0.10 and 0.12. These versions of Node are extremely old and are preventing us from making serious improvements to the codebase - you can see a list of these in <a href="https://github.com/pump-io/pump.io/issues/1234">issue #1234</a>. Note that in particular we cannot simultaneously support Node 7 and Node 0.10 due to our browser unit testing library, Zombie.</p>
-<p>With the exception of Red Hat Enterprise Linux and CentOS, there are <a href="https://nodecompat.com/">no major Linux distributions</a> not shipping Node 4+ in some form. Most of them ship it out-of-the-box; the only one that does not is Debian. For our admins on Debian, Node 4 is available in <code>jessie-backports</code> and will become the officially supported version with the release of Debian Stretch (which is imminent). Plus, for all of these platforms, NodeSource offers <a href="https://github.com/nodesource/distributions">binary packages</a> for all major Node versions that can be installed and managed through the system package manager. We'll also soon be making a Docker image available, which will allow people to run pump.io on any Docker-capable host, regardless of what Node version is shipped with their distribution.</p>
-<p>You can read more about our Node.js version support policy <a href="https://github.com/pump-io/pump.io/wiki/Node.js-version-support-policy">on our wiki</a>.</p>
-<p>Here's to another pump.io beta!</p>
 </div>
           </article>
         </div>

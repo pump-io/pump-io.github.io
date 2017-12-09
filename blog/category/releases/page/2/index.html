@@ -28,6 +28,30 @@
       <section>
         <div class="h-feed">
           <h2 class="p-name">Posts categorized as "releases"</h2>
+          <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" class="h-entry"><a href="/blog/2017/06/out-now-pump.io-4.1-beta">
+              <h2 class="p-name">Out now: pump.io 4.1 beta</h2></a>
+            <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/06/">June</a> 16, <a href="/blog/2017/">2017</a> in <a href="/blog/category/releases/" class="p-category">releases</a>
+            </p>
+            <div class="e-content"><p>Perhaps some of you were wondering where pump.io's 4.1 release was, since our <a href="https://github.com/pump-io/pump.io/wiki/Release-cycle">release schedule</a> says it should've been released at the beginning of this month?</p>
+<p>Well, wonder no longer. This release was unfortunately delayed because of some big stuff in my personal life that got in the way of free software stuff (sorry!), but as of yesteray, pump.io 4.1 is officially in beta! Huzzah!</p>
+<p>This was a relatively minor release, primarily improving some aspects of the web UI. Notably, the pump.io 4.1 beta includes support for <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity">Subresource Integrity</a>, a web standard which will improve security for users on nodes with <code>"noCDN": false</code> in their pump.io configurations. A more complete list of changes is available in the <a href="https://github.com/pump-io/pump.io/blob/master/CHANGELOG.md#410-beta-0---2017-06-15">change log</a>.</p>
+<p>As always, we advise caution when upgrading to beta releases. Please <a href="">report</a> any problems or bugs you encounter.</p>
+<p>pump.io 4.1 beta is a drop-in replacement for pump.io 4.0.</p>
+<h3>First time contributors</h3>
+<p>I would like to specially thank the following people, who contributed to the pump.io project for the first time during this release cycle:</p>
+<ul>
+<li><a href="https://github.com/vxcamiloxv">Camilo QS</a>, who contributed a number of improvements to the web UI</li>
+<li><a href="https://github.com/bio-boris">@bio-boris</a>, who implemented <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity">Subresource Integrity</a> for the web UI</li>
+<li><a href="https://github.com/RyanRiddle">Ryan Riddle</a>, who made the web UI proactively warn if the user was trying to sign up with a blacklisted/reserved username (like <code>api</code> or <code>robots.txt</code>)</li>
+</ul>
+<h3>Node.js 0.10 and 0.12 support ending</h3>
+<p>Finally, the stable release pump.io 4.1 will mark the end of pump.io's support for Node.js 0.10 and 0.12. These versions of Node are extremely old and are preventing us from making serious improvements to the codebase - you can see a list of these in <a href="https://github.com/pump-io/pump.io/issues/1234">issue #1234</a>. Note that in particular we cannot simultaneously support Node 7 and Node 0.10 due to our browser unit testing library, Zombie.</p>
+<p>With the exception of Red Hat Enterprise Linux and CentOS, there are <a href="https://nodecompat.com/">no major Linux distributions</a> not shipping Node 4+ in some form. Most of them ship it out-of-the-box; the only one that does not is Debian. For our admins on Debian, Node 4 is available in <code>jessie-backports</code> and will become the officially supported version with the release of Debian Stretch (which is imminent). Plus, for all of these platforms, NodeSource offers <a href="https://github.com/nodesource/distributions">binary packages</a> for all major Node versions that can be installed and managed through the system package manager. We'll also soon be making a Docker image available, which will allow people to run pump.io on any Docker-capable host, regardless of what Node version is shipped with their distribution.</p>
+<p>You can read more about our Node.js version support policy <a href="https://github.com/pump-io/pump.io/wiki/Node.js-version-support-policy">on our wiki</a>.</p>
+<p>Here's to another pump.io beta!</p>
+</div>
+          </article>
+          <hr>
           <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" class="h-entry"><a href="/blog/2017/05/pump.io-xss-security-releases-available">
               <h2 class="p-name">pump.io XSS security releases available</h2></a>
             <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/05/">May</a> 23, <a href="/blog/2017/">2017</a> in <a href="/blog/category/releases/" class="p-category">releases</a> and <a href="/blog/category/security/" class="p-category">security</a>
@@ -149,39 +173,6 @@ npm run build
 <p>Make sure to restart pump.io after performing the upgrade.</p>
 <h4>Getting help</h4>
 <p>If you have any issues upgrading to or running the beta, please don't hesitate to get in touch with <a href="https://github.com/e14n/pump.io/wiki/Community">the community</a>. You can also email me at <a href="mailto:alex@strugee.net">alex@strugee.net</a>.</p>
-</div>
-          </article>
-          <hr>
-          <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" class="h-entry"><a href="/blog/2016/08/pump.io-1.0.0-is-now-available">
-              <h2 class="p-name">Pump.io 1.0.0 is now available!</h2></a>
-            <p class="post-metadata">Cross-posted from <a rel="canonical" href="https://strugee.net/blog/2016/08/pump.io-1.0.0-is-now-available">this post</a> by AJ Jordan on <a href="/blog/2016/08/">August</a> 27, <a href="/blog/2016/">2016</a> in <a href="/blog/category/releases/" class="p-category">releases</a> and <a href="/blog/category/code/" class="p-category">code</a>
-            </p>
-            <div class="e-content"><p><a href="https://github.com/e14n/pump.io/releases/tag/v1.0.0">Pump.io 1.0.0</a> is officially available! Whoooo!</p>
-<p>I just wanted to write up an announcement real quick to celebrate. Here's a sample what's gone into this release:</p>
-<ul>
-<li>Node 4.x support</li>
-<li>Lots of security improvements including a better cross-site scripting scrubber and security-related headers that help protect the web UI (most notably, the web UI now declares a Content Security Policy)</li>
-<li>Minor improvements to the API to make it (slightly) smarter</li>
-<li><a href="https://www.gnu.org/software/librejs/">LibreJS</a> support</li>
-<li>Numerous dependency upgrades, most notably Connect</li>
-<li>And of course, tons of minor bugfixes and improvements</li>
-</ul>
-<p>For more details, see the brand-new <a href="https://github.com/e14n/pump.io/blob/master/CHANGELOG.md#100---2016-08-26">change log</a>.</p>
-<p>And of course since we're now past 0.x.x releases, we're now officially making a commitment to the community to make only API-compatible changes going forward (or at least, until 2.0.0!).</p>
-<p>As this release <em>does</em> improve security and fixes a lot of bugs, node administrators are encouraged to upgrade as soon as possible. If you have a global, npm-based install, you can upgrade with:</p>
-<pre><code>sudo npm install -g pump.io
-</code></pre>
-<p>And with a source-based install:</p>
-<pre><code>git pull
-git checkout v1.0.0
-npm install --production
-</code></pre>
-<p>If you're upgrading from 0.3.0, everything should Just Work(tm). Don't forget to restart your daemon!</p>
-<p>One final note - the rumors are true. While we're not doing so <em>yet</em>, we are, in fact, planning to deprecate running under Node.js 0.10 and 0.12 very soon. Also, if you upgrade to Node.js 4.x early, the new, better XSS scrubber will be enabled - <em>however</em>, be aware that pump.io is far less tested under Node.js 4.x and you are likely to run into more bugs than you would under 0.10 or 0.12. This is an unfortunate situation, but sadly there's really nothing to be done about it. :(</p>
-<p>Special thanks to Menno Vossen, Laura Arjona, Evan Prodromou, Jan Kusanagi and all the other volunteers who did so many different things to make this release happen. It truly wouldn't have happened without you.</p>
-<p>Enjoy the release!</p>
-<p>With &#x3C;3,</p>
-<p>AJ</p>
 </div>
           </article>
         </div>
