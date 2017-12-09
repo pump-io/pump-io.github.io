@@ -4,7 +4,7 @@ var gulp = require('gulp');
 
 var http = require('http');
 var path = require('path');
-var jade = require('gulp-jade');
+var pug = require('gulp-pug');
 var rename = require('gulp-rename');
 var remark = require('gulp-remark');
 var remarkHtml = require('remark-html');
@@ -32,8 +32,8 @@ var ecstatic = require('ecstatic');
 /* Build tasks */
 
 gulp.task('html', function() {
-	return gulp.src(['src/*.jade'])
-	           .pipe(jade({ pretty: true }))
+	return gulp.src(['src/*.pug'])
+	           .pipe(pug({ pretty: true }))
 	           .pipe(rename({ extname: '.html' }))
 	           .pipe(gulp.dest('dist'));
 });
@@ -61,10 +61,10 @@ gulp.task('post-index', function() {
 	           // Dirty hack until remark-adjust-headers takes options
 	           .pipe(remark({quiet: true}).use(remarkHtml).use(adjustHeaders).use(adjustHeaders))
 	           .pipe(dateInPath())
-	           .pipe(addsrc('src/blog/index.jade'))
-	           .pipe(postsToIndex('index.jade'))
+	           .pipe(addsrc('src/blog/index.pug'))
+	           .pipe(postsToIndex('index.pug'))
 	           .pipe(paginateIndexes())
-	           .pipe(jade({pretty: true, basedir: __dirname}))
+	           .pipe(pug({pretty: true, basedir: __dirname}))
 	           .pipe(rename({ extname: '.html' }))
 	           .pipe(gulp.dest('dist/blog'));
 });
@@ -75,9 +75,9 @@ gulp.task('posts', function() {
 	           .pipe(filterDrafts())
 	           .pipe(remark({quiet: true}).use(remarkHtml).use(adjustHeaders))
 	           .pipe(dateInPath())
-	           .pipe(addsrc('src/blog/post.jade'))
-	           .pipe(attachToTemplate('post.jade'))
-	           .pipe(jade({pretty: true, basedir: __dirname}))
+	           .pipe(addsrc('src/blog/post.pug'))
+	           .pipe(attachToTemplate('post.pug'))
+	           .pipe(pug({pretty: true, basedir: __dirname}))
 	           .pipe(rename({ extname: '.html' }))
 	           .pipe(gulp.dest('dist/blog'));
 });
@@ -93,8 +93,8 @@ gulp.task('rss', function() {
 	           .pipe(filterDrafts())
 	           .pipe(remark({quiet: true}).use(remarkHtml))
 	           .pipe(dateInPath())
-	           .pipe(addsrc('src/blog/index.jade'))
-	           .pipe(postsToIndex('index.jade'))
+	           .pipe(addsrc('src/blog/index.pug'))
+	           .pipe(postsToIndex('index.pug'))
 	           .pipe(indexesToRss({
 		           title: 'pump.io blog',
 		           copyright: '© Copyright 2016-2017 pump.io contributors.',
@@ -115,9 +115,9 @@ gulp.task('deploy', ['build'], function(done) {
 });
 
 gulp.task('watch', ['build'], function() {
-	gulp.watch('src/*.jade', ['html']);
-	gulp.watch(['src/blog/*.md', 'src/blog/*.jade'], ['blog']);
-	gulp.watch('src/includes/*.jade', ['html', 'blog']);
+	gulp.watch('src/*.pug', ['html']);
+	gulp.watch(['src/blog/*.md', 'src/blog/*.pug'], ['blog']);
+	gulp.watch('src/includes/*.pug', ['html', 'blog']);
 	gulp.watch(['src/styles/*'], ['css']);
 	gulp.watch('src/js/*.js', ['js']);
 });
