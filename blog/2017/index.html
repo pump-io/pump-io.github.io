@@ -3,7 +3,6 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>pump.io</title>
     <link rel="stylesheet" href="/stylesheets/styles.css">
     <link rel="stylesheet" href="/stylesheets/pygment_trac.css">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
@@ -19,20 +18,20 @@
         <h1 class="header"><a href="/">pump.io</a></h1>
         <p class="header">Social server with an ActivityStreams API</p>
         <ul>
-          <li><a href="/tryit.html" class="buttons">Try It Now</a></li>
-          <li class="download"><a href="https://pumpio.readthedocs.io/en/latest/sysadmins.html#installation-instructions" class="buttons">Install</a></li>
-          <li><a href="https://github.com/pump-io/pump.io" class="buttons github">View On GitHub</a></li>
+          <li><a class="buttons" href="/tryit.html">Try It Now</a></li>
+          <li class="download"><a class="buttons" href="https://pumpio.readthedocs.io/en/latest/sysadmins.html#installation-instructions">Install</a></li>
+          <li><a class="buttons github" href="https://github.com/pump-io/pump.io">View On GitHub</a></li>
         </ul>
-        <p class="header">This project is maintained by <a href="https://github.com/pump-io" class="header name">pump.io contributors</a></p>
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/pump-io">pump.io contributors</a></p>
       </header>
       <section>
         <div class="h-feed">
           <h2 class="p-name">Posts from 2017</h2>
           <p id="postsFrom">Show only <a href="/blog/2017/12/">December</a> <a href="/blog/2017/03/">March</a> <a href="/blog/2017/04/">April</a> <a href="/blog/2017/05/">May</a> <a href="/blog/2017/06/">June</a> <a href="/blog/2017/07/">July</a> <a href="/blog/2017/08/">August</a> <a href="/blog/2017/09/">September</a> <a href="/blog/2017/10/">October</a> 
           </p>
-          <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" class="h-entry"><a href="/blog/2017/12/pump.io-5.1-is-in-beta">
+          <article class="h-entry" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"><a href="/blog/2017/12/pump.io-5.1-is-in-beta">
               <h2 class="p-name">pump.io 5.1 is in beta</h2></a>
-            <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/12/">December</a> 8, <a href="/blog/2017/">2017</a> in <a href="/blog/category/releases/" class="p-category">releases</a>
+            <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/12/">December</a> 8, <a href="/blog/2017/">2017</a> in <a class="p-category" href="/blog/category/releases/">releases</a>
             </p>
             <div class="e-content"><p>I'm really excited to announce that pump.io 5.1 is officially in beta!</p>
 <p>This release makes a wide array of improvements. One of the features I'm most excited about is <a href="/blog/2017/08/zero-downtime-restarts-have-landed">zero-downtime restarts</a>, which will allow administrators to gracefully roll over to new configurations and codebases with absolutely no user-visible impact! Aside from that, here's a list of highlights:</p>
@@ -48,9 +47,9 @@
 </div>
           </article>
           <hr>
-          <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" class="h-entry"><a href="/blog/2017/10/denial-of-service-security-fixes-now-available">
+          <article class="h-entry" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"><a href="/blog/2017/10/denial-of-service-security-fixes-now-available">
               <h2 class="p-name">Denial-of-service security fixes now available</h2></a>
-            <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/10/">October</a> 1, <a href="/blog/2017/">2017</a> in <a href="/blog/category/releases/" class="p-category">releases</a> and <a href="/blog/category/security/" class="p-category">security</a>
+            <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/10/">October</a> 1, <a href="/blog/2017/">2017</a> in <a class="p-category" href="/blog/category/releases/">releases</a> and <a class="p-category" href="/blog/category/security/">security</a>
             </p>
             <div class="e-content"><p>Recently some denial-of-service vulnerabilities were discovered in various modules that we indirectly depend on. I've bumped Express and <code>send</code> to pull in patched versions, and I've updated our fork of <code>connect-auth</code> to require a patched version of Connect, too. The remaining vulnerabilities I've confirmed don't affect us.</p>
 <p>Because of these version bumps, I've just put out security releases which all administrators are encouraged to upgrade to as soon as possible. A semver-major release (5.0.0) was released within the past 6 months so per our <a href="https://github.com/pump-io/pump.io/wiki/Security">security support policy</a> this means there are three new releases:</p>
@@ -74,9 +73,9 @@
 </div>
           </article>
           <hr>
-          <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" class="h-entry"><a href="/blog/2017/09/pump.io-5.0-declared-stable">
+          <article class="h-entry" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"><a href="/blog/2017/09/pump.io-5.0-declared-stable">
               <h2 class="p-name">pump.io 5.0 declared stable</h2></a>
-            <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/09/">September</a> 6, <a href="/blog/2017/">2017</a> in <a href="/blog/category/releases/" class="p-category">releases</a>
+            <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/09/">September</a> 6, <a href="/blog/2017/">2017</a> in <a class="p-category" href="/blog/category/releases/">releases</a>
             </p>
             <div class="e-content"><p>I'm super excited to announce that as of a couple days ago, pump.io 5.0 has now been declared stable and released!</p>
 <p>This release cycle had an extra beta since I found a bug with the new display of shares. The fix ended up being trivial, though, and other than that there's been no changes from <a href="">the beta announcement</a>:</p>
@@ -94,9 +93,9 @@
 </div>
           </article>
           <hr>
-          <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" class="h-entry"><a href="/blog/2017/08/zero-downtime-restarts-have-landed">
+          <article class="h-entry" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"><a href="/blog/2017/08/zero-downtime-restarts-have-landed">
               <h2 class="p-name">Zero-downtime restarts have landed</h2></a>
-            <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/08/">August</a> 18, <a href="/blog/2017/">2017</a> in <a href="/blog/category/code/" class="p-category">code</a>
+            <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/08/">August</a> 18, <a href="/blog/2017/">2017</a> in <a class="p-category" href="/blog/category/code/">code</a>
             </p>
             <div class="e-content"><p>I'm thrilled to announce that zero-downtime restarts, which I've been hacking on for the past week or two, <a href="https://github.com/pump-io/pump.io/pull/1406">have just landed</a> in pump.io master!</p>
 <p>Zero-downtime restarts require at least two cluster workers and MongoDB as a Databank driver (we'll eventually relax the latter requirement as we continue to test the feature). Here's how it works:</p>
@@ -137,9 +136,9 @@
 </div>
           </article>
           <hr>
-          <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting" class="h-entry"><a href="/blog/2017/08/pump.io-5.0-beta-released">
+          <article class="h-entry" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"><a href="/blog/2017/08/pump.io-5.0-beta-released">
               <h2 class="p-name">pump.io 5.0 beta released</h2></a>
-            <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/08/">August</a> 7, <a href="/blog/2017/">2017</a> in <a href="/blog/category/releases/" class="p-category">releases</a>
+            <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/08/">August</a> 7, <a href="/blog/2017/">2017</a> in <a class="p-category" href="/blog/category/releases/">releases</a>
             </p>
             <div class="e-content"><p>I'm excited to announce that pump.io 5.0.0 is now officially in beta!</p>
 <p>This is another big release and makes a wide variety of improvements. Here are some highlights from <a href="https://github.com/pump-io/pump.io/blob/master/CHANGELOG.md#500-beta-0---2017-08-07">the changelog</a>:</p>
@@ -155,6 +154,10 @@
 <p>All of these features add up to make pump.io 5.0 beta the most stable and secure release yet. As always, it will go through our beta period for about a month before being released as a fully stable version. If you try it out, the <a href="https://github.com/pump-io/pump.io/wiki/Community">community</a> would love to hear about it - and be sure to <a href="https://github.com/pump-io/pump.io/issues">report any bugs</a> you encounter!</p>
 </div>
           </article>
+          <hr>
+          <div id="pages-footer">
+            <p><span class="disabled-arrow">←</span> ⋅ Page 1 out of 3 ⋅<a href="page/2">→</a></p>
+          </div>
         </div>
       </section>
       <footer>
