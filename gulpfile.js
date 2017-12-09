@@ -5,7 +5,6 @@ var gulp = require('gulp');
 var http = require('http');
 var path = require('path');
 var jade = require('gulp-jade');
-var jshint = require('gulp-jshint');
 var rename = require('gulp-rename');
 var remark = require('gulp-remark');
 var remarkHtml = require('remark-html');
