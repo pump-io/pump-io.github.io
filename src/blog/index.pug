@@ -43,3 +43,31 @@ block content
 
 			if index < posts.length - 1
 				hr
+
+		hr
+
+		//- Pages
+		- function pageUrl(cur, next) {
+		-       if (cur === 2 && next === -1) return '../..';
+		-       return '../' + (cur + next);
+		-       }
+
+		#pages-footer
+			if pageCount !== 1
+				if page === 1
+					p
+						span.disabled-arrow ←
+						|  ⋅ Page #{page} out of #{pageCount} ⋅
+						a(href='page/2') →
+				else if page === pageCount
+					p
+						a(href=pageUrl(page, -1)) ←
+						|  ⋅ Page #{page} out of #{pageCount} ⋅
+						span.disabled-arrow →
+				else
+					p
+						a(href=pageUrl(page, -1)) ←
+						|  ⋅ Page #{page} out of #{pageCount} ⋅
+						a(href=pageUrl(page, 1)) →
+			else
+				p Page 1 of 1
