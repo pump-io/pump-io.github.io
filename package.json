@@ -15,10 +15,8 @@
     "gulp-pug": "^3.3.0",
     "gulp-remark": "^3.0.0",
     "gulp-rename": "^1.2.0",
-    "gulp-sort": "^2.0.0",
     "gulp-stylus": "^2.4.0",
     "gulp-util": "^3.0.7",
-    "merge-stream": "^1.0.0",
     "remark-html": "^5.0.1",
     "remark-rewrite-headers": "^1.0.0",
     "remark-slug": "^4.2.2",
@@ -26,8 +24,7 @@
     "stratic-filter-drafts": "^1.0.0",
     "stratic-indexes-to-rss": "^1.0.2",
     "stratic-paginate-indexes": "^1.0.1",
-    "stratic-posts-to-index": "^2.0.1",
-    "vinyl-source-stream": "^1.1.0"
+    "stratic-posts-to-index": "^2.0.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

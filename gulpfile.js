@@ -18,12 +18,9 @@ var postsToIndex = require('stratic-posts-to-index');
 var paginateIndexes = require('stratic-paginate-indexes');
 var indexesToRss = require('stratic-indexes-to-rss');
 var ghpages = require('gh-pages');
-var merge = require('merge-stream');
 var gutil = require('gulp-util');
-var sort = require('gulp-sort');
 var stylus = require('gulp-stylus');
 var browserify = require('browserify');
-var source = require('vinyl-source-stream');
 var addsrc = require('gulp-add-src');
 var ecstatic = require('ecstatic');
 
