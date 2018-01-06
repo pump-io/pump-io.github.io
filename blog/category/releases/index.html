@@ -27,6 +27,28 @@
       <section>
         <div class="h-feed">
           <h2 class="p-name">Posts categorized as "releases"</h2>
+          <article class="h-entry" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"><a href="/blog/2018/01/pump.io-5.1-stable-published-to-npm">
+              <h2 class="p-name">pump.io 5.1 stable published to npm</h2></a>
+            <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2018/01/">January</a> 6, <a href="/blog/2018/">2018</a> in <a class="p-category" href="/blog/category/releases/">releases</a>
+            </p>
+            <div class="e-content"><p>Last night I officially published pump.io 5.1 to npm as a stable release!</p>
+<p>As I wrote in the beta announcement, this release contains a variety of improvements:</p>
+<ul>
+<li><a href="/blog/2017/08/zero-downtime-restarts-have-landed">Zero-downtime restarts</a>, which allows administrators to seamlessly roll over to new configurations and codebases</li>
+<li>The daemon now generates startup log warnings on bad configurations, including insecure <code>secret</code> values and internal parameters</li>
+<li>An official <code>Dockerfile</code> is now included with the release</li>
+<li>The logged-out mobile homepage's menu icon is no longer incorrectly styled as black</li>
+<li>An authorization problem with SockJS connections has been fixed</li>
+</ul>
+<p>5.1 stable <em>does</em> include one change the beta didn't: a bump to the version of the <code>gm</code> npm package which we depend on. This bump was done as a precautionary measure, as previous versions of <code>gm</code> depended on a version of the <code>debug</code> module which was vulnerable to denial-of-service security bugs.</p>
+<p>As a project, we addressed these bugs <a href="/blog/2017/10/denial-of-service-security-fixes-now-available">back in October</a> when we issued security releases for all supported release branches, and at the time we confirmed that the vulnerable function wasn't used by <code>gm</code>. Today's <code>gm</code> bump does <em>not</em> constitute a security release; instead, we're just bumping the version as a precautionary measure in case we missed something in October's assessment of the situation.</p>
+<p>Aside from the <code>gm</code> bump, there are (as usual) miscellaneous version bumps included in this release. We've also started tracking test suite coverage information as well as overhauled our <a href="https://pumpio.readthedocs.io/">documentation on ReadTheDocs</a>, moving most of the in-repository documentation there.</p>
+<p>If you want even more details of this release, you can also check out <a href="https://github.com/pump-io/pump.io/blob/master/CHANGELOG.md#510---2018-01-05">the changelog</a>.</p>
+<p>pump 5.1 is a drop-in replacement for 5.0. That means if you're using our recommended installation method and installing from npm, you can upgrade with <code>npm install -g pump.io@5.1</code>. If you have a source-based install, you should merge and/or switch to the <code>v5.1.0</code> tag. And as always, if you encounter any problems, please feel free to reach out to the <a href="https://github.com/pump-io/pump.io/wiki/Community">community</a> or <a href="https://github.com/pump-io/pump.io/issues">file bugs you find</a>.</p>
+<p>Finally, I would be remiss if I didn't point out that pump.io has a <strong>brand-new announcement mailing list</strong>! While the blog is great for announcing new releases, not everyone finds it convenient to check. Also, if we issue new betas in the middle of a release cycle, these aren't typically announced on the blog. Therefore in the future <em>all</em> new releases will be announced on the mailing list, not just initial betas. If you want to subscribe to the mailing list, you may do so <a href="https://lists.strugee.net/mailman/listinfo/pumpio-announce">here</a> - you'll get announcements of new features only, not e.g. feature announcements as seen on this blog. I hope people find this service useful!</p>
+</div>
+          </article>
+          <hr>
           <article class="h-entry" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"><a href="/blog/2017/12/pump.io-5.1-is-in-beta">
               <h2 class="p-name">pump.io 5.1 is in beta</h2></a>
             <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/12/">December</a> 8, <a href="/blog/2017/">2017</a> in <a class="p-category" href="/blog/category/releases/">releases</a>
@@ -73,7 +95,7 @@
           <hr>
           <article class="h-entry" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"><a href="/blog/2017/09/pump.io-5.0-declared-stable">
               <h2 class="p-name">pump.io 5.0 declared stable</h2></a>
-            <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/09/">September</a> 6, <a href="/blog/2017/">2017</a> in <a class="p-category" href="/blog/category/releases/">releases</a>
+            <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/09/">September</a> 5, <a href="/blog/2017/">2017</a> in <a class="p-category" href="/blog/category/releases/">releases</a>
             </p>
             <div class="e-content"><p>I'm super excited to announce that as of a couple days ago, pump.io 5.0 has now been declared stable and released!</p>
 <p>This release cycle had an extra beta since I found a bug with the new display of shares. The fix ended up being trivial, though, and other than that there's been no changes from <a href="">the beta announcement</a>:</p>
@@ -107,23 +129,6 @@
 </ul>
 <p>Many of these changes - particularly the systemd changes and the fact that (<a href="http://pump.io/blog/2017/07/pump.io-4.1-is-out">as previously announced</a>) Node 0.10 and 0.12 are no longer supported - will require administrator intervention. Be sure to read our <a href="https://pumpio.readthedocs.io/en/latest/upgrades/4.x-to-5.x.html">upgrade guide</a> for details on how to deal with these changes.</p>
 <p>All of these features add up to make pump.io 5.0 beta the most stable and secure release yet. As always, it will go through our beta period for about a month before being released as a fully stable version. If you try it out, the <a href="https://github.com/pump-io/pump.io/wiki/Community">community</a> would love to hear about it - and be sure to <a href="https://github.com/pump-io/pump.io/issues">report any bugs</a> you encounter!</p>
-</div>
-          </article>
-          <hr>
-          <article class="h-entry" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"><a href="/blog/2017/07/pump.io-4.1-is-out">
-              <h2 class="p-name">pump.io 4.1 is out</h2></a>
-            <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/07/">July</a> 1, <a href="/blog/2017/">2017</a> in <a class="p-category" href="/blog/category/releases/">releases</a>
-            </p>
-            <div class="e-content"><p>pump.io 4.1 is out!</p>
-<p>As usual, nothing much has changed since <a href="/blog/2017/06/out-now-pump.io-4.1-beta">the beta release</a>. This release includes:</p>
-<ul>
-<li>Minor web UI improvements</li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity">Subresource Integrity</a> in the web UI</li>
-<li>A switch to a pure-JavaScript bcrypt, which should improve installs on non x86 platforms and Docker</li>
-<li>Some other <a href="https://github.com/pump-io/pump.io/blob/master/CHANGELOG.md#410-beta-0---2017-06-15">minor improvements and fixes</a></li>
-</ul>
-<p>Remember that <a href="/blog/2017/06/out-now-pump.io-4.1-beta">with this release</a>, Node 0.10 and Node 0.12 support is officially obsolete. This change paves the way for a lot of really important improvements, and in fact, we've already introduced a lot of changes that reduce technical debt. Note that since the beta announcement, Debian Stretch has been released, which ships Node 4 in <code>main</code>. You can read more about our Node.js support policy <a href="https://github.com/pump-io/pump.io/wiki/Node.js-version-support">on our wiki</a>.</p>
-<p>Enjoy the new release, and remember to <a href="https://github.com/pump-io/pump.io/issues">report any bugs</a>!</p>
 </div>
           </article>
           <hr>

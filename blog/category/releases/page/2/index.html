@@ -27,6 +27,23 @@
       <section>
         <div class="h-feed">
           <h2 class="p-name">Posts categorized as "releases"</h2>
+          <article class="h-entry" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"><a href="/blog/2017/07/pump.io-4.1-is-out">
+              <h2 class="p-name">pump.io 4.1 is out</h2></a>
+            <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/07/">July</a> 1, <a href="/blog/2017/">2017</a> in <a class="p-category" href="/blog/category/releases/">releases</a>
+            </p>
+            <div class="e-content"><p>pump.io 4.1 is out!</p>
+<p>As usual, nothing much has changed since <a href="/blog/2017/06/out-now-pump.io-4.1-beta">the beta release</a>. This release includes:</p>
+<ul>
+<li>Minor web UI improvements</li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity">Subresource Integrity</a> in the web UI</li>
+<li>A switch to a pure-JavaScript bcrypt, which should improve installs on non x86 platforms and Docker</li>
+<li>Some other <a href="https://github.com/pump-io/pump.io/blob/master/CHANGELOG.md#410-beta-0---2017-06-15">minor improvements and fixes</a></li>
+</ul>
+<p>Remember that <a href="/blog/2017/06/out-now-pump.io-4.1-beta">with this release</a>, Node 0.10 and Node 0.12 support is officially obsolete. This change paves the way for a lot of really important improvements, and in fact, we've already introduced a lot of changes that reduce technical debt. Note that since the beta announcement, Debian Stretch has been released, which ships Node 4 in <code>main</code>. You can read more about our Node.js support policy <a href="https://github.com/pump-io/pump.io/wiki/Node.js-version-support">on our wiki</a>.</p>
+<p>Enjoy the new release, and remember to <a href="https://github.com/pump-io/pump.io/issues">report any bugs</a>!</p>
+</div>
+          </article>
+          <hr>
           <article class="h-entry" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"><a href="/blog/2017/06/out-now-pump.io-4.1-beta">
               <h2 class="p-name">Out now: pump.io 4.1 beta</h2></a>
             <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/06/">June</a> 16, <a href="/blog/2017/">2017</a> in <a class="p-category" href="/blog/category/releases/">releases</a>
@@ -102,7 +119,7 @@
           <hr>
           <article class="h-entry" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"><a href="/blog/2016/11/pump.io-2.0.1-is-available">
               <h2 class="p-name">Pump.io 2.0.4 is available</h2></a>
-            <p class="post-metadata">Cross-posted from <a rel="canonical" href="https://strugee.net/blog/2016/11/pump.io-2.0.1-is-available">this post</a> by AJ Jordan on <a href="/blog/2016/11/">November</a> 12, <a href="/blog/2016/">2016</a> in <a class="p-category" href="/blog/category/releases/">releases</a>
+            <p class="post-metadata">Cross-posted from <a rel="canonical" href="https://strugee.net/blog/2016/11/pump.io-2.0.1-is-available">this post</a> by AJ Jordan on <a href="/blog/2016/11/">November</a> 11, <a href="/blog/2016/">2016</a> in <a class="p-category" href="/blog/category/releases/">releases</a>
             </p>
             <div class="e-content"><p>Greetings!</p>
 <p>After a beta period of just over a week, pump.io 2.0.4 is now available on npm and GitHub. Whoohoo!</p>
@@ -141,37 +158,6 @@ npm run build
 <p>Both of these methods will work whether you're running 0.3.0, 1.0.0, or 2.0.0 beta. Make sure to restart pump.io after performing the upgrade.</p>
 <h4>Getting help</h4>
 <p>If you have any issues with the upgrade, get in touch with <a href="https://github.com/pump-io/pump.io/wiki/Community">the community</a>. You can also email me at <a href="mailto:alex@strugee.net">alex@strugee.net</a>.</p>
-</div>
-          </article>
-          <hr>
-          <article class="h-entry" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"><a href="/blog/2016/11/pump.io-2.0.0-beta-is-here">
-              <h2 class="p-name">Pump.io 2.0.0 beta is here</h2></a>
-            <p class="post-metadata">Cross-posted from <a rel="canonical" href="https://strugee.net/blog/2016/11/pump.io-2.0.0-beta-is-here">this post</a> by AJ Jordan on <a href="/blog/2016/11/">November</a> 2, <a href="/blog/2016/">2016</a> in <a class="p-category" href="/blog/category/releases/">releases</a>
-            </p>
-            <div class="e-content"><p>Greetings!</p>
-<p>As pump.io is gearing up for our 2.0.0 release, I just published a beta to npm. We'd love it if any interested admins could upgrade their nodes and report any bugs you may run in to. (All bug reports are helpful, but just so we're clear, we're likely to only fix regressions from 1.0.0.)</p>
-<h4>Changes</h4>
-<p>Pump.io 2.0.0 beta is a drop-in replacement for 1.0.0 <strong>unless</strong> you have any plugins configured or you modify the templates.</p>
-<p>Plugins are likely to be affected by the upgrade to Express 3.x. The easiest way to migrate is probably to just run pump.io, test out the relevant parts of the app, and see where your plugin crashes. You might also want to look at the <a href="https://github.com/expressjs/express/blob/master/History.md#300--2012-10-23">Express 3 change log</a>.</p>
-<p>If you modified the templates, you'll be affected by the templates' rewrite from utml into Jade. Migration should be relatively painless but has to be done manually. Your best bet will be to save a copy of the diff you created, undo your changes, upgrade, then use the diff you saved to reintroduce your changes. You'll have to run <code>npm run build</code> after making changes to Jade files.</p>
-<p>For the list of non-breaking changes, see <a href="https://github.com/pump-io/pump.io/blob/master/CHANGELOG.md#200-beta-1---2016-11-02">the change log</a>.</p>
-<h4>Upgrading</h4>
-<p>Upgrading is very easy. If you used our recommended install method, and installed from npm, you can upgrade to the beta with:</p>
-<pre><code>sudo npm install -g pump.io@beta
-</code></pre>
-<p>If you installed from source, you can upgrade with:</p>
-<pre><code>git fetch
-# If you modified templates, save the diff at this step
-git checkout .
-git checkout v2.0.0-beta.1
-npm install
-# Restore your template changes
-npm run lint:jade # Optional but recommended if you changed templates
-npm run build
-</code></pre>
-<p>Make sure to restart pump.io after performing the upgrade.</p>
-<h4>Getting help</h4>
-<p>If you have any issues upgrading to or running the beta, please don't hesitate to get in touch with <a href="https://github.com/e14n/pump.io/wiki/Community">the community</a>. You can also email me at <a href="mailto:alex@strugee.net">alex@strugee.net</a>.</p>
 </div>
           </article>
           <hr>

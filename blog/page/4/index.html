@@ -27,11 +27,37 @@
       <section>
         <div class="h-feed">
           <h2 class="p-name">Blog</h2>
-          <p id="postsFrom">Show only <a href="/blog/2016/">2016</a> <a href="/blog/2017/">2017</a> 
+          <p id="postsFrom">Show only <a href="/blog/2016/">2016</a> <a href="/blog/2017/">2017</a> <a href="/blog/2018/">2018</a> 
           </p>
+          <article class="h-entry" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"><a href="/blog/2016/08/pump.io-call-for-testers-call-for-feedback">
+              <h2 class="p-name">Pump.io: call for testers, call for feedback</h2></a>
+            <p class="post-metadata">Cross-posted from <a rel="canonical" href="https://strugee.net/blog/2016/08/pump.io-call-for-testers-call-for-feedback">this post</a> by AJ Jordan on <a href="/blog/2016/08/">August</a> 10, <a href="/blog/2016/">2016</a> in <a class="p-category" href="/blog/category/community/">community</a> and <a class="p-category" href="/blog/category/code/">code</a>
+            </p>
+            <div class="e-content"><p>So in my <a href="https://strugee.net/blog/2016/08/new-stuff-in-pump.io">last post</a>, I mentioned that I'd left a couple things for a second blog post. This is that post, and instead of being about all the cool stuff going on in the pumpiverse, it's about stuff that you - yes, <em>you</em>! - can do! It's super easy too.</p>
+<h4>Call for testers</h4>
+<p>So as I mentioned, the <code>utml-to-jade</code> branch is basically finished (see <a href="https://github.com/e14n/pump.io/pull/1170">PR #1170</a>). Since switching templating languages is a huge, huge change, by definition touching every single part of the Web UI, we want to make sure it's well-tested. This is especially critical given the fact that the Web UI unfortunately has <a href="https://github.com/e14n/pump.io/issues/147">very little test coverage</a>.</p>
+<p>That's where pump.io system administrators come in. If you're a sysadmin and you're willing to test this change on your node, we'd very much appreciate it. There's very little risk, since I <em>think</em> I've squashed all the regressions that happened, but you should be willing to <a href="https://github.com/e14n/pump.io/issues">report bugs</a> if you <em>do</em> run into them. In particular, you should look out for:</p>
+<ol>
+<li>Links that seem to encompass too much text</li>
+<li>Missing spaces - e.g. <code>AJ Jordanat [date]</code> instead of <code>AJ Jordan at [date]</code></li>
+<li>HTML code showing up on the page - e.g. <code>Test note&#x3C;br /></code> instead of <code>Test note</code> followed by a line break</li>
+</ol>
+<p>Note that the <code>utml-to-jade</code> branch incorporates all changes in the <code>master</code> branch, so you may want to check out the advice in <a href="https://github.com/e14n/pump.io/wiki/Running-from-git-master">Running from Git master</a>.</p>
+<p>Sound interesting? Want to take part in the development of pump.io? Installing is super easy:</p>
+<pre><code>$ [sudo] npm install -g e14n/pump.io#utml-to-jade
+</code></pre>
+<p>This will work even if you already have a (non-source) install of pump.io - just make sure to restart the server afterwards.</p>
+<p>Note that this command has some semi-terrible logic to build Jade templates on install (this is a workaround for a deficiency in npm). If you get a scary warning message from npm, please <a href="https://github.com/e14n/pump.io/issues">file an issue</a>, making sure to include the full log.</p>
+<h4>Call for design feedback</h4>
+<p>The other big thing that's happening is the pump.io 1.0.0 tshirt we're designing! I've spent quite a bit of time working on a variety of candidate designs which can be viewed in <a href="https://cloud.strugee.net/index.php/s/Ymw2RAdxyFZuuwu">this ownCloud share</a>. Obviously we want the coolest tshirt possible, so we're looking for any design feedback that people have. Anyone with some spare time can glance through the designs, and we'd be thrilled to get everyone's opinions.</p>
+<p>If this sounds interesting, I'd welcome you to check out <a href="https://cloud.strugee.net/index.php/s/Ymw2RAdxyFZuuwu">the drafts</a>. As always, get in touch with the community through <a href="https://github.com/e14n/pump.io/wiki/Community#community-accounts-communication">our chatroom</a> or if you'd prefer, you can email me directly at <a href="mailto:alex@strugee.net">alex@strugee.net</a>.</p>
+<p>Thanks so much! :)</p>
+</div>
+          </article>
+          <hr>
           <article class="h-entry" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"><a href="/blog/2016/08/new-stuff-in-pump.io">
               <h2 class="p-name">New stuff in pump.io</h2></a>
-            <p class="post-metadata">Cross-posted from <a rel="canonical" href="https://strugee.net/blog/2016/08/new-stuff-in-pump.io">this post</a> by AJ Jordan on <a href="/blog/2016/08/">August</a> 8, <a href="/blog/2016/">2016</a> in <a class="p-category" href="/blog/category/code/">code</a>, <a class="p-category" href="/blog/category/community/">community</a> and <a class="p-category" href="/blog/category/documentation/">documentation</a>
+            <p class="post-metadata">Cross-posted from <a rel="canonical" href="https://strugee.net/blog/2016/08/new-stuff-in-pump.io">this post</a> by AJ Jordan on <a href="/blog/2016/08/">August</a> 7, <a href="/blog/2016/">2016</a> in <a class="p-category" href="/blog/category/code/">code</a>, <a class="p-category" href="/blog/category/community/">community</a> and <a class="p-category" href="/blog/category/documentation/">documentation</a>
             </p>
             <div class="e-content"><p>So I promised <a href="https://strugee.net/blog/2016/05/stratic-part-one">a (long) while ago</a> that I'd blog about all the stuff going on in <a href="http://pump.io">pump.io</a>. And there is a <em>lot</em> going on. Where to even begin?</p>
 <h4>LFNW talk</h4>
