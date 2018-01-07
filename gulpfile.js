@@ -80,7 +80,7 @@ gulp.task('posts', function() {
 });
 
 gulp.task('misc', function() {
-	return gulp.src(['COPYING', 'favicon.ico', 'humans.txt', 'robots.txt', 'sitemap.xml', 'CNAME'])
+	return gulp.src(['COPYING', 'favicon.ico', 'humans.txt', 'robots.txt', 'sitemap.xml', 'CNAME', 'redirects/**/*.html'])
 	           .pipe(gulp.dest('dist'));
 });
 
