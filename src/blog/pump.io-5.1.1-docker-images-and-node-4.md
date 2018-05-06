@@ -16,6 +16,8 @@ Let's take these one at a time.
 
 Several months ago I [landed] a patch from contributor [Camilo QS][] fixing a bug in pump.io's session handling in a route serving uploads. This bug made it so that non-public uploads would always return HTTP 403 Unauthorized, even if the user actually _was_ authorized. Clearly, this makes uploads unusable for people who don't like to post everything publicly. [Evan][] suggested that we should backport this bugfix since it's so high-impact, and I agree. So that's what pump.io 5.1.1 contains: a bugfix for uploads. Since it's a patch release 5.1.1 is a drop-in replacement for any 5.x pump.io release, so I'd highly encourage administrators to upgrade as soon as it's convenient. We'd also love it if you [file any bugs you find][], and feel free to get in touch with the [community][] if you need help or have questions. As a reminder, you can subscribe to our [low-volume announce mailing list][ml] to get email when we put out new releases like this. Also, I would be remiss if I didn't mention that my signing key setup has changed temporarily - see [here][keys] if you want to cryptographically verify the 5.1.1 release.
 
+If you're on an npm-based install, you can upgrade with `npm install -g pump.io@5.1.1`. If you're on a source-based install, you can upgrade by integrating the latest commits in the `5.1.x` branch. See [here][changelog] for the changelog.
+
 But that's not all. pump.io 5.1.1 also includes another exciting change: with this release, we've integrated automation to relase pump.io Docker images too.
 
 # Docker images
@@ -43,6 +45,7 @@ Please reach out to the [community][] if you need any help making the transition
  [Evan]: https://identi.ca/evan
  [ml]: https://lists.strugee.net/mailman/listinfo/pumpio-announce
  [keys]: https://strugee.net/blog/2018/04/new-temporary-signing-keys
+ [changelog]: https://github.com/pump-io/pump.io/blob/master/CHANGELOG.md#511---2018-05-05
  [a long time]: https://github.com/pump-io/pump.io/issues/789
  [dockerfile]: https://github.com/pump-io/pump.io/pull/1348
  [thunfisch]: https://github.com/JanKoppe
