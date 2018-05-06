@@ -8,9 +8,7 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <script src="/javascripts/scale.fix.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-    <title>2018 - pump.io blog</title>
-    <!-- TODO: apparently this technically isn't allowed to be relative but it seems to work fine, soooo...-->
-    <link rel="alternate" type="application/rss+xml" href="index.rss">
+    <title>pump.io 5.1.1, Docker images, and sunsetting Node 4 support - pump.io blog</title>
   </head>
   <body>
     <div class="wrapper">
@@ -25,58 +23,27 @@
         <p class="header">This project is maintained by <a class="header name" href="https://github.com/pump-io">pump.io contributors</a></p>
       </header>
       <section>
-        <div class="h-feed">
-          <h2 class="p-name">Posts from 2018</h2>
-          <p id="postsFrom">Show only <a href="/blog/2018/01/">January</a> <a href="/blog/2018/05/">May</a> 
+        <article class="h-entry" itemscope="itemscope" itemtype="http://schema.org/BlogPosting">
+          <h1 class="p-name">pump.io 5.1.1, Docker images, and sunsetting Node 4 support</h1>
+          <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2018/05/">May</a> 5, <a href="/blog/2018/">2018</a> in <a class="p-category" href="/blog/category/releases/">releases</a>
           </p>
-          <article class="h-entry" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"><a href="/blog/2018/05/pump.io-5.1.1-docker-images-and-node-4">
-              <h2 class="p-name">pump.io 5.1.1, Docker images, and sunsetting Node 4 support</h2></a>
-            <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2018/05/">May</a> 5, <a href="/blog/2018/">2018</a> in <a class="p-category" href="/blog/category/releases/">releases</a>
-            </p>
-            <div class="e-content"><p>It's been a (relatively) long time since we've put anything on this blog, and I think it's high time for an update - especially since there are so many exciting things afoot! Not only is pump.io 5.1.1 now on npm, but we have new experimental Docker images! With <a href="https://medium.com/the-node-js-collection/april-2018-release-updates-from-the-node-js-project-71687e1f7742">upstream having already dropped security support</a>, we're also planning to drop support for Node 4 soon.</p>
+          <div class="e-content"><p>It's been a (relatively) long time since we've put anything on this blog, and I think it's high time for an update - especially since there are so many exciting things afoot! Not only is pump.io 5.1.1 now on npm, but we have new experimental Docker images! With <a href="https://medium.com/the-node-js-collection/april-2018-release-updates-from-the-node-js-project-71687e1f7742">upstream having already dropped security support</a>, we're also planning to drop support for Node 4 soon.</p>
 <p>Let's take these one at a time.</p>
-<h3>pump.io 5.1.1</h3>
+<h2>pump.io 5.1.1</h2>
 <p>Several months ago I <a href="https://github.com/pump-io/pump.io/pull/1438">landed</a> a patch from contributor <a href="https://github.com/vxcamiloxv">Camilo QS</a> fixing a bug in pump.io's session handling in a route serving uploads. This bug made it so that non-public uploads would always return HTTP 403 Unauthorized, even if the user actually <em>was</em> authorized. Clearly, this makes uploads unusable for people who don't like to post everything publicly. <a href="https://identi.ca/evan">Evan</a> suggested that we should backport this bugfix since it's so high-impact, and I agree. So that's what pump.io 5.1.1 contains: a bugfix for uploads. Since it's a patch release 5.1.1 is a drop-in replacement for any 5.x pump.io release, so I'd highly encourage administrators to upgrade as soon as it's convenient. We'd also love it if you <a href="https://github.com/pump-io/pump.io/issues">file any bugs you find</a>, and feel free to get in touch with the <a href="https://github.com/pump-io/pump.io/wiki/Community">community</a> if you need help or have questions. As a reminder, you can subscribe to our <a href="https://lists.strugee.net/mailman/listinfo/pumpio-announce">low-volume announce mailing list</a> to get email when we put out new releases like this. Also, I would be remiss if I didn't mention that my signing key setup has changed temporarily - see <a href="https://strugee.net/blog/2018/04/new-temporary-signing-keys">here</a> if you want to cryptographically verify the 5.1.1 release.</p>
 <p>But that's not all. pump.io 5.1.1 also includes another exciting change: with this release, we've integrated automation to relase pump.io Docker images too.</p>
-<h3>Docker images</h3>
+<h2>Docker images</h2>
 <p>We've wanted to release pump.io Docker images for <a href="https://github.com/pump-io/pump.io/issues/789">a long time</a>. But Docker has a well-known problem: security vulnerabilities in Docker Hub images <a href="https://www.infoq.com/news/2015/05/Docker-Image-Vulnerabilities">are</a> <a href="https://blog.acolyer.org/2017/04/03/a-study-of-security-vulnerabilities-on-docker-hub/">rampant</a>. Even though we've had a <code>Dockerfile</code> in the repository <a href="https://github.com/pump-io/pump.io/pull/1348">for a while</a> thanks to contributor <a href="https://github.com/JanKoppe">thunfisch</a>, we didn't want to release official Docker images if we weren't sure we could always provide security support for them.</p>
 <p>Unfortunately, Docker the company has done very little to address this problem. Most of their solutions are aimed at image consumers, not authors. Docker Hub has <em>some</em> capacity for automatically rebuilding images, but unfortunately, it's not enough and you end up having to roll everything yourself anwyay. Pretty disappointing - so we had to get creative.</p>
 <p>Our solution to this problem is to utilize Travis CI's <a href="https://docs.travis-ci.com/user/cron-jobs/">cron functionality</a>. Every day, Travis will automatically trigger jobs that do nothing but build pump.io Docker images. These images are then pushed to Docker Hub. If nothing has changed, Docker Hub recognizes that the "new" images are actually identical with what's already there, and nothing happens. But if there <em>has</em> been a change, like a native dependency receiving a security update, then the image ID will change and Docker Hub will accept the updated image. This cronjob is enabled for the <code>5.1.x</code> branch and master (which as a side effect, means that alpha Docker images are published within 24 hours of a git push), and in the future it will be enabled on all branches that we actively support. Thus, Docker users can easily set up automation to ensure that they're running insecure images for, at most, 24 hours.</p>
 <p>If you're interested in trying out the Docker images, we'd love to know how it goes. They should still be treated as experimental at the moment, and early feedback would be super useful. You can read more details in our <a href="https://pumpio.readthedocs.io/en/latest/installation/about-docker-images.html">ReadTheDocs documentation</a>.</p>
 <p>Note that there are still more changes that we'd like to make to the Docker images. These changes didn't make it into the 5.1.1 packaging since they felt too invasive for a patch release. Instead we plan to make them in the next release, which is planned to be semver-major. Which brings me neatly to the last topic...</p>
-<h3>Sunsetting Node 4, 5, and 7 support</h3>
+<h2>Sunsetting Node 4, 5, and 7 support</h2>
 <p>We had a good run, but it's time to say goodbye: Node.js upstream has <a href="https://medium.com/the-node-js-collection/april-2018-release-updates-from-the-node-js-project-71687e1f7742">marked</a> Node 4.x as end-of-life, and in accordance with our <a href="https://github.com/pump-io/pump.io/wiki/Node.js-version-support">version policy</a>, we're doing the same. Since this is a semver-major change, we're also taking the opportunity to drop support for Node 5.x and Node 7.x. These changes have been made as of commit <a href="https://github.com/pump-io/pump.io/commit/32ad78812ed767621418b8dd57f11ce86a01b49f">32ad78</a>, and soon we'll be ripping out old code used to support these versions, as well as upgrading dependencies that have recently started requiring newer Nodes.</p>
 <p>Anyone still on these versions is encouraged to upgrade as soon as possible, as Node.js upstream is no longer providing security support for them. Administrators can use the <a href="https://github.com/nodesource/distributions">NodeSource</a> packages, or they can try out our new Docker images, which use a modern Node version internally.</p>
 <p>Please reach out to the <a href="https://github.com/pump-io/pump.io/wiki/Community">community</a> if you need any help making the transition. And good luck!</p>
 </div>
-          </article>
-          <hr>
-          <article class="h-entry" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"><a href="/blog/2018/01/pump.io-5.1-stable-published-to-npm">
-              <h2 class="p-name">pump.io 5.1 stable published to npm</h2></a>
-            <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2018/01/">January</a> 6, <a href="/blog/2018/">2018</a> in <a class="p-category" href="/blog/category/releases/">releases</a>
-            </p>
-            <div class="e-content"><p>Last night I officially published pump.io 5.1 to npm as a stable release!</p>
-<p>As I wrote in the beta announcement, this release contains a variety of improvements:</p>
-<ul>
-<li><a href="/blog/2017/08/zero-downtime-restarts-have-landed">Zero-downtime restarts</a>, which allows administrators to seamlessly roll over to new configurations and codebases</li>
-<li>The daemon now generates startup log warnings on bad configurations, including insecure <code>secret</code> values and internal parameters</li>
-<li>An official <code>Dockerfile</code> is now included with the release</li>
-<li>The logged-out mobile homepage's menu icon is no longer incorrectly styled as black</li>
-<li>An authorization problem with SockJS connections has been fixed</li>
-</ul>
-<p>5.1 stable <em>does</em> include one change the beta didn't: a bump to the version of the <code>gm</code> npm package which we depend on. This bump was done as a precautionary measure, as previous versions of <code>gm</code> depended on a version of the <code>debug</code> module which was vulnerable to denial-of-service security bugs.</p>
-<p>As a project, we addressed these bugs <a href="/blog/2017/10/denial-of-service-security-fixes-now-available">back in October</a> when we issued security releases for all supported release branches, and at the time we confirmed that the vulnerable function wasn't used by <code>gm</code>. Today's <code>gm</code> bump does <em>not</em> constitute a security release; instead, we're just bumping the version as a precautionary measure in case we missed something in October's assessment of the situation.</p>
-<p>Aside from the <code>gm</code> bump, there are (as usual) miscellaneous version bumps included in this release. We've also started tracking test suite coverage information as well as overhauled our <a href="https://pumpio.readthedocs.io/">documentation on ReadTheDocs</a>, moving most of the in-repository documentation there.</p>
-<p>If you want even more details of this release, you can also check out <a href="https://github.com/pump-io/pump.io/blob/master/CHANGELOG.md#510---2018-01-05">the changelog</a>.</p>
-<p>pump 5.1 is a drop-in replacement for 5.0. That means if you're using our recommended installation method and installing from npm, you can upgrade with <code>npm install -g pump.io@5.1</code>. If you have a source-based install, you should merge and/or switch to the <code>v5.1.0</code> tag. And as always, if you encounter any problems, please feel free to reach out to the <a href="https://github.com/pump-io/pump.io/wiki/Community">community</a> or <a href="https://github.com/pump-io/pump.io/issues">file bugs you find</a>.</p>
-<p>Finally, I would be remiss if I didn't point out that pump.io has a <strong>brand-new announcement mailing list</strong>! While the blog is great for announcing new releases, not everyone finds it convenient to check. Also, if we issue new betas in the middle of a release cycle, these aren't typically announced on the blog. Therefore in the future <em>all</em> new releases will be announced on the mailing list, not just initial betas. If you want to subscribe to the mailing list, you may do so <a href="https://lists.strugee.net/mailman/listinfo/pumpio-announce">here</a> - you'll get announcements of new features only, not e.g. feature announcements as seen on this blog. I hope people find this service useful!</p>
-</div>
-          </article>
-          <hr>
-          <div id="pages-footer">
-            <p>Page 1 of 1</p>
-          </div>
-        </div>
+        </article>
       </section>
       <footer>
         <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>

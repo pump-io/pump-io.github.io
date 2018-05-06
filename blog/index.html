@@ -29,6 +29,28 @@
           <h2 class="p-name">Blog</h2>
           <p id="postsFrom">Show only <a href="/blog/2016/">2016</a> <a href="/blog/2017/">2017</a> <a href="/blog/2018/">2018</a> 
           </p>
+          <article class="h-entry" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"><a href="/blog/2018/05/pump.io-5.1.1-docker-images-and-node-4">
+              <h2 class="p-name">pump.io 5.1.1, Docker images, and sunsetting Node 4 support</h2></a>
+            <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2018/05/">May</a> 5, <a href="/blog/2018/">2018</a> in <a class="p-category" href="/blog/category/releases/">releases</a>
+            </p>
+            <div class="e-content"><p>It's been a (relatively) long time since we've put anything on this blog, and I think it's high time for an update - especially since there are so many exciting things afoot! Not only is pump.io 5.1.1 now on npm, but we have new experimental Docker images! With <a href="https://medium.com/the-node-js-collection/april-2018-release-updates-from-the-node-js-project-71687e1f7742">upstream having already dropped security support</a>, we're also planning to drop support for Node 4 soon.</p>
+<p>Let's take these one at a time.</p>
+<h3>pump.io 5.1.1</h3>
+<p>Several months ago I <a href="https://github.com/pump-io/pump.io/pull/1438">landed</a> a patch from contributor <a href="https://github.com/vxcamiloxv">Camilo QS</a> fixing a bug in pump.io's session handling in a route serving uploads. This bug made it so that non-public uploads would always return HTTP 403 Unauthorized, even if the user actually <em>was</em> authorized. Clearly, this makes uploads unusable for people who don't like to post everything publicly. <a href="https://identi.ca/evan">Evan</a> suggested that we should backport this bugfix since it's so high-impact, and I agree. So that's what pump.io 5.1.1 contains: a bugfix for uploads. Since it's a patch release 5.1.1 is a drop-in replacement for any 5.x pump.io release, so I'd highly encourage administrators to upgrade as soon as it's convenient. We'd also love it if you <a href="https://github.com/pump-io/pump.io/issues">file any bugs you find</a>, and feel free to get in touch with the <a href="https://github.com/pump-io/pump.io/wiki/Community">community</a> if you need help or have questions. As a reminder, you can subscribe to our <a href="https://lists.strugee.net/mailman/listinfo/pumpio-announce">low-volume announce mailing list</a> to get email when we put out new releases like this. Also, I would be remiss if I didn't mention that my signing key setup has changed temporarily - see <a href="https://strugee.net/blog/2018/04/new-temporary-signing-keys">here</a> if you want to cryptographically verify the 5.1.1 release.</p>
+<p>But that's not all. pump.io 5.1.1 also includes another exciting change: with this release, we've integrated automation to relase pump.io Docker images too.</p>
+<h3>Docker images</h3>
+<p>We've wanted to release pump.io Docker images for <a href="https://github.com/pump-io/pump.io/issues/789">a long time</a>. But Docker has a well-known problem: security vulnerabilities in Docker Hub images <a href="https://www.infoq.com/news/2015/05/Docker-Image-Vulnerabilities">are</a> <a href="https://blog.acolyer.org/2017/04/03/a-study-of-security-vulnerabilities-on-docker-hub/">rampant</a>. Even though we've had a <code>Dockerfile</code> in the repository <a href="https://github.com/pump-io/pump.io/pull/1348">for a while</a> thanks to contributor <a href="https://github.com/JanKoppe">thunfisch</a>, we didn't want to release official Docker images if we weren't sure we could always provide security support for them.</p>
+<p>Unfortunately, Docker the company has done very little to address this problem. Most of their solutions are aimed at image consumers, not authors. Docker Hub has <em>some</em> capacity for automatically rebuilding images, but unfortunately, it's not enough and you end up having to roll everything yourself anwyay. Pretty disappointing - so we had to get creative.</p>
+<p>Our solution to this problem is to utilize Travis CI's <a href="https://docs.travis-ci.com/user/cron-jobs/">cron functionality</a>. Every day, Travis will automatically trigger jobs that do nothing but build pump.io Docker images. These images are then pushed to Docker Hub. If nothing has changed, Docker Hub recognizes that the "new" images are actually identical with what's already there, and nothing happens. But if there <em>has</em> been a change, like a native dependency receiving a security update, then the image ID will change and Docker Hub will accept the updated image. This cronjob is enabled for the <code>5.1.x</code> branch and master (which as a side effect, means that alpha Docker images are published within 24 hours of a git push), and in the future it will be enabled on all branches that we actively support. Thus, Docker users can easily set up automation to ensure that they're running insecure images for, at most, 24 hours.</p>
+<p>If you're interested in trying out the Docker images, we'd love to know how it goes. They should still be treated as experimental at the moment, and early feedback would be super useful. You can read more details in our <a href="https://pumpio.readthedocs.io/en/latest/installation/about-docker-images.html">ReadTheDocs documentation</a>.</p>
+<p>Note that there are still more changes that we'd like to make to the Docker images. These changes didn't make it into the 5.1.1 packaging since they felt too invasive for a patch release. Instead we plan to make them in the next release, which is planned to be semver-major. Which brings me neatly to the last topic...</p>
+<h3>Sunsetting Node 4, 5, and 7 support</h3>
+<p>We had a good run, but it's time to say goodbye: Node.js upstream has <a href="https://medium.com/the-node-js-collection/april-2018-release-updates-from-the-node-js-project-71687e1f7742">marked</a> Node 4.x as end-of-life, and in accordance with our <a href="https://github.com/pump-io/pump.io/wiki/Node.js-version-support">version policy</a>, we're doing the same. Since this is a semver-major change, we're also taking the opportunity to drop support for Node 5.x and Node 7.x. These changes have been made as of commit <a href="https://github.com/pump-io/pump.io/commit/32ad78812ed767621418b8dd57f11ce86a01b49f">32ad78</a>, and soon we'll be ripping out old code used to support these versions, as well as upgrading dependencies that have recently started requiring newer Nodes.</p>
+<p>Anyone still on these versions is encouraged to upgrade as soon as possible, as Node.js upstream is no longer providing security support for them. Administrators can use the <a href="https://github.com/nodesource/distributions">NodeSource</a> packages, or they can try out our new Docker images, which use a modern Node version internally.</p>
+<p>Please reach out to the <a href="https://github.com/pump-io/pump.io/wiki/Community">community</a> if you need any help making the transition. And good luck!</p>
+</div>
+          </article>
+          <hr>
           <article class="h-entry" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"><a href="/blog/2018/01/pump.io-5.1-stable-published-to-npm">
               <h2 class="p-name">pump.io 5.1 stable published to npm</h2></a>
             <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2018/01/">January</a> 6, <a href="/blog/2018/">2018</a> in <a class="p-category" href="/blog/category/releases/">releases</a>
@@ -97,7 +119,7 @@
           <hr>
           <article class="h-entry" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"><a href="/blog/2017/09/pump.io-5.0-declared-stable">
               <h2 class="p-name">pump.io 5.0 declared stable</h2></a>
-            <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/09/">September</a> 5, <a href="/blog/2017/">2017</a> in <a class="p-category" href="/blog/category/releases/">releases</a>
+            <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/09/">September</a> 6, <a href="/blog/2017/">2017</a> in <a class="p-category" href="/blog/category/releases/">releases</a>
             </p>
             <div class="e-content"><p>I'm super excited to announce that as of a couple days ago, pump.io 5.0 has now been declared stable and released!</p>
 <p>This release cycle had an extra beta since I found a bug with the new display of shares. The fix ended up being trivial, though, and other than that there's been no changes from <a href="">the beta announcement</a>:</p>
@@ -112,49 +134,6 @@
 <p>As I said in the beta announcement, some of these changes - particularly the systemd changes and the fact that (<a href="http://pump.io/blog/2017/07/pump.io-4.1-is-out">as previously announced</a>) Node 0.10 and 0.12 are no longer supported - will require administrator intervention. Be sure to read our <a href="https://pumpio.readthedocs.io/en/latest/upgrades/4.x-to-5.x.html">upgrade guide</a> for details on how to deal with these.</p>
 <p>pump.io 5.0 is the most stable and secure release yet, so as always, I'd encourage all administrators to upgrade as soon as possible. And if you get stuck, the <a href="https://github.com/pump-io/pump.io/wiki/Community">community</a> is always here to help.</p>
 <p>Cheers!</p>
-</div>
-          </article>
-          <hr>
-          <article class="h-entry" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"><a href="/blog/2017/08/zero-downtime-restarts-have-landed">
-              <h2 class="p-name">Zero-downtime restarts have landed</h2></a>
-            <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/08/">August</a> 18, <a href="/blog/2017/">2017</a> in <a class="p-category" href="/blog/category/code/">code</a>
-            </p>
-            <div class="e-content"><p>I'm thrilled to announce that zero-downtime restarts, which I've been hacking on for the past week or two, <a href="https://github.com/pump-io/pump.io/pull/1406">have just landed</a> in pump.io master!</p>
-<p>Zero-downtime restarts require at least two cluster workers and MongoDB as a Databank driver (we'll eventually relax the latter requirement as we continue to test the feature). Here's how it works:</p>
-<ol>
-<li>An administrator sends SIGUSR2 to the master pump.io process (note that SIGUSR1 is <a href="https://nodejs.org/api/process.html#process_signal_events">reserved by Node.js</a>)</li>
-<li>The master process builds a queue of worker processes that need to be restarted</li>
-<li>The master process picks a random worker from the queue and sends it a signal asking it to gracefully shut down</li>
-<li>The worker process shuts down its HTTP server, which causes it to stop accepting new connections - it will do the same for the bounce server, if applicable</li>
-<li>The worker shuts down its database connection once the HTTP server is completely shut down, meaning that it's done servicing in-flight requests</li>
-<li>The worker closes its connection with the master process and Node.js automatically terminates due to there being no listeners on the event loop</li>
-<li>The master recognizes the death of the worker process, replaces it, waits for the new worker to signal that it's listening for connections, and repeats from step 3 until the queue is empty</li>
-</ol>
-<p>This works because only one worker is shut down at a time, allowing the other workers to continue servicing requests while the one worker is restarted. We wait until the new worker actually signals it's ready to process requests before beginning the process for another worker.</p>
-<p>Such a feature requires careful error handling, so there are a lot of built-in checks to prevent administrators from shooting themselves in the foot:</p>
-<ul>
-<li>If there's a restart already in progress, SIGUSR2 is ignored</li>
-<li>If there's only 1 cluster worker, the restart request is refused (because there would be downtime and you should just restart the master)</li>
-<li>
-<p>The master process will load a magic number from the <em>new</em> code and compare it with the <em>old</em> magic number loaded when the master process started - if they don't match, SIGUSR2 will be refused. This number will be incremented for things that would make zero-downtime restarts cause problems, for example:</p>
-<ul>
-<li>The logic in the master process itself changing</li>
-<li>Cross-process logic changing, such that a new worker communicating with old workers would cause problems</li>
-<li>Database changes</li>
-</ul>
-</li>
-<li>If a worker process doesn't shut itself down within 30 seconds, it will be killed</li>
-<li>
-<p>If a zero-downtime restart fails for any reason, the master process will refuse SIGUSR2 and will not respawn any more cluster workers, even if they crash - this is because something must have gone <em>seriously</em> wrong, either with the master, the workers, or the new code, and it's better to just restart everything. Currently this condition occurs when:</p>
-<ul>
-<li>A new worker died directly after being spawned (e.g. from invalid JSON in <code>pump.io.json</code>)</li>
-<li>A new worker signaled that it couldn't bind to the appropriate ports</li>
-</ul>
-</li>
-</ul>
-<p>While these checks do a lot to catch problems, they're not a silver bullet, and we strongly recommend that administrators watch their logs as they trigger restarts. However, this is still a <em>huge</em> win for the admin experience - the most exciting part of this for me is that it's the first step we need to take towards having fully automatic updates, which has been a dream of mine for a long while now.</p>
-<p>Admins running from git master can start experimenting with this feature today, and it will be released during the <em>next</em> release cycle - i.e. with the 5.1 beta and stable, <em>not</em> the current 5.0 beta. Since this is highly experimental, we want this to have as much time for testing as possible. You can also check out the <a href="https://pumpio.readthedocs.io/en/latest/administration/zero-downtime-restarts.html">official documentation</a> on this feature.</p>
-<p>I hope people enjoy this! And as always, feel free to <a href="https://github.com/pump-io/pump.io/issues/new">report any bugs</a>.</p>
 </div>
           </article>
           <hr>
