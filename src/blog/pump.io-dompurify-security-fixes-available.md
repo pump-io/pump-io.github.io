@@ -2,7 +2,7 @@
 title: "pump.io DOMPurify security fixes available"
 time:
   epoch: 1571178481
-  utcoffset: "UTC-7"
+  utcoffset: "UTC-4"
 author: "AJ Jordan"
 categories:
   - releases
