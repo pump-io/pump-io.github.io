@@ -27,6 +27,26 @@
       <section>
         <div class="h-feed">
           <h2 class="p-name">Posts categorized as "releases"</h2>
+          <article class="h-entry" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"><a href="/blog/2017/09/pump.io-5.0-declared-stable">
+              <h2 class="p-name">pump.io 5.0 declared stable</h2></a>
+            <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/09/">September</a> 6, <a href="/blog/2017/">2017</a> in <a class="p-category" href="/blog/category/releases/">releases</a>
+            </p>
+            <div class="e-content"><p>I'm super excited to announce that as of a couple days ago, pump.io 5.0 has now been declared stable and released!</p>
+<p>This release cycle had an extra beta since I found a bug with the new display of shares. The fix ended up being trivial, though, and other than that there's been no changes from <a href="">the beta announcement</a>:</p>
+<ul>
+<li>Documentation has been expanded</li>
+<li>Small improvements to the administrator experience have landed</li>
+<li>The web UI has gotten, among other things, some user experience polishing as well as upgrades to more performant and better-licensed libraries</li>
+<li>"Login with remote account" no longer crashes (although this one was backported in 4.1.1)</li>
+<li>The <a href="https://pumpio.readthedocs.io/en/latest/administration/upstream-systemd-unit.html">systemd service</a>  shipped with the package has significant security improvements</li>
+<li>Lots of internal refactoring and simplification made possible by dropping Node 0.10/0.12 support</li>
+</ul>
+<p>As I said in the beta announcement, some of these changes - particularly the systemd changes and the fact that (<a href="http://pump.io/blog/2017/07/pump.io-4.1-is-out">as previously announced</a>) Node 0.10 and 0.12 are no longer supported - will require administrator intervention. Be sure to read our <a href="https://pumpio.readthedocs.io/en/latest/upgrades/4.x-to-5.x.html">upgrade guide</a> for details on how to deal with these.</p>
+<p>pump.io 5.0 is the most stable and secure release yet, so as always, I'd encourage all administrators to upgrade as soon as possible. And if you get stuck, the <a href="https://github.com/pump-io/pump.io/wiki/Community">community</a> is always here to help.</p>
+<p>Cheers!</p>
+</div>
+          </article>
+          <hr>
           <article class="h-entry" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"><a href="/blog/2017/08/pump.io-5.0-beta-released">
               <h2 class="p-name">pump.io 5.0 beta released</h2></a>
             <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/08/">August</a> 7, <a href="/blog/2017/">2017</a> in <a class="p-category" href="/blog/category/releases/">releases</a>
@@ -111,28 +131,6 @@
 <p>Though in this case it's even more urgent that you <a href="https://pumpio.readthedocs.io/en/latest/upgrades/3.x-to-4.x.html">upgrade to 4.x</a>.</p>
 <p>Note that the above comands also assume you have an npm-based install, which we strongly recommend. If you have a source-based install, you will need to upgrade however you usually do - this will depend on how exactly you have pump.io set up.</p>
 <p>As always, if you need help, get in touch with <a href="https://github.com/pump-io/pump.io/wiki/Community">the community</a>.</p>
-</div>
-          </article>
-          <hr>
-          <article class="h-entry" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"><a href="/blog/2017/04/pump.io-4.0-in-beta">
-              <h2 class="p-name">pump.io 4.0 in beta</h2></a>
-            <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/04/">April</a> 3, <a href="/blog/2017/">2017</a> in <a class="p-category" href="/blog/category/releases/">releases</a>
-            </p>
-            <div class="e-content"><p>pump.io 4.0.0 is officially in beta! Whooo!</p>
-<h3>Highlights</h3>
-<p>This is a positively <em>huge</em> release, and I'm so excited to share it with the community. Some highlights:</p>
-<ul>
-<li>Express 4.x - I wrote about the significance of this change <a href="http://pump.io/blog/2017/03/express-4.x-in-pump.io-core">here</a>, but suffice to say that this significantly improves security, performance, and future maintainability</li>
-<li>Performance and correctness improvements to the web UI's JavaScript</li>
-<li>Better administrative experience, including the ability to specify configuration via environment variables</li>
-<li>Better interoperability with the <a href="https://indieweb.org">IndieWeb</a></li>
-</ul>
-<h3>Upgrading</h3>
-<p>The upgrade to Express 4.x and the improvements to configuration loading have the potential to break <em>some</em> existing pump.io installations, although 95% of installs should be completely unaffected. If you want to help test this beta, please set aside extra time as necessary to perform this upgrade - full documentation can be found on <a href="https://pumpio.readthedocs.io/en/latest/upgrades/3.x-to-4.x.html">ReadTheDocs</a>.</p>
-<p>As always, this release will follow our normal <a href="https://github.com/pump-io/pump.io/wiki/Release-cycle">release cycle</a>, which means that the stable 4.0.0 release will go out in about a month.</p>
-<h3>Test days</h3>
-<p>Due to the complexity of this upgrade, we've decided to have some test days during the beta where we upgrade prominent nodes for a day, then downgrade them again. This will help expose problems earlier and make the upgrade smoother for everyone. So far Jason Self, who runs <a href="https://datamost.com/">Datamost</a>, has volunteered for this - if you're interested in joining him, please <a href="https://github.com/pump-io/pump.io/wiki/Community">get in touch</a>!</p>
-<p>Happy hacking!</p>
 </div>
           </article>
           <hr>
