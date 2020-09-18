@@ -27,6 +27,28 @@
       <section>
         <div class="h-feed">
           <h2 class="p-name">Posts categorized as "security"</h2>
+          <article class="h-entry" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"><a href="/blog/2020/09/pump.io-5.1.4-and-5.0.4-security-releases">
+              <h2 class="p-name">pump.io 5.1.4 and 5.0.4 security releases are now available</h2></a>
+            <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2020/09/">September</a> 18, <a href="/blog/2020/">2020</a> in <a class="p-category" href="/blog/category/releases/">releases</a> and <a class="p-category" href="/blog/category/security/">security</a>
+            </p>
+            <div class="e-content"><p>Another day, another <a href="https://github.com/cure53/DOMPurify">DOMPurify</a> security release.</p>
+<p>DOMPurify - which pump.io uses to protect against cross-site scripting vulnerabilities - today released version 2.0.16, which per the <a href="https://github.com/cure53/DOMPurify/releases/tag/2.0.16">release notes</a> fixes "an mXSS-based bypass caused by nested forms inside MathML" in Chrome. So as we usually do, the pump.io project is publishing a release that makes 2.0.16 the minimum required DOMPurify version, to make sure everyone running pump.io gets this patch.</p>
+<p>Per our <a href="https://github.com/pump-io/pump.io/wiki/Security">security support policy</a>, we're making patches available for both the current and previous stable releases:</p>
+<ol>
+<li>pump.io 5.1.3 has been updated to pump.io 5.1.4</li>
+<li>pump.io 5.0.3 has been updated to pump.io 5.0.4</li>
+</ol>
+<p>All administrators should upgrade as soon as possible since these are security releases. The risk that something will break from the upgrade is extremely low since both 5.1.4 and 5.0.3 are drop-in replacements for their predecessors. If you installed pump.io 5.1 using npm - our recommended configuration - you can upgrade with:</p>
+<pre><code>$ npm install -g pump.io@5
+</code></pre>
+<p>If you're still running pump.io 5.0, we recommend that you take this opportunity to upgrade to pump.io 5.1 by using the above command - it's a drop-in replacement, and will require no intervention on your part. However, if you want to stick with 5.0 for now, you can install a patched version with:</p>
+<pre><code>$ npm install -g pump.io@5.0
+</code></pre>
+<p>On the other hand, if you have a source-based install, the above commands won't work and you will need to upgrade however you usually do. This will depend on how exactly you installed pump.io in the first place.</p>
+<p>If you need help, or if you have questions about these security releases, <a href="https://github.com/pump-io/pump.io/wiki/Community">the community</a> is always happy to help.</p>
+</div>
+          </article>
+          <hr>
           <article class="h-entry" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"><a href="/blog/2019/10/pump.io-dompurify-security-fixes-available">
               <h2 class="p-name">pump.io DOMPurify security fixes available</h2></a>
             <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2019/10/">October</a> 15, <a href="/blog/2019/">2019</a> in <a class="p-category" href="/blog/category/releases/">releases</a> and <a class="p-category" href="/blog/category/security/">security</a>

@@ -27,8 +27,30 @@
       <section>
         <div class="h-feed">
           <h2 class="p-name">Blog</h2>
-          <p id="postsFrom">Show only <a href="/blog/2016/">2016</a> <a href="/blog/2017/">2017</a> <a href="/blog/2018/">2018</a> <a href="/blog/2019/">2019</a> 
+          <p id="postsFrom">Show only <a href="/blog/2016/">2016</a> <a href="/blog/2017/">2017</a> <a href="/blog/2018/">2018</a> <a href="/blog/2019/">2019</a> <a href="/blog/2020/">2020</a> 
           </p>
+          <article class="h-entry" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"><a href="/blog/2020/09/pump.io-5.1.4-and-5.0.4-security-releases">
+              <h2 class="p-name">pump.io 5.1.4 and 5.0.4 security releases are now available</h2></a>
+            <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2020/09/">September</a> 18, <a href="/blog/2020/">2020</a> in <a class="p-category" href="/blog/category/releases/">releases</a> and <a class="p-category" href="/blog/category/security/">security</a>
+            </p>
+            <div class="e-content"><p>Another day, another <a href="https://github.com/cure53/DOMPurify">DOMPurify</a> security release.</p>
+<p>DOMPurify - which pump.io uses to protect against cross-site scripting vulnerabilities - today released version 2.0.16, which per the <a href="https://github.com/cure53/DOMPurify/releases/tag/2.0.16">release notes</a> fixes "an mXSS-based bypass caused by nested forms inside MathML" in Chrome. So as we usually do, the pump.io project is publishing a release that makes 2.0.16 the minimum required DOMPurify version, to make sure everyone running pump.io gets this patch.</p>
+<p>Per our <a href="https://github.com/pump-io/pump.io/wiki/Security">security support policy</a>, we're making patches available for both the current and previous stable releases:</p>
+<ol>
+<li>pump.io 5.1.3 has been updated to pump.io 5.1.4</li>
+<li>pump.io 5.0.3 has been updated to pump.io 5.0.4</li>
+</ol>
+<p>All administrators should upgrade as soon as possible since these are security releases. The risk that something will break from the upgrade is extremely low since both 5.1.4 and 5.0.3 are drop-in replacements for their predecessors. If you installed pump.io 5.1 using npm - our recommended configuration - you can upgrade with:</p>
+<pre><code>$ npm install -g pump.io@5
+</code></pre>
+<p>If you're still running pump.io 5.0, we recommend that you take this opportunity to upgrade to pump.io 5.1 by using the above command - it's a drop-in replacement, and will require no intervention on your part. However, if you want to stick with 5.0 for now, you can install a patched version with:</p>
+<pre><code>$ npm install -g pump.io@5.0
+</code></pre>
+<p>On the other hand, if you have a source-based install, the above commands won't work and you will need to upgrade however you usually do. This will depend on how exactly you installed pump.io in the first place.</p>
+<p>If you need help, or if you have questions about these security releases, <a href="https://github.com/pump-io/pump.io/wiki/Community">the community</a> is always happy to help.</p>
+</div>
+          </article>
+          <hr>
           <article class="h-entry" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"><a href="/blog/2019/10/pump.io-dompurify-security-fixes-available">
               <h2 class="p-name">pump.io DOMPurify security fixes available</h2></a>
             <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2019/10/">October</a> 15, <a href="/blog/2019/">2019</a> in <a class="p-category" href="/blog/category/releases/">releases</a> and <a class="p-category" href="/blog/category/security/">security</a>
@@ -109,32 +131,6 @@
 <p>As usual, this release also includes some small updates to dependencies. Plus, we started tracking how much code our test suite covers! We've also significantly cleaned up the documentation and moved almost all of the in-repository documentation to ReadTheDocs, where it's a lot more organized and accessible. If you want more than just these highlights, you can check out <a href="https://github.com/pump-io/pump.io/blob/master/CHANGELOG.md#510-beta-0---2017-12-08">the changelog</a>.</p>
 <p>Note that while the repository includes a <code>Dockerfile</code> now, we have not yet begun publishing on Docker Hub due to some security logistics that need to be figured out - when we do, it'll be announced in all the usual places (including this blog).</p>
 <p>I'm so excited for people to try out this release. 5.1 beta 0 is a drop-in replacement for 5.0, so if you're on 5.0 and want to live (more) on the bleeding edge, you can upgrade with <code>npm install -g pump.io@5.1</code> if you have an npm-based install. If you have a source-based install, you should merge and/or switch to the <code>v5.1.0-beta.0</code> tag. And as always, if you encounter any problems you can reach out to the <a href="https://github.com/pump-io/pump.io/wiki/Community">community</a> or <a href="https://github.com/pump-io/pump.io/issues">file bugs you find</a>.</p>
-</div>
-          </article>
-          <hr>
-          <article class="h-entry" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"><a href="/blog/2017/10/denial-of-service-security-fixes-now-available">
-              <h2 class="p-name">Denial-of-service security fixes now available</h2></a>
-            <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/10/">October</a> 1, <a href="/blog/2017/">2017</a> in <a class="p-category" href="/blog/category/releases/">releases</a> and <a class="p-category" href="/blog/category/security/">security</a>
-            </p>
-            <div class="e-content"><p>Recently some denial-of-service vulnerabilities were discovered in various modules that we indirectly depend on. I've bumped Express and <code>send</code> to pull in patched versions, and I've updated our fork of <code>connect-auth</code> to require a patched version of Connect, too. The remaining vulnerabilities I've confirmed don't affect us.</p>
-<p>Because of these version bumps, I've just put out security releases which all administrators are encouraged to upgrade to as soon as possible. A semver-major release (5.0.0) was released within the past 6 months so per our <a href="https://github.com/pump-io/pump.io/wiki/Security">security support policy</a> this means there are three new releases:</p>
-<ol>
-<li>pump.io 5.0.2 replaces 5.0.0 and is available now on npm</li>
-<li>pump.io 4.1.3 replaces 4.1.2 and is available now on npm</li>
-<li>pump.io 4.0.2 will replace 4.0.1 <strike>and is currently undergoing automated testing (it'll be on npm shortly)</strike> <strong>Update:</strong> pump.io 4.0.2 is now on npm</li>
-</ol>
-<p>As these are security releases we encourage admins to upgrade as soon as possible. If you're on 5.0.0 installed via npm - our recommended configuration - you can upgrade by issuing:</p>
-<pre><code>$ npm install -g pump.io@5
-</code></pre>
-<p>If you're on 4.1.3, you can upgrade by issuing:</p>
-<pre><code>$ npm install -g pump.io@4
-</code></pre>
-<p>And when 4.0.2 is out, if you're on 4.0.1 you can upgrade by issuing:</p>
-<pre><code>$ npm install -g pump.io@4.0
-</code></pre>
-<p>Note though that 4.1.3 is a drop-in replacement for 4.0.2, so you should consider just upgrading to that instead. Or even better, <a href="https://pumpio.readthedocs.io/en/latest/upgrades/4.x-to-5.x.html">upgrade to 5.x</a>!</p>
-<p>If you don't have an npm-based install, you'll have to upgrade however you normally do. How to do this will depend on your particular setup.</p>
-<p>As always, if you need help, you should get in touch with <a href="https://github.com/pump-io/pump.io/wiki/Community">the community</a>. I'd also like to specifically thank <a href="https://identi.ca/jxself">Jason Self</a>, who generously deployed a 24-hour private beta of these fixes on <a href="https://datamost.com/">Datamost</a>. One of the version bumps was ever-so-slightly risky, and being able to test things in production before rolling out patches for the entire network was invaluable. I wouldn't be as confident as I am in these releases without his help. So thanks, Jason - I really appreciate it!</p>
 </div>
           </article>
           <hr>
