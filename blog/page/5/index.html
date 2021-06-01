@@ -8,7 +8,7 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <script src="/javascripts/scale.fix.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-    <title>"community" category - pump.io blog</title>
+    <title>Blog - pump.io</title>
     <!-- TODO: apparently this technically isn't allowed to be relative but it seems to work fine, soooo...-->
     <link rel="alternate" type="application/rss+xml" href="index.rss">
   </head>
@@ -26,52 +26,9 @@
       </header>
       <section>
         <div class="h-feed">
-          <h2 class="p-name">Posts categorized as "community"</h2>
-          <article class="h-entry" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"><a href="/blog/2021/06/pump.io-irc">
-              <h2 class="p-name">#pump.io is moving IRC networks</h2></a>
-            <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2021/06/">June</a> 1, <a href="/blog/2021/">2021</a> in <a class="p-category" href="/blog/category/community/">community</a>
-            </p>
-            <div class="e-content"><p>The pump.io project has maintained a <code>#pump.io</code> IRC channel <a href="https://github.com/pump-io/pump.io/issues/481#issuecomment-15366249">since 2013</a>. Until now that channel has happily existed on the Freenode IRC network, but due to the recent changes to Freenode, the prior arrangement has become untenable. Therefore, effective June 1st, 2021, the official, canonical home for pump.io's IRC presence is on <a href="https://libera.chat/">Libera.Chat</a> in the <code>#pump.io</code> channel.</p>
-<p>Libera has extensive documentation for connecting to their network and we encourage everyone to move over to the Libera channel at your earliest convenience. In this interim period, the bot that bridges our XMPP room with our IRC channel has been configured to also bridge the Freenode channel with the Libera channel such that if you send a message in any of those three places (the XMPP room, Freenode channel, or Libera channel) it will show up in the other two. However, this bridging is provided on a best-effort basis - we can't commit to running it long-term, both because we expect that people will eventually abandon the Freenode channel as well as the fact that Freenode itself may force us to sever ties with them if they make <a href="https://www.gentoo.org/news/2021/05/26/gentoo-freenode-channels-hijacked.html">another</a> hostile move to seize channels who have migrated to Libera. Even aside from that, the Libera channel will provide a much better experience because things like nickname tab-completion will work.</p>
-<p><code>#pump.io</code>'s friendly IRC bot, <a href="https://github.com/pump-io/pumabot">pumabot</a>, has also been configured to connect to Libera instead of Freenode, and all relevant project documentation has been updated. Additionally we are in the process of getting officially registered with Libera, which opens up the possibility of having e.g. pump.io cloaks.</p>
-<p>Thank you to the Freenode team for 8 wonderful years of IRC hosting - we really appreciate it, and we're so grateful that so many of you have moved to Libera to continue to support the FOSS community.</p>
-<pre><code>&#x3C;strugee> INFO #pump.io
--ChanServ- Information on #pump.io:
--ChanServ- Founder    : evanpro
--ChanServ- Registered : Mar 24 18:34:29 2013 (8y 10w 0d ago)
--ChanServ- Mode lock  : +ntc-slk
--ChanServ- *** End of Info ***
-</code></pre>
-<p>See you all on the other side!</p>
-</div>
-          </article>
-          <hr>
-          <article class="h-entry" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"><a href="/blog/2016/08/pump.io-call-for-testers-call-for-feedback">
-              <h2 class="p-name">Pump.io: call for testers, call for feedback</h2></a>
-            <p class="post-metadata">Cross-posted from <a rel="canonical" href="https://strugee.net/blog/2016/08/pump.io-call-for-testers-call-for-feedback">this post</a> by AJ Jordan on <a href="/blog/2016/08/">August</a> 10, <a href="/blog/2016/">2016</a> in <a class="p-category" href="/blog/category/community/">community</a> and <a class="p-category" href="/blog/category/code/">code</a>
-            </p>
-            <div class="e-content"><p>So in my <a href="https://strugee.net/blog/2016/08/new-stuff-in-pump.io">last post</a>, I mentioned that I'd left a couple things for a second blog post. This is that post, and instead of being about all the cool stuff going on in the pumpiverse, it's about stuff that you - yes, <em>you</em>! - can do! It's super easy too.</p>
-<h4>Call for testers</h4>
-<p>So as I mentioned, the <code>utml-to-jade</code> branch is basically finished (see <a href="https://github.com/e14n/pump.io/pull/1170">PR #1170</a>). Since switching templating languages is a huge, huge change, by definition touching every single part of the Web UI, we want to make sure it's well-tested. This is especially critical given the fact that the Web UI unfortunately has <a href="https://github.com/e14n/pump.io/issues/147">very little test coverage</a>.</p>
-<p>That's where pump.io system administrators come in. If you're a sysadmin and you're willing to test this change on your node, we'd very much appreciate it. There's very little risk, since I <em>think</em> I've squashed all the regressions that happened, but you should be willing to <a href="https://github.com/e14n/pump.io/issues">report bugs</a> if you <em>do</em> run into them. In particular, you should look out for:</p>
-<ol>
-<li>Links that seem to encompass too much text</li>
-<li>Missing spaces - e.g. <code>AJ Jordanat [date]</code> instead of <code>AJ Jordan at [date]</code></li>
-<li>HTML code showing up on the page - e.g. <code>Test note&#x3C;br /></code> instead of <code>Test note</code> followed by a line break</li>
-</ol>
-<p>Note that the <code>utml-to-jade</code> branch incorporates all changes in the <code>master</code> branch, so you may want to check out the advice in <a href="https://github.com/e14n/pump.io/wiki/Running-from-git-master">Running from Git master</a>.</p>
-<p>Sound interesting? Want to take part in the development of pump.io? Installing is super easy:</p>
-<pre><code>$ [sudo] npm install -g e14n/pump.io#utml-to-jade
-</code></pre>
-<p>This will work even if you already have a (non-source) install of pump.io - just make sure to restart the server afterwards.</p>
-<p>Note that this command has some semi-terrible logic to build Jade templates on install (this is a workaround for a deficiency in npm). If you get a scary warning message from npm, please <a href="https://github.com/e14n/pump.io/issues">file an issue</a>, making sure to include the full log.</p>
-<h4>Call for design feedback</h4>
-<p>The other big thing that's happening is the pump.io 1.0.0 tshirt we're designing! I've spent quite a bit of time working on a variety of candidate designs which can be viewed in <a href="https://cloud.strugee.net/index.php/s/Ymw2RAdxyFZuuwu">this ownCloud share</a>. Obviously we want the coolest tshirt possible, so we're looking for any design feedback that people have. Anyone with some spare time can glance through the designs, and we'd be thrilled to get everyone's opinions.</p>
-<p>If this sounds interesting, I'd welcome you to check out <a href="https://cloud.strugee.net/index.php/s/Ymw2RAdxyFZuuwu">the drafts</a>. As always, get in touch with the community through <a href="https://github.com/e14n/pump.io/wiki/Community#community-accounts-communication">our chatroom</a> or if you'd prefer, you can email me directly at <a href="mailto:alex@strugee.net">alex@strugee.net</a>.</p>
-<p>Thanks so much! :)</p>
-</div>
-          </article>
-          <hr>
+          <h2 class="p-name">Blog</h2>
+          <p id="postsFrom">Show only <a href="/blog/2016/">2016</a> <a href="/blog/2017/">2017</a> <a href="/blog/2018/">2018</a> <a href="/blog/2019/">2019</a> <a href="/blog/2020/">2020</a> <a href="/blog/2021/">2021</a> 
+          </p>
           <article class="h-entry" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"><a href="/blog/2016/08/new-stuff-in-pump.io">
               <h2 class="p-name">New stuff in pump.io</h2></a>
             <p class="post-metadata">Cross-posted from <a rel="canonical" href="https://strugee.net/blog/2016/08/new-stuff-in-pump.io">this post</a> by AJ Jordan on <a href="/blog/2016/08/">August</a> 8, <a href="/blog/2016/">2016</a> in <a class="p-category" href="/blog/category/code/">code</a>, <a class="p-category" href="/blog/category/community/">community</a> and <a class="p-category" href="/blog/category/documentation/">documentation</a>
@@ -115,7 +72,7 @@
           </article>
           <hr>
           <div id="pages-footer">
-            <p>Page 1 of 1</p>
+            <p><a href="../4">←</a> ⋅ Page 5 out of 5 ⋅<span class="disabled-arrow">→</span></p>
           </div>
         </div>
       </section>

@@ -27,8 +27,27 @@
       <section>
         <div class="h-feed">
           <h2 class="p-name">Blog</h2>
-          <p id="postsFrom">Show only <a href="/blog/2016/">2016</a> <a href="/blog/2017/">2017</a> <a href="/blog/2018/">2018</a> <a href="/blog/2019/">2019</a> <a href="/blog/2020/">2020</a> 
+          <p id="postsFrom">Show only <a href="/blog/2016/">2016</a> <a href="/blog/2017/">2017</a> <a href="/blog/2018/">2018</a> <a href="/blog/2019/">2019</a> <a href="/blog/2020/">2020</a> <a href="/blog/2021/">2021</a> 
           </p>
+          <article class="h-entry" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"><a href="/blog/2021/06/pump.io-irc">
+              <h2 class="p-name">#pump.io is moving IRC networks</h2></a>
+            <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2021/06/">June</a> 1, <a href="/blog/2021/">2021</a> in <a class="p-category" href="/blog/category/community/">community</a>
+            </p>
+            <div class="e-content"><p>The pump.io project has maintained a <code>#pump.io</code> IRC channel <a href="https://github.com/pump-io/pump.io/issues/481#issuecomment-15366249">since 2013</a>. Until now that channel has happily existed on the Freenode IRC network, but due to the recent changes to Freenode, the prior arrangement has become untenable. Therefore, effective June 1st, 2021, the official, canonical home for pump.io's IRC presence is on <a href="https://libera.chat/">Libera.Chat</a> in the <code>#pump.io</code> channel.</p>
+<p>Libera has extensive documentation for connecting to their network and we encourage everyone to move over to the Libera channel at your earliest convenience. In this interim period, the bot that bridges our XMPP room with our IRC channel has been configured to also bridge the Freenode channel with the Libera channel such that if you send a message in any of those three places (the XMPP room, Freenode channel, or Libera channel) it will show up in the other two. However, this bridging is provided on a best-effort basis - we can't commit to running it long-term, both because we expect that people will eventually abandon the Freenode channel as well as the fact that Freenode itself may force us to sever ties with them if they make <a href="https://www.gentoo.org/news/2021/05/26/gentoo-freenode-channels-hijacked.html">another</a> hostile move to seize channels who have migrated to Libera. Even aside from that, the Libera channel will provide a much better experience because things like nickname tab-completion will work.</p>
+<p><code>#pump.io</code>'s friendly IRC bot, <a href="https://github.com/pump-io/pumabot">pumabot</a>, has also been configured to connect to Libera instead of Freenode, and all relevant project documentation has been updated. Additionally we are in the process of getting officially registered with Libera, which opens up the possibility of having e.g. pump.io cloaks.</p>
+<p>Thank you to the Freenode team for 8 wonderful years of IRC hosting - we really appreciate it, and we're so grateful that so many of you have moved to Libera to continue to support the FOSS community.</p>
+<pre><code>&#x3C;strugee> INFO #pump.io
+-ChanServ- Information on #pump.io:
+-ChanServ- Founder    : evanpro
+-ChanServ- Registered : Mar 24 18:34:29 2013 (8y 10w 0d ago)
+-ChanServ- Mode lock  : +ntc-slk
+-ChanServ- *** End of Info ***
+</code></pre>
+<p>See you all on the other side!</p>
+</div>
+          </article>
+          <hr>
           <article class="h-entry" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"><a href="/blog/2020/09/pump.io-5.1.4-and-5.0.4-security-releases">
               <h2 class="p-name">pump.io 5.1.4 and 5.0.4 security releases are now available</h2></a>
             <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2020/09/">September</a> 18, <a href="/blog/2020/">2020</a> in <a class="p-category" href="/blog/category/releases/">releases</a> and <a class="p-category" href="/blog/category/security/">security</a>
@@ -116,26 +135,8 @@
 </div>
           </article>
           <hr>
-          <article class="h-entry" itemscope="itemscope" itemtype="http://schema.org/BlogPosting"><a href="/blog/2017/12/pump.io-5.1-is-in-beta">
-              <h2 class="p-name">pump.io 5.1 is in beta</h2></a>
-            <p class="post-metadata">Published by AJ Jordan on <a href="/blog/2017/12/">December</a> 8, <a href="/blog/2017/">2017</a> in <a class="p-category" href="/blog/category/releases/">releases</a>
-            </p>
-            <div class="e-content"><p>I'm really excited to announce that pump.io 5.1 is officially in beta!</p>
-<p>This release makes a wide array of improvements. One of the features I'm most excited about is <a href="/blog/2017/08/zero-downtime-restarts-have-landed">zero-downtime restarts</a>, which will allow administrators to gracefully roll over to new configurations and codebases with absolutely no user-visible impact! Aside from that, here's a list of highlights:</p>
-<ul>
-<li>The daemon now generates startup log warnings on bad configurations, including insecure <code>secret</code> values and internal parameters</li>
-<li>An official <code>Dockerfile</code> is now included with the release</li>
-<li>The logged-out mobile homepage's menu icon is no longer incorrectly styled as black</li>
-<li>SockJS connections no longer fail due to authorization problems</li>
-</ul>
-<p>As usual, this release also includes some small updates to dependencies. Plus, we started tracking how much code our test suite covers! We've also significantly cleaned up the documentation and moved almost all of the in-repository documentation to ReadTheDocs, where it's a lot more organized and accessible. If you want more than just these highlights, you can check out <a href="https://github.com/pump-io/pump.io/blob/master/CHANGELOG.md#510-beta-0---2017-12-08">the changelog</a>.</p>
-<p>Note that while the repository includes a <code>Dockerfile</code> now, we have not yet begun publishing on Docker Hub due to some security logistics that need to be figured out - when we do, it'll be announced in all the usual places (including this blog).</p>
-<p>I'm so excited for people to try out this release. 5.1 beta 0 is a drop-in replacement for 5.0, so if you're on 5.0 and want to live (more) on the bleeding edge, you can upgrade with <code>npm install -g pump.io@5.1</code> if you have an npm-based install. If you have a source-based install, you should merge and/or switch to the <code>v5.1.0-beta.0</code> tag. And as always, if you encounter any problems you can reach out to the <a href="https://github.com/pump-io/pump.io/wiki/Community">community</a> or <a href="https://github.com/pump-io/pump.io/issues">file bugs you find</a>.</p>
-</div>
-          </article>
-          <hr>
           <div id="pages-footer">
-            <p><span class="disabled-arrow">←</span> ⋅ Page 1 out of 4 ⋅<a href="page/2">→</a></p>
+            <p><span class="disabled-arrow">←</span> ⋅ Page 1 out of 5 ⋅<a href="page/2">→</a></p>
           </div>
         </div>
       </section>
